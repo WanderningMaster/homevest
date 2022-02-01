@@ -6,6 +6,7 @@ import { store } from 'store/store';
 import App from './app';
 import './assets/styles/index.scss';
 import './assets/styles/tailwind.css';
+import './assets/styles/fonts.css';
 
 render(
   <React.StrictMode>
