@@ -8,15 +8,20 @@ const {
   DB_PASSWORD,
   DB_HOST,
   DB_PORT,
-  DB_DIALECT,
+  DB_TYPE
 } = process.env;
 
-module.exports = {
-  database: DB_NAME,
+const options = {
+  name: 'default',
+  type: DB_TYPE,
+  host: DB_HOST,
+  port: Number(DB_PORT),
   username: DB_USERNAME,
   password: DB_PASSWORD,
-  host: DB_HOST,
-  port: DB_PORT,
-  dialect: DB_DIALECT,
+  database: DB_NAME,
+  synchronize: false,
   logging: false,
+  entities: [__dirname + '/../**/*.entity{.js,.ts}']
 };
+
+export {options};
