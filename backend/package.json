@@ -23,7 +23,6 @@
     "pino": "6.11.1",
     "pino-pretty": "4.5.0",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "6.5.0",
     "shared": "file:shared",
     "ts-node": "9.1.1",
     "typeorm": "^0.2.41"
