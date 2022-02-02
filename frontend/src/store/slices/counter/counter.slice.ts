@@ -41,9 +41,14 @@ const incrementAsync = (amount: number): AppThunk => (dispatch) => {
   }, 1000);
 };
 
+const sagaAsyncIncrement = () => ({type: 'asyncIncrement'});
+const sagaAsyncDecrement = () => ({type: 'asyncDecrement'});
+
 const CounterActionCreator = {
   ...actions,
   incrementAsync,
+  sagaAsyncIncrement,
+  sagaAsyncDecrement,
 };
 
 export { CounterActionCreator, reducer };
