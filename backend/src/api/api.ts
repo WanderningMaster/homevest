@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import { AppConfig } from '~/common/enums';
+import { initEstateApi } from './estate/estate.api';
 import { initUserApi } from './user/user.api';
 
-const apis = [initUserApi];
+const apis = [initUserApi, initEstateApi];
 
 const initApi = (app: Router): Router => {
   const apiRouter = Router();

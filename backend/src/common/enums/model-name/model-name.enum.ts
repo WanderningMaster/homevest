@@ -1,5 +1,6 @@
 enum ModelName {
-  USER = 'user'
+  USER = 'user',
+  ESTATE = 'estate'
 }
 
 export { ModelName };
