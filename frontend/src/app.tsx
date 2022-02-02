@@ -4,6 +4,7 @@ import { AppRoute } from 'common/enums';
 import Counter from 'components/counter/counter';
 import { Link } from 'components/common';
 import logo from 'assets/images/logo.svg';
+import SignIn from 'components/common/signIn/signIn';
 
 const App: React.FC = () => {
   const { pathname } = useLocation();
