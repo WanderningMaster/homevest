@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from "typeorm";
 import { IUser } from '~/common/interfaces';
+import { CompanyEntity } from "./company.entity";
 import { InvestorEntity } from "./investor.entity";
 
 @Entity({
@@ -12,6 +13,9 @@ export class UserEntity implements IUser{
 
   @OneToOne(() => InvestorEntity, (investor: InvestorEntity) => investor.user)
   investor!: InvestorEntity;
+  
+  @OneToOne(() => CompanyEntity, (company: CompanyEntity) => company.user)
+  company!: CompanyEntity;
 
   @Column() 
   firstName!: string;
