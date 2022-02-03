@@ -6,6 +6,7 @@ import { InputField } from './input-field';
 import { PasswordInputField } from './password-input-field';
 import 'assets/styles/fonts.css';
 import 'assets/styles/tailwind.css';
+import { SelectField } from '../select/select-field';
 
 export const Form = () => (
   <div>
@@ -14,6 +15,26 @@ export const Form = () => (
     </div>
     <div className="mt-2">
       <PasswordInputField name="password" placeholder='Password' />
+    </div>
+    <div className="mt-2">
+      <SelectField
+        name="city"
+        placeholder='Select city...'
+        options={[
+          {
+            value: '1',
+            label: 'Kyiv'
+          },
+          {
+            value: '2',
+            label: 'Mukachevo'
+          },
+          {
+            value: '3',
+            label: 'Kryvy Rig'
+          }
+        ]}
+      />
     </div>
   </div>
 );
@@ -40,5 +61,5 @@ Form.parameters = {
 }
 
 export default {
-  title: 'UI/Controls/Input'
+  title: 'UI/Form/Form'
 } as Meta;
