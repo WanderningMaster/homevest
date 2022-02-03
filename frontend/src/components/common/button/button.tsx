@@ -14,10 +14,10 @@ interface ButtonProps {
 
 const STYLES = {
   primary:
-    "text-white bg-green border-solid border-1 border-green hover:bg-green-light focus:bg-green-dark disabled:bg-green-inactive",
+    "text-white bg-green border-solid border-1 border-green hover:bg-green-hover focus:bg-green-pressed disabled:bg-green-inactive",
   secondary:
-    "text-green border-solid border-1 border-green hover:border-green-light focus:border-green-dark disabled:border-green-inactive",
-  tertiary: "text-green border-none focus:text-green-dark ",
+    "text-green border-solid border-1 border-green hover:border-green-hover focus:border-green-pressed disabled:border-green-inactive",
+  tertiary: "text-green border-none focus:text-green-pressed ",
   google: "text-green bg-white shadow-[0_4px_18px_rgba(0,0,0,0.1)]",
 };
 
