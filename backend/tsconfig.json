@@ -8,6 +8,8 @@
       "~/*": ["./src/*"]
     },
     "outDir": "build",
+    "experimentalDecorators": true, 
+    "emitDecoratorMetadata": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "resolveJsonModule": true,
