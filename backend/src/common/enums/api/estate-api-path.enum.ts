@@ -1,6 +1,7 @@
 enum EstatesApiPath {
     ROOT = '/',
-    $ID = '/:id'
+    $ID = '/:id',
+    GET_ESTATE = '/estate/:id'
   }
   
   export { EstatesApiPath };

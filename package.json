@@ -32,6 +32,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "4.15.2",
     "@typescript-eslint/parser": "4.15.2",
     "concurrently": "6.0.0",

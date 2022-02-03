@@ -1,28 +1,40 @@
-import { UserModel } from '../models';
+import { UserEntity } from '../models/user.entity';
 import { IUser } from '~/common/interfaces';
+import { DeleteResult, UpdateResult, EntityRepository, Repository} from "typeorm";
+import bcrypt from "bcrypt";
 
-class UserRepository {
-  public getAll():Promise<IUser[]>{
-    return UserModel.findAll()
+@EntityRepository(UserEntity)
+export class UserRepository extends Repository<UserEntity> {
+  public async getAll(): Promise<UserEntity[]>{
+    return await this.find();
   }
-  public getById(id:string):Promise<IUser | null>{
-    return UserModel.findByPk(id)
-  }
-  public createUser(user:IUser):Promise<IUser>{
-    return UserModel.create(user)
-  }
-  public async updateById(id:string, data:IUser):Promise<IUser[]>{
-    const result = await UserModel.update(data, {
-      where: { id },
-      returning: true
+  public async getById(id:string): Promise<UserEntity | undefined>{
+    return await this.findOne({
+      where: {
+        id
+      }
     });
-    return result[1];
   }
-  public deleteById(id:string):Promise<number>{
-    return UserModel.destroy({
-      where: { id }
+  public async createUser(user:IUser): Promise<UserEntity>{
+    user = await this.getHash(user);
+    return await this.save(user);
+  }
+  public async updateById(id:string, data:IUser): Promise<UpdateResult>{
+    data = await this.getHash(data);
+    return await this.update(
+      id,
+      data
+    );
+  }
+  public async deleteById(id:string): Promise<DeleteResult>{
+    return await this.delete({ 
+        id 
     });
+  }
+  public async getHash(user: IUser): Promise<IUser>{
+    if(user.password){
+      user.password = await bcrypt.hash(user.password, 8);
+    }
+    return user;
   }
 }
-
-export { UserRepository };

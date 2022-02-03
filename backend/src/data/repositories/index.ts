@@ -1,10 +1,5 @@
-import { EstateRepository } from './estate-repository';
-import { UserRepository } from './user-repository';
-
-const userRepository = new UserRepository();
-const estateRepository = new EstateRepository();
+import  {UserRepository}  from './user-repository';
 
 export {
-  userRepository,
-  estateRepository
+  UserRepository
 }

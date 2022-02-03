@@ -5,13 +5,13 @@ import { initApi } from '~/api/api';
 import { logger } from '~/services/services';
 import { setTraceId, logRequest, handleError } from '~/middlewares';
 import { DbConnectionError } from '~/exceptions';
-import { sequelize } from '~/data/db/connection';
+import { connection } from './data/db/connection';
+import "reflect-metadata";
 
 const app = express();
 
-sequelize
-  .authenticate()
-  .then(() => {
+connection
+  .then(async () => {
     return logger.log('Database connection was successful');
   })
   .catch(({ message, stack }: DbConnectionError) => {
@@ -26,9 +26,9 @@ app.use(urlencoded({ extended: true }));
 initApi(app);
 
 app.use(express.static(join(__dirname, '../public')));
-app.use('*', (_req, res) => {
-  return res.sendFile(join(__dirname, '../public', 'index.html'));
-});
+// app.use('*', (_req, res) => {
+//   return res.sendFile(join(__dirname, '../public', 'index.html'));
+// });
 
 app.use(handleError);
 

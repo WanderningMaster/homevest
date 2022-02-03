@@ -1,28 +1,42 @@
-import { EstateModel } from '../models';
-import { IEstate } from '~/common/interfaces';
+import { EstateEntity } from '../models/estate.entity';
+import { IEstate} from '~/common/interfaces/';
+import { DeleteResult, UpdateResult, EntityRepository, Repository} from "typeorm";
 
-class EstateRepository {
-  public getAll():Promise<IEstate[]>{
-    return EstateModel.findAll()
+@EntityRepository(EstateEntity)
+export class EstateRepository extends Repository<EstateEntity> {
+  public async getAll(): Promise<EstateEntity[]>{
+    return await this.find();
   }
-  public getById(id:string):Promise<IEstate | null>{
-    return EstateModel.findByPk(id)
-  }
-  public createEstate(estate:IEstate):Promise<IEstate>{
-    return EstateModel.create(estate)
-  }
-  public async updateById(id:string, data:IEstate):Promise<IEstate[]>{
-    const result = await EstateModel.update(data, {
-      where: { id },
-      returning: true
+  public async getById(id:string): Promise<EstateEntity | undefined>{
+    return await this.findOne({
+      where: {
+        id
+      }
     });
-    return result[1];
   }
-  public deleteById(id:string):Promise<number>{
-    return EstateModel.destroy({
-      where: { id }
+  public async createEstate(estate:IEstate): Promise<EstateEntity>{
+
+    return await this.save(estate);
+  }
+  public async updateById(id:string, data:IEstate): Promise<UpdateResult>{
+
+    return await this.update(
+      id,
+      data
+    );
+  }
+  public async deleteById(id:string): Promise<DeleteResult>{
+    return await this.delete({ 
+        id 
+    });
+  }
+  public async getEstate(id:string): Promise<EstateEntity[]>{
+
+    return await this.find({
+      where: {
+        id
+      },
+      relations: ["company"]
     });
   }
 }
-
-export { EstateRepository };

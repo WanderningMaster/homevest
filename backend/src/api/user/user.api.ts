@@ -9,7 +9,7 @@ const initUserApi = (apiRouter: Router): Router => {
 
   userRouter.get(UsersApiPath.ROOT, async (_req, res) => {
     try {
-      const users = await userService.getAllUsers()
+      const users = await userService.getAllUsers();
       res.status(HttpCode.OK).json(users);
     } catch(error) {
       res.status(HttpCode.NOT_FOUND).json(error);
@@ -17,6 +17,7 @@ const initUserApi = (apiRouter: Router): Router => {
   });
 
   userRouter.get(UsersApiPath.$ID, async (_req, res) => {
+    console.log(_req.params.id);
     try {
       const user = await userService.getUserById(_req.params.id);
       res.status(HttpCode.OK).json(user);
@@ -36,8 +37,8 @@ const initUserApi = (apiRouter: Router): Router => {
 
   userRouter.put(UsersApiPath.$ID, async (_req, res) => {
     try {
-      const user = await userService.updateUser(_req.params.id, _req.body);
-      res.status(HttpCode.OK).json(user);
+      const updateResult = await userService.updateUser(_req.params.id, _req.body);
+      res.status(HttpCode.OK).json(updateResult);
     } catch(error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
@@ -45,8 +46,8 @@ const initUserApi = (apiRouter: Router): Router => {
 
   userRouter.delete(UsersApiPath.$ID, async (_req, res) => {
     try {
-      await userService.deleteUser(_req.params.id);
-      res.status(HttpCode.NO_CONTENT).json();
+      const deleteResult = await userService.deleteUser(_req.params.id);
+      res.status(HttpCode.NO_CONTENT).json(deleteResult);
     } catch(error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
