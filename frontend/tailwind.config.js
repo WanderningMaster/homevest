@@ -10,6 +10,9 @@ module.exports = {
     extend: {
       colors,
       spacing: {
+        '6.5': pxToRem(26),
+        '90': pxToRem(360),
+        '102.5': pxToRem(410),
         '128': '32rem',
       },
       fontSize: {
@@ -43,6 +46,13 @@ module.exports = {
         medium: 500,
         semibold: 600,
         bold: 700,
+      },
+      screens: {
+        '3xl': '1920px', // full hd
+        '4xl': '2560px', // quad hd
+      },
+      boxShadow: {
+        google: '0 4px 18px 0 rgba(0, 0, 0, 0.1)',
       }
     },
   },
