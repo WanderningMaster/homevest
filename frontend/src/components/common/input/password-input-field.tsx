@@ -1,8 +1,9 @@
 import React from 'react';
 import { useField } from "formik";
-import { PasswordInput, PasswordInputProps } from "./password-input";
+import { PasswordInput } from "./password-input";
+import { BaseInputProps } from './types/base-input-props.interface';
 
-type InputFieldProps = Omit<PasswordInputProps, 'isInvalid' | 'errorText'>;
+type InputFieldProps = Omit<BaseInputProps, 'isInvalid' | 'errorText'>;
 
 export const PasswordInputField: React.FC<InputFieldProps> = ({
   name,

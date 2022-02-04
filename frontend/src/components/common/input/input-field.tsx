@@ -1,6 +1,7 @@
 import React from 'react';
 import { useField } from "formik";
-import { Input, InputProps } from "./input";
+import { Input } from "./input";
+import { InputProps } from './types/input-props.interface';
 
 type InputFieldProps = Omit<InputProps, 'isInvalid' | 'errorText'>;
 
