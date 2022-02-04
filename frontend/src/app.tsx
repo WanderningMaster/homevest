@@ -12,6 +12,7 @@ const App: React.FC = () => {
     <>
       <div className="App">
         <div>
+          <h2 className='text-h2 text-bold text-gray text-light-grey'>Test Tailwind</h2>
           <ul className="App-navigation-list">
             <li>
               <Link to={AppRoute.ROOT}>Root</Link>
