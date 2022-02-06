@@ -1,8 +1,5 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { Logo } from 'components/Navigation/LogoLink'
-import { AppBar } from 'components/Navigation/AppBar'
-import { SideBar } from 'components/Navigation/SideBar'
 
 interface HederProps {
   children?: React.ReactNode
@@ -18,8 +15,6 @@ const Header: React.FC<HederProps> = ({ position, children }) => {
       )}
     >
       {children}
-      {/* <Logo /> */}
-      {/* <AppBar /> */}
     </header>
   )
 }

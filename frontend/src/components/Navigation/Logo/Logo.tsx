@@ -4,7 +4,11 @@ import { Link } from 'components/common'
 import { ReactComponent as HomeIcon } from 'assets/images/home-icon.svg'
 import { ReactComponent as BurgerIcon } from 'assets/images/burger-icon.svg'
 
-const Logo: React.FC = () => (
+interface LogoProps {
+  onClick?: () => void
+}
+
+const Logo: React.FC<LogoProps> = ({ onClick }) => (
   <div className="flex flex-row items-end justify-start p-0 static mr-62px text-green">
     <div className="flex flex-row items-center justify-center">
       <HomeIcon className="h-10 w-10 stroke-current" />
@@ -13,7 +17,7 @@ const Logo: React.FC = () => (
       <Link to={AppRoute.HOME_PAGE}>
         <h3 className="inline mx-4 text-4xl font-bold leading-9 text-green">Homevest</h3>
       </Link>
-      <div className="my-auto">
+      <div className="my-auto" onClick={onClick}>
         <BurgerIcon className="inline w-8 h-8 stroke-current" />
       </div>
     </div>
