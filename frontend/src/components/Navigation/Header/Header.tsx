@@ -10,7 +10,7 @@ const Header: React.FC<HederProps> = ({ position, children }) => {
   return (
     <header
       className={clsx(
-        'absolute top-0 min-w-full flex flex-row px justify-start items-center py-6 px-75px bg-white mx-0 my-0 shadow-header ',
+        'absolute top-0 min-w-full flex flex-row justify-start items-center py-8 px-75px bg-white mx-0 my-0 shadow-header ',
         position,
       )}
     >
