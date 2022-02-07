@@ -1,18 +1,8 @@
 import clsx from 'clsx';
 import React from "react";
 import { Typography } from "../typography/typography";
-
-export interface InputProps extends React.HTMLProps<HTMLInputElement> {
-  className?: string;
-  name: string;
-  disabled?: boolean;
-  active?: boolean;
-  placeholder?: string;
-  isInvalid?: boolean;
-  errorText?: string;
-  type?: 'text' | 'email' | 'password';
-  rightAdornment?: React.ReactNode;
-}
+import { BaseInputProps } from './types/base-input-props.interface';
+import { InputProps } from './types/input-props.interface';
 
 export const Input: React.FC<InputProps> = ({
   className,
