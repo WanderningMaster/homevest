@@ -13,9 +13,14 @@ module.exports = {
       colors,
       spacing: {
         '6.5': pxToRem(26),
+        '15': pxToRem(60),
+        '27': pxToRem(108),
+        '46.5': pxToRem(186),
+        '83.5': pxToRem(334),
         '90': pxToRem(360),
         '102.5': pxToRem(410),
         '128': '32rem',
+        '157.5': pxToRem(630),
       },
       fontSize: {
         h1: pxToRem(64),
@@ -67,6 +72,7 @@ module.exports = {
       },
       boxShadow: {
         header: '0px 4px 18px rgba(34, 68, 68, 0.15)',
+        'map-card': '0px 4px 18px 0 rgba(0, 0, 0, 0.15)',
         google: '0 4px 18px 0 rgba(0, 0, 0, 0.1)',
       },
     },
