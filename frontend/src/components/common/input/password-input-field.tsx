@@ -13,7 +13,7 @@ export const PasswordInputField: React.FC<InputFieldProps> = ({
   return <PasswordInput
     {...field}
     {...rest}
-    isInvalid={Boolean(meta.error)}
+    isInvalid={Boolean(meta.error && meta.touched)}
     errorText={String(meta.error)}
   />;
 }

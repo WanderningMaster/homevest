@@ -12,7 +12,10 @@ module.exports = {
     extend: {
       colors,
       spacing: {
-        128: '32rem',
+        '6.5': pxToRem(26),
+        '90': pxToRem(360),
+        '102.5': pxToRem(410),
+        '128': '32rem',
       },
       fontSize: {
         h1: pxToRem(64),
@@ -46,6 +49,10 @@ module.exports = {
         semibold: 600,
         bold: 700,
       },
+      screens: {
+        '3xl': '1920px', // full hd
+        '4xl': '2560px', // quad hd
+      },
       padding: {
         '10px': pxToRem(10),
         '75px': pxToRem(75),
@@ -60,6 +67,7 @@ module.exports = {
       },
       boxShadow: {
         header: '0px 4px 18px rgba(34, 68, 68, 0.15)',
+        google: '0 4px 18px 0 rgba(0, 0, 0, 0.1)',
       },
     },
   },

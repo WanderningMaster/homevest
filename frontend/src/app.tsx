@@ -1,35 +1,21 @@
-import * as React from 'react'
-import { useState } from 'react'
-import { Header } from 'components/Navigation/Header'
-import { SideBar } from 'components/Navigation/SideBar'
-import { Logo } from 'components/Navigation/Logo'
-import { AppBar } from 'components/Navigation/AppBar'
+import React from 'react';
+import { AppRoute } from 'common/enums';
+import SignUpPage from 'pages/auth/sign-up/sign-up.page';
+import { HomePage } from 'pages/home/home.page';
+import { Switch, Route } from 'react-router-dom';
+
 
 const App: React.FC = () => {
-  const [active, setActive] = useState(false)
-
-  const onClick = () => {
-    setActive(true)
-  }
   return (
-    <>
-      {active ? (
-        <>
-          <SideBar />
-          <Header position="left-72">
-            <AppBar />
-          </Header>
-        </>
-      ) : (
-        <>
-          <Header position="left-0">
-            <Logo onClick={onClick} />
-            <AppBar />
-          </Header>
-        </>
-      )}
-    </>
+    <Switch>
+      <Route path={AppRoute.SIGN_UP}>
+        <SignUpPage />
+      </Route>
+      <Route exact path={AppRoute.ROOT}>
+        <HomePage />
+      </Route>
+    </Switch>
   )
-}
+};
 
 export default App
