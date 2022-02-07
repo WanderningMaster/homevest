@@ -22,15 +22,9 @@ const ForgotPassword: React.FC = () => {
           }}
           validationSchema={Yup.object({
             email: Yup.string()
-              // .email("Invalid email address")
+              .email("Invalid email address")
               .required("Required"),
           })}
-          // onSubmit={(values, { setSubmitting }) => {
-          //   setTimeout(() => {
-          //     alert(JSON.stringify(values, null, 2));
-          //     setSubmitting(false);
-          //   }, 400);
-          // }}
           onSubmit={(values) => {
             console.log(values);
             alert(JSON.stringify(values, null, 2));
