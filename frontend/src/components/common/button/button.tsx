@@ -4,6 +4,7 @@ import "assets/styles/tailwind.css";
 import "assets/styles/fonts.css";
 import { ReactComponent as GoogleIcon } from "./icon-google.svg";
 import { overrideTailwindClasses } from "tailwind-override";
+
 interface ButtonProps {
   label?: string;
   icon?: ReactNode | HTMLAllCollection | string;
