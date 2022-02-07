@@ -4,8 +4,12 @@ import { ENV } from '~/common/enums';
 import { initApi } from '~/api/api';
 import { logger } from '~/services/services';
 import { setTraceId, logRequest, handleError } from '~/middlewares';
+
 import { DbConnectionError } from '~/exceptions';
 import { connection } from './data/db/connection';
+
+import { connectRedis, redisCl } from './data/db/redis';
+
 import "reflect-metadata";
 
 const app = express();
@@ -17,6 +21,8 @@ connection
   .catch(({ message, stack }: DbConnectionError) => {
     return logger.error(message, stack);
   });
+
+connectRedis();
 
 app.use(setTraceId);
 app.use(logRequest);

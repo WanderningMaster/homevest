@@ -15,6 +15,13 @@ export class UserRepository extends Repository<UserEntity> {
       }
     });
   }
+  public async getByEmail(email: string): Promise<UserEntity | undefined>{
+    return await this.findOne({
+      where: {
+        email
+      }
+    });
+  }
   public async createUser(user:IUser): Promise<UserEntity>{
     user = await this.getHash(user);
     return await this.save(user);

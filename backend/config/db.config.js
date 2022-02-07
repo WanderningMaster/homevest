@@ -19,7 +19,7 @@ const options = {
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_NAME,
-  synchronize: false,
+  synchronize: true,
   logging: false,
   entities: [__dirname + '/../**/*.entity{.js,.ts}']
 };
