@@ -12,5 +12,6 @@
   "green-pressed": "#142A2A",
   "green-inactive": "#BDCACA",
   "black": "#202020",
-  "hovered": "#5E7497"
+  "hovered": "#5E7497",
+  "lightblue": "#5E7497"
 }

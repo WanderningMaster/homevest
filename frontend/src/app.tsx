@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React from 'react';
 import { AppRoute } from 'common/enums';
 import SignUpPage from 'pages/auth/sign-up/sign-up.page';
 import { HomePage } from 'pages/home/home.page';
+import { Switch, Route } from 'react-router-dom';
 
 
 const App: React.FC = () => {
@@ -18,4 +18,4 @@ const App: React.FC = () => {
   )
 };
 
-export default App;
+export default App

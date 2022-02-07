@@ -1,6 +1,8 @@
-const REM_SIZE = 16;
-const pxToRem = (px) => `${px / REM_SIZE}rem`;
-const colors = require("./src/config/colors.json");
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
+const REM_SIZE = 16
+const pxToRem = px => `${px / REM_SIZE}rem`
+const colors = require('./src/config/colors.json')
 
 module.exports = {
   important: '#root',
@@ -51,13 +53,26 @@ module.exports = {
         '3xl': '1920px', // full hd
         '4xl': '2560px', // quad hd
       },
+      padding: {
+        '10px': pxToRem(10),
+        '75px': pxToRem(75),
+      },
+      margin: {
+        '2px': pxToRem(2),
+        '10px': pxToRem(10),
+        '62px': pxToRem(62),
+      },
+      width: {
+        '295px': pxToRem(295),
+      },
       boxShadow: {
+        header: '0px 4px 18px rgba(34, 68, 68, 0.15)',
         google: '0 4px 18px 0 rgba(0, 0, 0, 0.1)',
-      }
+      },
     },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-};
+}
