@@ -33,6 +33,7 @@ const ForgotPassword: React.FC = () => {
           // }}
           onSubmit={(values) => {
             console.log(values);
+            alert(JSON.stringify(values, null, 2));
           }}
         >
           <Form>
