@@ -5,22 +5,22 @@ import { SideBar } from 'components/Navigation/SideBar'
 import { Logo } from 'components/Navigation/Logo'
 import { AppBar } from 'components/Navigation/AppBar'
 
-import { useLocation } from 'react-router-dom'
-import { AppRoute } from 'common/enums'
-import Counter from 'components/counter/counter'
-import { Link } from 'components/common'
-import logo from 'assets/images/logo.svg'
+// import { useLocation } from 'react-router-dom'
+// import { AppRoute } from 'common/enums'
+// import Counter from 'components/counter/counter'
+// import { Link } from 'components/common'
+// import logo from 'assets/images/logo.svg'
 
 const App: React.FC = () => {
-  const { pathname } = useLocation()
-  // const [active, setActive] = useState(false)
+  // const { pathname } = useLocation()
+  const [active, setActive] = useState(false)
 
-  // const onClick = () => {
-  //   setActive(true)
-  // }
+  const onClick = () => {
+    setActive(true)
+  }
   return (
     <>
-      {/* {active ? (
+      {active ? (
         <>
           <SideBar />
           <Header position="left-72">
@@ -34,9 +34,9 @@ const App: React.FC = () => {
             <AppBar />
           </Header>
         </>
-      )} */}
+      )}
 
-      <div className="App">
+      {/* <div className="App">
         <div>
           <h2 className="text-h2 text-bold text-gray text-light-grey">Test Tailwind</h2>
           <ul className="App-navigation-list">
@@ -97,7 +97,7 @@ const App: React.FC = () => {
             </a>
           </span>
         </header>
-      </div>
+      </div> */}
     </>
   )
 }
