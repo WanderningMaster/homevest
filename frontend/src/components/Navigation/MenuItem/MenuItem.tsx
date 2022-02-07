@@ -16,7 +16,7 @@ const MenuItem: React.FC<ItemProps> = ({ text, itemStyles, textStyles, iconStyle
     >
       <h6
         className={clsx(
-          'static flex font-semibold  text-20px text-h6 mr-6 mt-2px leading-8 whitespace-nowrap  hover:text-green focus:text-green',
+          'static flex font-semibold  text-h6 mr-6 mt-2px leading-8 whitespace-nowrap  hover:text-green focus:text-green',
           textStyles,
         )}
       >

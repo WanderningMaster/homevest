@@ -26,7 +26,6 @@ module.exports = {
         'body-small': pxToRem(14),
         'placeholder-small': pxToRem(11),
         'line-14': pxToRem(14),
-        '20px': pxToRem(20),
       },
       lineHeight: {
         h1: pxToRem(64),
