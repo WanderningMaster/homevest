@@ -16,6 +16,9 @@ frontend/shared
 # compose
 postgres-data
 
+# docker volumes
+docker
+
 # misc
 .DS_Store
 .env

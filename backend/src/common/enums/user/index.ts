@@ -1,1 +1,1 @@
-export { UserSex, UserType } from 'shared/common/enums';
+export { UserSex } from 'shared/common/enums';
