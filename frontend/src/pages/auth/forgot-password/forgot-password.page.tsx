@@ -4,13 +4,13 @@ import { Typography } from "components/common/typography/typography";
 import { AuthLayout } from "components/layouts/auth-layout/auth-layout";
 import React from "react";
 import * as Yup from "yup";
-import { Formik, Form, useField } from "formik";
+import { Formik, Form } from "formik";
 
 const ForgotPassword: React.FC = () => {
   return (
     <AuthLayout>
       <div className=" align-middle">
-        <Typography type="h2" className=" mt-5 ">
+        <Typography type="h2" className=" mt-20 ">
           Forgot password
         </Typography>
         <Typography type="body" className="mt-4 text-green-pressed">
@@ -27,7 +27,6 @@ const ForgotPassword: React.FC = () => {
           })}
           onSubmit={(values) => {
             console.log(values);
-            alert(JSON.stringify(values, null, 2));
           }}
         >
           <Form>
@@ -40,7 +39,7 @@ const ForgotPassword: React.FC = () => {
             <div className="w-102.5 flex mt-10">
               <Button
                 nameBtn="primary"
-                className="w-48 h-12 box-border ml-6.5"
+                className="w-screen h-12 box-border mr-0 "
                 type="submit"
               >
                 Send the link
