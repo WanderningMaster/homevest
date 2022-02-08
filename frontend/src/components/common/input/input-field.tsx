@@ -1,6 +1,7 @@
 import React from 'react';
 import { useField } from "formik";
-import { Input, InputProps } from "./input";
+import { Input } from "./input";
+import { InputProps } from './types/input-props.interface';
 
 type InputFieldProps = Omit<InputProps, 'isInvalid' | 'errorText'>;
 
@@ -12,7 +13,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   return <Input
     {...field}
     {...rest}
-    isInvalid={Boolean(meta.error)}
+    isInvalid={Boolean(meta.error && meta.touched)}
     errorText={String(meta.error)}
   />;
 }

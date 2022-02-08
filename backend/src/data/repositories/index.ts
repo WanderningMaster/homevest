@@ -1,7 +1,5 @@
-import { UserRepository } from './user-repository';
-
-const userRepository = new UserRepository();
+import  {UserRepository}  from './user-repository';
 
 export {
-  userRepository
+  UserRepository
 }

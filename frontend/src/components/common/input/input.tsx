@@ -1,21 +1,11 @@
 import clsx from 'clsx';
 import React from "react";
 import { Typography } from "../typography/typography";
-
-export interface InputProps extends React.HTMLProps<HTMLInputElement> {
-  className?: string;
-  name: string;
-  disabled?: boolean;
-  active?: boolean;
-  placeholder?: string;
-  isInvalid?: boolean;
-  errorText?: string;
-  type?: 'text' | 'email' | 'password';
-  rightAdornment?: React.ReactNode;
-}
+import { InputProps } from './types/input-props.interface';
 
 export const Input: React.FC<InputProps> = ({
   className,
+  classes,
   name,
   disabled,
   placeholder,
@@ -26,9 +16,9 @@ export const Input: React.FC<InputProps> = ({
   ...restHTMLProps
 }) => {
   return (
-    <div className="relative flex flex-col w-64">
+    <div className={clsx('relative flex flex-col w-64', classes?.container, className)}>
       <input className={clsx(
-        className,
+        classes?.input,
         'text-line-14 leading-line-14',
         'h-9 rounded border outline-none p-2.5',
         'focus:border-green focus:text-green',
@@ -40,7 +30,7 @@ export const Input: React.FC<InputProps> = ({
       })} name={name} type={type} disabled={disabled} placeholder={placeholder} {...restHTMLProps} />
       {rightAdornment}
       {isInvalid && errorText && (
-        <Typography type="placeholder-small" className="text-red mt-1">{errorText}</Typography>
+        <Typography type="placeholder-small" className={clsx("text-red mt-1", classes?.error)}>{errorText}</Typography>
       )}
     </div>
   );

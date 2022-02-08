@@ -1,21 +1,9 @@
-import { Sequelize, Dialect } from 'sequelize';
-import {
-  database,
-  username,
-  password,
-  host,
-  port,
-  dialect,
-} from '../../../config/db.config';
+import "reflect-metadata";
+import { createConnection, ConnectionOptions } from "typeorm";
 
-const sequelize = new Sequelize({
-  port: Number(port),
-  dialect: dialect as Dialect,
-  database,
-  username,
-  password,
-  host,
-  logging: false,
-});
+import {options} from '../../../config/db.config';
 
-export { sequelize };
+
+const connection = createConnection(<ConnectionOptions>options);
+
+export { connection };

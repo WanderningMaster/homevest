@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentStory } from "@storybook/react";
 import { Input } from "./input";
 import { PasswordInput } from './password-input';
 
@@ -9,7 +9,7 @@ import 'assets/styles/fonts.css';
 export default {
   title: "UI/Controls/Input",
   component: Input,
-} as ComponentMeta<typeof Input>;
+};
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 

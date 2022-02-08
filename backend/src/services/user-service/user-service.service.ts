@@ -1,20 +1,29 @@
-import { userRepository } from '~/data/repositories';
+import { UserEntity } from '../../data/models/user.entity';
 import { IUser } from '~/common/interfaces';
+import { UserRepository } from '~/data/repositories/user-repository';
+import { UpdateResult, DeleteResult, getCustomRepository } from "typeorm";
 
 class UserService {
-  public getAllUsers():Promise<IUser[]>{
-    return userRepository.getAll()
+
+  public getAllUsers():Promise<UserEntity[]>{
+    const userRepository = getCustomRepository(UserRepository);
+    return userRepository.getAll();
   }
-  public getUserById(id:string):Promise<IUser | null>{
+  public getUserById(id:string):Promise<UserEntity | undefined>{
+    const userRepository = getCustomRepository(UserRepository);
     return userRepository.getById(id)
   }
-  public createNewUser(user:IUser):Promise<IUser>{
-    return userRepository.createUser(user)
+  public createNewUser(user:IUser):Promise<UserEntity>{
+    const userRepository = getCustomRepository(UserRepository);
+
+    return userRepository.createUser(user);
   }
-  public async updateUser(id:string, data:IUser):Promise<IUser[]>{
+  public async updateUser(id:string, data: IUser):Promise<UpdateResult>{
+    const userRepository = getCustomRepository(UserRepository);
     return userRepository.updateById(id, data)
   }
-  public deleteUser(id:string):Promise<number>{
+  public deleteUser(id:string):Promise<DeleteResult>{
+    const userRepository = getCustomRepository(UserRepository);
     return userRepository.deleteById(id)
   }
 }
