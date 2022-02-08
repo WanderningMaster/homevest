@@ -9,6 +9,7 @@ const Counter: React.FC = () => {
   const { count } = useSelector(({ counter }: RootState) => ({
     count: counter.value,
   }));
+  const {sagaAsyncIncrement, sagaAsyncDecrement} = CounterActionCreator;
   const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = React.useState<string>('2');
 
@@ -59,6 +60,18 @@ const Counter: React.FC = () => {
           }
         >
           Add Async
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => dispatch(sagaAsyncIncrement())}
+        >
+          Saga Increment
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => dispatch(sagaAsyncDecrement())}
+        >
+          Saga Decrement
         </button>
       </div>
     </div>
