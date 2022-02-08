@@ -27,7 +27,6 @@ export class UserRepository extends Repository<UserEntity> {
     return await this.save(user);
   }
   public async updateById(id:string, data:IUser): Promise<UpdateResult>{
-    data = await this.getHash(data);
     return await this.update(
       id,
       data

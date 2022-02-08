@@ -1,13 +1,14 @@
 import { Router } from 'express';
 import { ApiPath, HttpCode, UsersApiPath } from '~/common/enums';
 import { userService } from '~/services/services';
+import { isAuth  } from '~/middlewares';
+
 
 const initUserApi = (apiRouter: Router): Router => {
   const userRouter = Router();
 
   apiRouter.use(ApiPath.USERS, userRouter);
-
-  userRouter.get(UsersApiPath.ROOT, async (_req, res) => {
+  userRouter.get(UsersApiPath.ROOT, isAuth, async (_req, res) => {
     try {
       const users = await userService.getAllUsers();
       res.status(HttpCode.OK).json(users);

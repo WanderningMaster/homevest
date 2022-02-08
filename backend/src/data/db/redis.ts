@@ -12,6 +12,7 @@ const redisCl = new Client();
 async function connectRedis(): Promise<void> {
     if(!redisCl.isOpen()) {
         await redisCl.open(`redis://redis:${REDIS_PORT}`);
+        // await redisCl.open();
         logger.log("Redis is already plugged in");
     }
 }

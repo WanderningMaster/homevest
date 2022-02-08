@@ -1,5 +1,6 @@
 import { join } from 'path';
 import express, { json, urlencoded } from 'express';
+import cookieParser from "cookie-parser";
 import { ENV } from '~/common/enums';
 import { initApi } from '~/api/api';
 import { logger } from '~/services/services';
@@ -8,7 +9,7 @@ import { setTraceId, logRequest, handleError } from '~/middlewares';
 import { DbConnectionError } from '~/exceptions';
 import { connection } from './data/db/connection';
 
-import { connectRedis, redisCl } from './data/db/redis';
+import { connectRedis } from './data/db/redis';
 
 import "reflect-metadata";
 
@@ -28,6 +29,7 @@ app.use(setTraceId);
 app.use(logRequest);
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(cookieParser());
 
 initApi(app);
 

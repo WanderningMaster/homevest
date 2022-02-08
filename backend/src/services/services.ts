@@ -5,6 +5,8 @@ import { Logger } from './logger/logger.service';
 import { UserService } from './user-service/user-service.service';
 import { InvestorService } from './user-service/investor-service.service';
 import { TokenService } from './token-service/token-service.service';
+import { MailService } from './mail-service/mail-service.service';
+import { AuthService } from './auth-service/auth-service.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -16,5 +18,15 @@ const logger = new Logger({
 const userService = new UserService();
 const investorService = new InvestorService();
 const tokenService = new TokenService();
+const authService = new AuthService();
+const mailService = new MailService();
 
-export { appAsyncStorage, logger, userService, investorService, tokenService};
+export { 
+  appAsyncStorage,
+  logger, 
+  userService,
+  investorService, 
+  tokenService,
+  authService, 
+  mailService
+};

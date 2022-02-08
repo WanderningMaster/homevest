@@ -9,13 +9,39 @@ class TokenRepository{
         this.repo = new Repository(TokenScheme, redisCl);
     }
 
-    public async createToken(tokenDto: IToken): Promise<string>{
-        connectRedis();
-
-        const token = this.repo.createEntity(<EntityCreationData>tokenDto);
+    public async saveToken(tokenDto: IToken): Promise<void>{
+        await connectRedis();
+        const tokenEntity = this.repo.createEntity(<EntityCreationData>tokenDto);
         
-        const id = await this.repo.save(token);
-        return id;
+        await this.repo.save(tokenEntity);
+    }
+
+    public async findTokenByUserId(id: string): Promise<Entity>{
+        await connectRedis();
+        const tokenEntity = await this.repo.search()
+                                        .where('id')
+                                        .equal(id)
+                                        .returnFirst();
+        return tokenEntity;
+    }
+    public async findToken(refreshToken: string): Promise<Entity>{
+        await connectRedis();
+        const tokenEntity = await this.repo.search()
+                                        .where('refreshToken')
+                                        .equal(refreshToken)
+                                        .returnFirst();
+        return tokenEntity;
+    } 
+
+    public async updateToken(tokenDto: IToken, entityId: string): Promise<void>{
+        await connectRedis();
+        await this.repo.remove(entityId);
+        const entity = this.repo.createEntity(<EntityCreationData>tokenDto);
+        await this.repo.save(entity);
+    }
+    public async removeToken(entityId: string): Promise<void>{
+        await connectRedis();
+        await this.repo.remove(entityId);
     }
 }
 
