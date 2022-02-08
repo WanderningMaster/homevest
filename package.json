@@ -51,8 +51,5 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.css": "stylelint --fix"
-  },
-  "dependencies": {
-    "formik": "^2.2.9"
   }
 }
