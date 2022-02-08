@@ -13,7 +13,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   return <Input
     {...field}
     {...rest}
-    isInvalid={Boolean(meta.error)}
+    isInvalid={Boolean(meta.error && meta.touched)}
     errorText={String(meta.error)}
   />;
 }

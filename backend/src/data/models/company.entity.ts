@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn } from "typeorm";
 import { ICompany } from '~/common/interfaces/company';
 import { UserEntity } from "./user.entity";
-
+import { EstateEntity } from './estate.entity';
 @Entity({
   name: 'company',
 })
@@ -13,6 +13,9 @@ export class CompanyEntity implements ICompany{
     @OneToOne(() => UserEntity, (user: UserEntity) => user.company)
     @JoinColumn({ name: 'userId' })
     user!: UserEntity
+
+    @OneToOne(() => EstateEntity, (estate: EstateEntity) => estate.company)
+    estate!: EstateEntity;
     
     @Column()
     userId!: string
@@ -53,4 +56,4 @@ export class CompanyEntity implements ICompany{
 
     @UpdateDateColumn()
     updatedAt!: Date;
-}
+  }
