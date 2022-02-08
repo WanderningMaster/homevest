@@ -1,6 +1,7 @@
 import { IEstate } from '~/common/interfaces';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn } from "typeorm";
 import { CompanyEntity } from './company.entity';
+import { AppartmentEntity } from './appartment.entity';
 
 @Entity({
   name: 'estate',
@@ -13,6 +14,9 @@ export class EstateEntity implements IEstate {
   @OneToOne(() => CompanyEntity, (company: CompanyEntity) => company.estate)
   @JoinColumn({ name: 'userId' })
   company!: CompanyEntity
+
+  @OneToOne(() => AppartmentEntity, (appartment: AppartmentEntity) => appartment.estate)
+  appartment!: AppartmentEntity;
 
   @Column()
   companyId!: string
