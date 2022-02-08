@@ -1,12 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne } from "typeorm";
-import { IUser } from '~/common/interfaces';
 import { CompanyEntity } from "./company.entity";
 import { InvestorEntity } from "./investor.entity";
 
 @Entity({
   name: 'user',
 })
-export class UserEntity implements IUser{
+export class UserEntity  {
 
   @PrimaryGeneratedColumn("uuid")
   id!: string;
