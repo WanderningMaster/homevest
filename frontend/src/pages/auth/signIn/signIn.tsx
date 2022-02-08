@@ -60,7 +60,7 @@ const SignIn: React.FC = () =>{
             <div className="border border-bottom border-light-grey flex-1"></div>
             </div>
             <Button nameBtn="google" className="w-102.5 mt-10">
-            Sign ip with Google
+            Sign in with Google
             </Button>
             </Form>
         </Formik>
