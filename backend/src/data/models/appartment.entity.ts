@@ -15,9 +15,11 @@ export class AppartmentEntity implements IAppartment{
     estate!: EstateEntity
     
     @Column()
-    userId!: string
+    estateId!: string
 
-    @Column()
+    @Column({
+      length: 50
+    })
     nameOfBuilding!: string;
 
     @Column()
@@ -26,7 +28,9 @@ export class AppartmentEntity implements IAppartment{
     @Column()
     numberOfBathrooms!: number;
 
-    @Column()
+    @Column({
+      length: 50
+    })
     typeOfParking!: string;
 
     @Column()
@@ -76,6 +80,9 @@ export class AppartmentEntity implements IAppartment{
 
     @Column()
     installments!: boolean;
+    
+    @Column()
+    mortgage!: boolean;
 
     @Column()
     images!: string;
