@@ -16,7 +16,8 @@ import "reflect-metadata";
 const app = express();
 
 connection
-  .then(async () => {
+  .then(async (connection) => {
+    connection.synchronize();
     return logger.log('Database connection was successful');
   })
   .catch(({ message, stack }: DbConnectionError) => {
