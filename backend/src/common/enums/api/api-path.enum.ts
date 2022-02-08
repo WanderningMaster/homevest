@@ -1,7 +1,8 @@
 enum ApiPath {
   USERS = '/users',
-  ESTATES = '/estate',
   INVESTORS = '/investors',
+  COMPANIES = '/companies',
+  ESTATES = '/estate',
   APPARTMENTS = '/appartments'
 }
 

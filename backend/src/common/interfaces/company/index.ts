@@ -1,1 +1,1 @@
-export type { ICompany } from 'shared/common/interfaces';
+export type { ICompany } from 'shared/common/interfaces/company';
