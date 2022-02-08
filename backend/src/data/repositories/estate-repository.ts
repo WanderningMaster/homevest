@@ -36,7 +36,7 @@ export class EstateRepository extends Repository<EstateEntity> {
       where: {
         id
       },
-      relations: ["company"]
+      relations: ["company, apartment"]
     });
   }
 }
