@@ -12,10 +12,10 @@ module.exports = {
     extend: {
       colors,
       spacing: {
-        '6.5': pxToRem(26),
-        '90': pxToRem(360),
-        '102.5': pxToRem(410),
-        '128': '32rem',
+        6.5: pxToRem(26),
+        90: pxToRem(360),
+        102.5: pxToRem(410),
+        128: '32rem',
       },
       fontSize: {
         h1: pxToRem(64),
@@ -56,6 +56,7 @@ module.exports = {
       padding: {
         '10px': pxToRem(10),
         '75px': pxToRem(75),
+        '110px': pxToRem(110),
       },
       margin: {
         '2px': pxToRem(2),
