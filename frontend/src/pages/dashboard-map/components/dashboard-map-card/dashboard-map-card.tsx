@@ -6,7 +6,7 @@ import { BaseDashboardMapProps } from "pages/dashboard-map/types/base-dashboard-
 
 export const DashboardMapCard: React.FC<BaseDashboardMapProps> = ({ name, adress, price, bedroom, bathroom, built, parking, image }) => {
   return (
-    <div className="w-157.5 h-60 shadow-map-card p-6 rounded-lg flex mb-10 ml-7.5 ">
+    <div className="w-157.5 h-60 shadow-map-card p-6 rounded-lg flex mb-10 ml-7.5 mt-10">
       <div>
         <img src={image} alt="building" className="rounded-lg " />
       </div>
