@@ -19,7 +19,8 @@ frontend/shared
 postgres-data
 
 # docker volumes
-docker
+docker/pgdata
+docker/redis
 
 # misc
 .DS_Store
