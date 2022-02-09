@@ -15,6 +15,10 @@ export const mockData = [
     bedroom: 2,
     bathroom: 1,
     image: rainbow,
+    position: {
+      lat: 48.4445737,
+      lng: 22.7093152,
+    },
   },
   {
     id: uuidv4(),
@@ -27,6 +31,10 @@ export const mockData = [
     bedroom: 1,
     bathroom: 1,
     image: sunshine,
+    position: {
+      lat: 48.4451963,
+      lng: 22.7141179,
+    },
   },
   {
     id: uuidv4(),
@@ -39,5 +47,9 @@ export const mockData = [
     bedroom: 3,
     bathroom: 2,
     image: drop,
+    position: {
+      lat: 48.4496526,
+      lng: 22.7055238,
+    },
   },
 ];

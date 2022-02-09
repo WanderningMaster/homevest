@@ -13,7 +13,9 @@ module.exports = {
       colors,
       spacing: {
         '6.5': pxToRem(26),
+        '7.5': pxToRem(30),
         '15': pxToRem(60),
+        '19': pxToRem(76),
         '27': pxToRem(108),
         '46.5': pxToRem(186),
         '83.5': pxToRem(334),
@@ -21,6 +23,7 @@ module.exports = {
         '102.5': pxToRem(410),
         '128': '32rem',
         '157.5': pxToRem(630),
+        '233': pxToRem(932),
       },
       fontSize: {
         h1: pxToRem(64),

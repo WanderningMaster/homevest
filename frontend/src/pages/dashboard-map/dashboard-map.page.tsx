@@ -1,12 +1,13 @@
 import React from 'react';
 import { DashboardMapCard } from './components/dashboard-map-card/dashboard-map-card';
+import { DashboardMap } from './components/dashboard-map/dashboard-map';
 import { mockData } from './mock-data/mock-data';
 
 export const DashboardMapPage: React.FC = () => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row py-10">
       <div className="w-1/2">
-        Map
+        <DashboardMap items={mockData} />
       </div>
       <div>
         {mockData.map((item) => (

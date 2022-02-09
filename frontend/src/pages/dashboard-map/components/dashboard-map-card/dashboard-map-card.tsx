@@ -2,21 +2,11 @@ import React from "react";
 import { Typography } from "components/common/typography/typography";
 import { ReactComponent as BedroomIcon } from './bedroom.svg';
 import { ReactComponent as BathroomIcon } from './bathroom.svg';
+import { BaseDashboardMapProps } from "pages/dashboard-map/types/base-dashboard-map-props.interface";
 
-interface DashboardMapCardProps {
-  name: string;
-  adress: string;
-  price: string;
-  bedroom: number;
-  bathroom: number;
-  built: number;
-  parking: string;
-  image: string;
-}
-
-export const DashboardMapCard: React.FC<DashboardMapCardProps> = ({ name, adress, price, bedroom, bathroom, built, parking, image }) => {
+export const DashboardMapCard: React.FC<BaseDashboardMapProps> = ({ name, adress, price, bedroom, bathroom, built, parking, image }) => {
   return (
-    <div className="w-157.5 h-60 shadow-map-card p-6 rounded-lg flex mb-10">
+    <div className="w-157.5 h-60 shadow-map-card p-6 rounded-lg flex mb-10 ml-7.5 ">
       <div>
         <img src={image} alt="building" className="rounded-lg " />
       </div>
