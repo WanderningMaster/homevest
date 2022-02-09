@@ -2,11 +2,12 @@ import React from 'react';
 import './rangeMultipleStyle.css'
 
 interface Props {
-    min?: number,
-    max?: number,
+    min: number,
+    max: number,
+    onChange: ({min, max}:any) => void
 }
 
-const  MultipleRange: React.FC<Props> = ({min = 0, max = 100}) => {
+const  MultipleRange: React.FC<Props> = ({min, max, onChange}) => {
     const [minValue, setMinValue] = React.useState(min);
     const [maxValue, setMaxValue] = React.useState(max);
     const minValRef: React.RefObject<HTMLInputElement> = React.useRef(null);
@@ -21,11 +22,10 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 100}) => {
         if (maxValRef.current) {
             const minPercent = getPercent(minValue);
             const maxPercent = getPercent(maxValRef.current.value);
-            console.log(minPercent);
             if (range.current) {
                 range.current.style.left = `${minPercent}%`;
                 range.current.style.width = `${maxPercent - minPercent}%`;
-              }
+            }
         }
     }, [minValue, getPercent]);
 
@@ -39,6 +39,12 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 100}) => {
           }
         }
     }, [maxValue, getPercent]);
+
+    React.useEffect(() => {
+        if (maxValRef.current || minValRef.current) {
+            onChange({min: minValue, max: maxValue})
+        }
+    },[minValue, maxValue])
 
 
     function validateInputMin(value:any):boolean {
@@ -56,23 +62,25 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 100}) => {
     }
 
     function hanlerMinValue(e:any) {
-        if (validateInputMin(e.target.value)) {
-            return
-        }
+        // if (validateInputMin(e.target.value)) {
+        //     return
+        // }
 
         setMinValue(e.target.value)
     }
 
     function hanlerMaxValue(e:any) {
-        if (validateInputMax(e.target.value)) {
-            return
-        }
+        // if (validateInputMax(e.target.value)) {
+        //     return
+        // }
 
-        setMinValue(e.target.value)
+        setMaxValue(e.target.value)
     }
 
     return(
         <div className='flex gap-1 w-full flex-col relative'>
+            
+
             <input 
                 type="range"
                 min={min}

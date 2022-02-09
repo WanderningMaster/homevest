@@ -8,6 +8,18 @@ import MultipleRange from 'components/common/rangeMultiple/rangeMutiple';
 
 
 const App: React.FC = () => {
+  const [min, setMin] = React.useState(0);
+  const [max, setMax] = React.useState(1000);
+  const [price, setPrice] = React.useState({});
+
+  function handlerRange(value:{min:number, max:number}) {
+
+    console.log(value);
+
+    setPrice(value);
+
+  }
+
   return (
     <>
       <Switch>
@@ -22,7 +34,7 @@ const App: React.FC = () => {
         </Route>
       </Switch>
       <div className='m-auto mt-90 w-1/2 '>
-        <MultipleRange />
+        <MultipleRange min={min} max={max} onChange={({min, max}) => handlerRange({min, max})}/>
       </div>
       
     </>
