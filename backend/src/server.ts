@@ -35,9 +35,6 @@ app.use(cookieParser());
 initApi(app);
 
 app.use(express.static(join(__dirname, '../public')));
-// app.use('*', (_req, res) => {
-//   return res.sendFile(join(__dirname, '../public', 'index.html'));
-// });
 
 app.use(handleError);
 
