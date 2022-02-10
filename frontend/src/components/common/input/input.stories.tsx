@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory } from "@storybook/react";
 import { Input } from "./input";
 import { PasswordInput } from './password-input';
+import { LocationInput } from './location-input';
 
 import 'assets/styles/tailwind.css';
 import 'assets/styles/fonts.css';
@@ -35,3 +36,6 @@ const PasswordTemplate: ComponentStory<typeof PasswordInput> = (args) => <Passwo
 export const Password = PasswordTemplate.bind({});
 Password.args = {}
 
+const LocationTemplate: ComponentStory<typeof LocationInput> = (args) => <LocationInput {...args} />;
+export const Location = LocationTemplate.bind({});
+Location.args = {}
