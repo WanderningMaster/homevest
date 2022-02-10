@@ -11,38 +11,62 @@ import { ReactComponent as FavouriteIcon } from 'assets/images/heart-icon.svg'
 import { Typography } from 'components/common/typography/typography'
 
 const SideBarDashboard: React.FC = () => {
+  const data = [
+    {
+      to: AppRoute.ROOT,
+      text: 'Account Settings',
+      icon: <SettingsIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Apartment Settings',
+      icon: <ApartmentIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Account Settings',
+      icon: <SettingsIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Account Settings',
+      icon: <SettingsIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Reports',
+      icon: <ReportsIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Notifications',
+      icon: <NotificationIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Messages',
+      icon: <MessageIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Favourites',
+      icon: <FavouriteIcon />,
+    },
+  ]
   return (
     <div className=" flex flex-col gap-8 items-start p-4 absolute w-286px h-624px top-0 left-0 shadow-header bg-white rounded-lg z-20">
-      <Link to={AppRoute.ROOT} className="text-lightblue" activeClassName="text-green">
-        <MenuItem text="Account Settings" iconStyles="mr-4">
-          <SettingsIcon />
-        </MenuItem>
-      </Link>
-      <Link to={AppRoute.ROOT} className="text-lightblue" activeClassName="text-green">
-        <MenuItem text="Apartment Settings" iconStyles="mr-4">
-          <ApartmentIcon />
-        </MenuItem>
-      </Link>
-      <Link to={AppRoute.ROOT} className="text-lightblue" activeClassName="text-green">
-        <MenuItem text="Reports" iconStyles="mr-4">
-          <ReportsIcon />
-        </MenuItem>
-      </Link>
-      <Link to={AppRoute.ROOT} className="text-lightblue" activeClassName="text-green">
-        <MenuItem text="Notifications" iconStyles="mr-4">
-          <NotificationIcon />
-        </MenuItem>
-      </Link>
-      <Link to={AppRoute.ROOT} className="text-lightblue" activeClassName="text-green">
-        <MenuItem text="Messages" iconStyles="mr-4">
-          <MessageIcon />
-        </MenuItem>
-      </Link>
-      <Link to={AppRoute.ROOT} className="text-lightblue" activeClassName="text-green">
-        <MenuItem text="Favourites" iconStyles="mr-4 text-orange">
-          <FavouriteIcon />
-        </MenuItem>
-      </Link>
+      {data.map(({ text, to, icon }) => {
+        return (
+          <div key={text}>
+            <Link to={to} className="text-lightblue" activeClassName="text-green">
+              <MenuItem text={text} iconStyles="mr-4">
+                {icon}
+              </MenuItem>
+            </Link>
+          </div>
+        )
+      })}
+
       <div className="flex flex-col gap-4">
         <div>
           <Typography type="body-large-medium">Currency</Typography>
