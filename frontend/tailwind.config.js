@@ -62,9 +62,28 @@ module.exports = {
         '2px': pxToRem(2),
         '10px': pxToRem(10),
         '62px': pxToRem(62),
+        '96px': pxToRem(96),
       },
       width: {
+        '286px': pxToRem(286),
         '295px': pxToRem(295),
+        '591px': pxToRem(591),
+        '630px': pxToRem(628),
+        '646px': pxToRem(646),
+        '1290px': pxToRem(1290),
+      },
+      height: {
+        '96px': pxToRem(96),
+        '300px': pxToRem(300),
+        '568px': pxToRem(568),
+        '624px': pxToRem(624),
+        '736px': pxToRem(736),
+      },
+      inset: {
+        '75px': pxToRem(75),
+        '96px': pxToRem(96),
+        '200px': pxToRem(200),
+        '735px': pxToRem(735),
       },
       boxShadow: {
         header: '0px 4px 18px rgba(34, 68, 68, 0.15)',

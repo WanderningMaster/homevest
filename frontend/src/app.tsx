@@ -1,10 +1,10 @@
-import React from 'react';
-import { AppRoute } from 'common/enums';
-import SignUpPage from 'pages/auth/sign-up/sign-up.page';
-import { HomePage } from 'pages/home/home.page';
-import { Switch, Route } from 'react-router-dom';
-import SignIn from 'pages/auth/signIn/signIn';
-
+import React from 'react'
+import { AppRoute } from 'common/enums'
+import SignUpPage from 'pages/auth/sign-up/sign-up.page'
+import { HomePage } from 'pages/home/home.page'
+import { Switch, Route } from 'react-router-dom'
+import SignIn from 'pages/auth/signIn/signIn'
+import PropertyDevelopersPage from 'pages/dashboard/property-developers/property-developers.page'
 
 const App: React.FC = () => {
   return (
@@ -18,8 +18,11 @@ const App: React.FC = () => {
       <Route exact path={AppRoute.ROOT}>
         <HomePage />
       </Route>
+      <Route exact path={AppRoute.NEW_BUILDINGS}>
+        <PropertyDevelopersPage />
+      </Route>
     </Switch>
   )
-};
+}
 
 export default App
