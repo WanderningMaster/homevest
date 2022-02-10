@@ -22,22 +22,30 @@ export class AppartmentEntity implements IAppartment{
     })
     nameOfBuilding!: string;
 
-    @Column()
-    numberOfRooms!: number;
+    @Column({
+      length: 50
+    })
+    numberOfRooms!: string;
 
-    @Column()
-    numberOfBathrooms!: number;
+    @Column({
+      length: 50
+    })
+    numberOfBathrooms!: string;
 
     @Column({
       length: 50
     })
     typeOfParking!: string;
 
-    @Column()
-    price!: number;
+    @Column({
+      length: 50
+    })
+    price!: string;
     
-    @Column()
-    priceForM2!: number;
+    @Column({
+      length: 50
+    })
+    priceForM2!: string;
     
     @Column({
       length: 50
@@ -49,8 +57,10 @@ export class AppartmentEntity implements IAppartment{
     })
     appartmentClass!: string;
     
-    @Column()
-    floors!: number;
+    @Column({
+      length: 50
+    })
+    floors!: string;
 
     @Column({
         length: 50
@@ -62,8 +72,10 @@ export class AppartmentEntity implements IAppartment{
     })
     currency!: string;
     
-    @Column()
-    yearOfOperation!: number;
+    @Column({
+      length: 50
+    })
+    yearOfOperation!: string;
     
     @Column({
         length: 50
