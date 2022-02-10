@@ -38,14 +38,7 @@ export const ApartmentPage: React.FC = () => {
     images: [],
   };
 
-  const [active, setActive] = useState(false);
-  // const [nameOfBuilding, setNameOfBuilding] = useState("");
-  // const [numberOfRooms, setNumberOfRooms] = useState("");
-  // const [numberOfBathrooms, setNumberOfBathrooms] = useState("");
-  // const [typeOfParking, setTypeOfParking] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [priceForM2, setPriceForM2] = useState("");
-  // const [location, setLocation] = useState("");
+  const [active, setActive] = useState(false)
 
   const onClick = () => {
     setActive(true);
@@ -100,7 +93,6 @@ export const ApartmentPage: React.FC = () => {
                     name="nameOfBuilding"
                     placeholder="Name of building"
                     className="w-300px h-8.5 mr-30px mb-8"
-                    // onChange={() => setNameOfBuilding(nameOfBuilding)}
                   />
                   <InputField
                     name="numberOfRooms"
@@ -230,7 +222,6 @@ export const ApartmentPage: React.FC = () => {
               nameBtn="primary"
               type="submit"
               label="Save"
-              // disabled={disabled}
               className="mt-53px disabled:bg-green-inactive"
             />
           </Form>
