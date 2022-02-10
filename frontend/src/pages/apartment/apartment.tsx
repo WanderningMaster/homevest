@@ -14,6 +14,7 @@ import { SideBar } from "components/Navigation/SideBar";
 import { Header } from "components/Navigation/Header";
 import { AppBar } from "components/Navigation/AppBar";
 import { Logo } from "components/Navigation/Logo";
+import clsx from "clsx";
 
 interface MyFormValues {
   nameOfBuilding: string;
@@ -154,7 +155,7 @@ export const ApartmentPage: React.FC = () => {
         >
           <Form className=" mt-10 text-body-small text-green">
             <div className="flex flex-row   justify-center item-center ">
-              <div className=" w-1/2 mx-auto">
+              <div className=" w-1/2 ">
                 <div className="flex flex-wrap">
                   <InputField
                     name="nameOfBuilding"
@@ -293,8 +294,9 @@ export const ApartmentPage: React.FC = () => {
             <Button
               nameBtn="primary"
               type="submit"
+              disabled
               label="Save"
-              className="mt-53px"
+              className="mt-53px disabled:bg-green-inactive"
             />
           </Form>
         </Formik>
