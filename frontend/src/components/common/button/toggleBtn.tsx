@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 interface IProp {
   checked?: boolean;
   label?: string;
   disabled?: boolean;
+  getSwitched:(value:boolean)=>void
 }
-const ToggleButton: React.FC<IProp> = ({ label = "", disabled }) => {
+const ToggleButton: React.FC<IProp> = ({ label = "", disabled, getSwitched}) => {
   const [switched, setSwitched] = React.useState(false);
+  useEffect(() => {
+    getSwitched(switched);
+  },[switched])
+  const handleSwitch = () => {
+    setSwitched(!switched)
+    
+  }
+ 
   return (
     <div className="flex items-center justify-center w-full ">
       <span className="text-black font-medium text-body leading-body mr-4 opacity-80">
@@ -22,7 +32,7 @@ const ToggleButton: React.FC<IProp> = ({ label = "", disabled }) => {
             onChange={() => console.log(switched)}
           />
           <div
-            onClick={() => setSwitched(!switched)}
+            onClick={handleSwitch}
             className={
               "block w-12 h-6 rounded-full" +
               (switched ? " bg-green" : " bg-light-grey")

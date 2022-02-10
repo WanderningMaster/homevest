@@ -1,10 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import Button from "components/common/button/button";
-import * as Yup from "yup";
 import { InputField } from "components/common/input/input-field";
 import { Select } from "components/common/select/select";
-import { SelectField } from "components/common/select/select-field";
 import { Formik, Form, FormikHelpers } from "formik";
 import { Typography } from "components/common/typography/typography";
 import { styles } from "./apartment.styles";
@@ -14,73 +12,13 @@ import { SideBar } from "components/Navigation/SideBar";
 import { Header } from "components/Navigation/Header";
 import { AppBar } from "components/Navigation/AppBar";
 import { Logo } from "components/Navigation/Logo";
-import clsx from "clsx";
+import { ApartmentProps } from "./types/apartment-props.interface";
+import { ApartmentSchema } from "./apartmentSchema";
 
-interface MyFormValues {
-  nameOfBuilding: string;
-  numberOfRooms: number | string;
-  numberOfBathrooms: number | string;
-  typeOfParking: string;
-  price: number | string;
-  priceForM2: number | string;
-  location: string;
-  appartmentClass: "Premium" | "Business" | "Comfort" | "Economy" | "";
-  floors: number | string;
-  appartmentState: "With repair" | "Without repair" | "";
-  currency: "UAH" | "USD" | "EUR" | "";
-  yearOfOperation: number | string;
-  salesStatus: "Started" | "Finished" | "";
-  lending: boolean;
-  installments: boolean;
-  mortgage: boolean;
-  images: string[];
-}
 
-const ApartmentSchema = Yup.object({
-  nameOfBuilding: Yup.string()
-    .max(50, "Must be 50 characters or less")
-    .required("Required"),
-  numberOfRooms: Yup.number()
-    .min(1, "Must be 1 room minimum")
-    .max(10)
-    .required("Required"),
-  numberOfBathrooms: Yup.number()
-    .min(1, "Must be 1 bathroom minimum")
-    .max(4)
-    .required("Required"),
-  typeOfParking: Yup.string()
-    .max(50, "Must be 50 characters or less")
-    .required("Required"),
-  price: Yup.number().required("Required").min(1).max(100000000),
-  priceForM2: Yup.number().required("Required").min(1).max(10000000),
-  location: Yup.string()
-    .max(50, "Must be 50 characters or less")
-    .required("Required"),
-  appartmentClass: Yup.mixed()
-    .oneOf(["Premium", "Business", "Comfort", "Economy"])
-    .required("Required"),
-  floors: Yup.string()
-    .max(10, "Must be 10 characters or less")
-    .required("Required"),
-  appartmentState: Yup.mixed()
-    .oneOf(["With repair", "Without repair"])
-    .required("Required"),
-  currency: Yup.mixed().oneOf(["UAH", "USD", "EUR"]).required("Required"),
-  yearOfOperatio: Yup.string()
-    .max(10, "Must be 10 characters or less")
-    .required("Required"),
-  salesStatus: Yup.mixed().oneOf(["Started", "Finished"]).required("Required"),
-  lending: Yup.boolean(),
-  installments: Yup.boolean(),
-  mortgage: Yup.boolean(),
-  images: Yup.array().of(Yup.string()),
-});
-// interface IState {
-//   handlechange?: React.FormEventHandler<HTMLInputElement> | undefined;
-// }
 
 export const ApartmentPage: React.FC = () => {
-  const initialValues: MyFormValues = {
+  const initialValues: ApartmentProps = {
     nameOfBuilding: "",
     numberOfRooms: "",
     numberOfBathrooms: "",
@@ -101,13 +39,13 @@ export const ApartmentPage: React.FC = () => {
   };
 
   const [active, setActive] = useState(false);
-  const [nameOfBuilding, setNameOfBuilding] = useState("");
-  const [numberOfRooms, setNumberOfRooms] = useState("");
-  const [numberOfBathrooms, setNumberOfBathrooms] = useState("");
-  const [typeOfParking, setTypeOfParking] = useState("");
-  const [price, setPrice] = useState("");
-  const [priceForM2, setPriceForM2] = useState("");
-  const [location, setLocation] = useState("");
+  // const [nameOfBuilding, setNameOfBuilding] = useState("");
+  // const [numberOfRooms, setNumberOfRooms] = useState("");
+  // const [numberOfBathrooms, setNumberOfBathrooms] = useState("");
+  // const [typeOfParking, setTypeOfParking] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [priceForM2, setPriceForM2] = useState("");
+  // const [location, setLocation] = useState("");
 
   const onClick = () => {
     setActive(true);
@@ -144,9 +82,10 @@ export const ApartmentPage: React.FC = () => {
           initialValues={initialValues}
           validationSchema={ApartmentSchema}
           onSubmit={(
-            values: MyFormValues,
-            { setSubmitting }: FormikHelpers<MyFormValues>
+            values: ApartmentProps,
+            { setSubmitting }: FormikHelpers<ApartmentProps>
           ) => {
+            
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(true);
@@ -161,48 +100,44 @@ export const ApartmentPage: React.FC = () => {
                     name="nameOfBuilding"
                     placeholder="Name of building"
                     className="w-300px h-8.5 mr-30px mb-8"
-                    onChange={() => setNameOfBuilding(nameOfBuilding)}
+                    // onChange={() => setNameOfBuilding(nameOfBuilding)}
                   />
                   <InputField
                     name="numberOfRooms"
                     placeholder="Number of rooms"
                     className="w-300px h-8.5 mr-30px mb-8"
-                    onChange={() => setNumberOfRooms(numberOfRooms)}
+
                   />
                   <InputField
                     name="numberOfBathrooms"
                     placeholder="Number of bathrooms"
                     className="w-300px h-8.5 mr-30px mb-8"
-                    onChange={() => setNumberOfBathrooms(numberOfBathrooms)}
                   />
                   <InputField
                     name="typeOfParking"
                     placeholder="Type of parking"
                     className="w-300px h-8.5 mr-30px mb-8"
-                    onChange={() => setTypeOfParking(typeOfParking)}
                   />
                   <InputField
                     name="price"
                     placeholder="Price"
                     className="w-300px h-8.5 mr-30px mb-8"
-                    onChange={() => setPrice(price)}
                   />
                   <InputField
                     name="priceForM2"
                     placeholder="Price for m2"
                     className="w-300px h-8.5  mr-30px mb-8"
-                    onChange={() => setPriceForM2(priceForM2)}
                   />
                 </div>
                 <InputField
                   name="location"
                   placeholder="Location (City, street)"
                   className="w-630px h-8.5  mb-8"
-                  onChange={() => setLocation(location)}
+                  
                 />
                 <div className="flex flex-wrap">
                   <Select
-                    name="appartmentClass"
+                    name="apartmentClass"
                     options={[
                       { value: "Premium", label: "Premium" },
                       { value: "Business", label: "Business" },
@@ -227,7 +162,7 @@ export const ApartmentPage: React.FC = () => {
                     styles={styles}
                   />
                   <Select
-                    name="appartmentState"
+                    name="apartmentState"
                     options={[
                       {
                         value: "With rough repairs",
@@ -276,9 +211,9 @@ export const ApartmentPage: React.FC = () => {
                   />
                 </div>
                 <div className="flex justify-between items-center w-630px">
-                  <ToggleButton label="Landing" />
-                  <ToggleButton label="Installments" />
-                  <ToggleButton label="Mortgage" />
+                  <ToggleButton label="Landing" getSwitched={(checked=>console.log(checked))}/>
+                  <ToggleButton label="Installments" getSwitched={(checked=>console.log(checked))}/>
+                  <ToggleButton label="Mortgage" getSwitched={(checked=>console.log(checked))}/>
                 </div>
               </div>
               <div className="flex flex-wrap w-1/2">
@@ -294,8 +229,8 @@ export const ApartmentPage: React.FC = () => {
             <Button
               nameBtn="primary"
               type="submit"
-              disabled
               label="Save"
+              // disabled={disabled}
               className="mt-53px disabled:bg-green-inactive"
             />
           </Form>
