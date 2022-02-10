@@ -1,11 +1,16 @@
 import { join } from 'path';
 import express, { json, urlencoded } from 'express';
+import cookieParser from "cookie-parser";
 import { ENV } from '~/common/enums';
 import { initApi } from '~/api/api';
 import { logger } from '~/services/services';
 import { setTraceId, logRequest, handleError } from '~/middlewares';
+
 import { DbConnectionError } from '~/exceptions';
 import { connection } from './data/db/connection';
+
+import { connectRedis } from './data/db/redis';
+
 import "reflect-metadata";
 
 const app = express();
@@ -19,17 +24,17 @@ connection
     return logger.error(message, stack);
   });
 
+connectRedis();
+
 app.use(setTraceId);
 app.use(logRequest);
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(cookieParser());
 
 initApi(app);
 
 app.use(express.static(join(__dirname, '../public')));
-// app.use('*', (_req, res) => {
-//   return res.sendFile(join(__dirname, '../public', 'index.html'));
-// });
 
 app.use(handleError);
 
