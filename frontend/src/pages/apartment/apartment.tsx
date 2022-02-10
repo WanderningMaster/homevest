@@ -49,21 +49,21 @@ export const ApartmentPage: React.FC = () => {
       {active ? (
         <>
           <SideBar />
-          <Header position="left-72">
+          <Header position="left-72 justify-start py-8 pl-110px ">
             <AppBar />
           </Header>
         </>
       ) : (
         <>
-          <Header position="left-0">
+          <Header position="left-0 py-6 px-75px">
             <Logo onClick={onClick} />
             <AppBar />
           </Header>
         </>
-      )}
+      )} 
 
-      <div className=" absolute  top-36 min-w-full  py-8 px-75px bg-white mx-0 my-0">
-        <Typography type="h4" className="mb-6">
+      <div className=" absolute  top-36 min-w-full  py-6 px-75px bg-white mx-0 my-0">
+        <Typography type="h4" className="text-black mb-6">
           Appartment Settings
         </Typography>
         <p className=" text-black font-medium text-body-large leading-body-large">
@@ -86,7 +86,7 @@ export const ApartmentPage: React.FC = () => {
           }}
         >
           <Form className=" mt-10 text-body-small text-green">
-            <div className="flex flex-row   justify-center item-center ">
+            <div className="flex flex-row   justify-center items-center ">
               <div className=" w-1/2 ">
                 <div className="flex flex-wrap">
                   <InputField
