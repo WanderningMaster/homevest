@@ -5,6 +5,7 @@ import { Header } from 'components/Navigation/Header'
 
 import { Logo } from 'components/Navigation/Logo'
 import { AppBarDashboard } from 'components/Navigation/AppBarDashboard'
+import SideBarDashboard from 'components/Navigation/SideBarDashboard/SideBarDashboard'
 
 const PropertyDevelopersPage: React.FC = ({ children }) => {
   const [active, setActive] = useState(false)
@@ -19,7 +20,11 @@ const PropertyDevelopersPage: React.FC = ({ children }) => {
         <AppBarDashboard />
       </Header>
       <div className=" container min-w-full justify-center items-center">
-        <Dashboardlayout title="My buildings">{children}</Dashboardlayout>
+        <Dashboardlayout title="My buildings">
+          {children}
+
+          {active && <SideBarDashboard />}
+        </Dashboardlayout>
       </div>
     </>
   )
