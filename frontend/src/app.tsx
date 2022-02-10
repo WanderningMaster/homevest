@@ -5,6 +5,7 @@ import { HomePage } from 'pages/home/home.page';
 import { Switch, Route } from 'react-router-dom';
 import { DashboardMapPage } from 'pages/dashboard-map/dashboard-map.page';
 import SignIn from 'pages/auth/signIn/signIn';
+import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page';
 
 
 const App: React.FC = () => {
@@ -15,6 +16,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={AppRoute.SIGN_IN}>
         <SignIn />
+      </Route>
+      <Route path={AppRoute.FORGOT_PASSWORD}>
+        <ForgotPassword />
       </Route>
       <Route exact path={AppRoute.ROOT}>
         <HomePage />
