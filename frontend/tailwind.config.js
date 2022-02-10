@@ -69,6 +69,7 @@ module.exports = {
       padding: {
         '10px': pxToRem(10),
         '75px': pxToRem(75),
+        '110px': pxToRem(110),
       },
       margin: {
         '2px': pxToRem(2),
