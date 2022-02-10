@@ -13,6 +13,10 @@ class UserService {
     const userRepository = getCustomRepository(UserRepository);
     return userRepository.getById(id)
   }
+  public getUserByEmail(email:string):Promise<UserEntity | undefined>{
+    const userRepository = getCustomRepository(UserRepository);
+    return userRepository.getByEmail(email);
+  }
   public createNewUser(user:IUser):Promise<UserEntity>{
     const userRepository = getCustomRepository(UserRepository);
 
