@@ -10,6 +10,8 @@ enum AppRoute {
   MAP = '/map',
   SEARCH = '/search',
   PROPERTY = '/property',
+  SETTINGS_APARTMENT = '/settings/apartment',
+
 }
 
 export { AppRoute }

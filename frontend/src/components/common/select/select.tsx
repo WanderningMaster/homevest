@@ -8,7 +8,7 @@ import { styles } from "./select.styles";
 
 interface Option {
   label: string;
-  value: string;
+  value: string|number;
 }
 
 type ReactSelectProps = Parameters<ReactSelect>[0];
@@ -31,7 +31,7 @@ const DropdownIndicator: typeof components.DropdownIndicator = (props) => {
 export const Select: React.FC<SelectProps> = ({ className, name, placeholder, options, ...restProps }) => {
   return (
     <ReactSelect
-      className={clsx(className)}
+      className={clsx(className,"w-300px h-8.5")}
       options={options}
       components={{
         IndicatorSeparator,

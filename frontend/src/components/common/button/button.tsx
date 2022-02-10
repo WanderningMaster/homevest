@@ -18,7 +18,7 @@ interface ButtonProps {
 
 const STYLES = {
   primary:
-    "text-white bg-green border-solid border border-green hover:bg-green-hover focus:bg-green-pressed disabled:bg-green-inactive",
+    "text-white bg-green border-transparent hover:bg-green-hover focus:bg-green-pressed disabled:bg-green-inactive",
   secondary:
     "text-green border-solid border border-green hover:border-green-hover focus:border-green-pressed disabled:border-green-inactive",
   tertiary: "text-green border-none focus:text-green-pressed ",

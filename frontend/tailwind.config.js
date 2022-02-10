@@ -2,8 +2,8 @@
 /* eslint-disable no-undef */
 const REM_SIZE = 16
 const pxToRem = px => `${px / REM_SIZE}rem`
-const colors = require('./src/config/colors.json')
-
+const colors = require('./src/config/colors.json')// eslint-disable-line no-use-before-define
+// eslint-disable-line no-use-before-define
 module.exports = {
   important: '#root',
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],

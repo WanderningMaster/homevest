@@ -3,6 +3,8 @@ import { AppRoute } from 'common/enums';
 import SignUpPage from 'pages/auth/sign-up/sign-up.page';
 import { HomePage } from 'pages/home/home.page';
 import { Switch, Route } from 'react-router-dom';
+import { ApartmentPage } from 'pages/apartment/apartment';
+
 
 
 const App: React.FC = () => {
@@ -13,6 +15,9 @@ const App: React.FC = () => {
       </Route>
       <Route exact path={AppRoute.ROOT}>
         <HomePage />
+      </Route>
+      <Route exact path={AppRoute.SETTINGS_APARTMENT}>
+        <ApartmentPage />
       </Route>
     </Switch>
   )
