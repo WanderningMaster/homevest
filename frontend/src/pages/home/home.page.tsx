@@ -17,7 +17,7 @@ export const HomePage: React.FC = () => {
         <>
           <SideBar />
           <Header position="left-72 justify-start py-8 pl-110px ">
-            <AppBar />
+            <AppBar button={false} />
           </Header>
         </>
       ) : (
