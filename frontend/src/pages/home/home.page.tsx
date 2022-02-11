@@ -24,7 +24,7 @@ export const HomePage: React.FC = () => {
         <>
           <Header position="left-0 justify-center py-6 px-75px">
             <Logo onClick={onClick} />
-            <AppBar />
+            <AppBar button={true} />
           </Header>
         </>
       )}
