@@ -109,5 +109,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+  require('tailwindcss'),
+  require('autoprefixer'),
+  require('@tailwindcss/forms'),
+],
 }
