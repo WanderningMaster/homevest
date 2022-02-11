@@ -8,10 +8,13 @@ import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
 
-const AppBar: React.FC = () => {
+interface HederProps {
+  button?: boolean
+}
+
+const AppBar: React.FC<HederProps> = ({ button }) => {
   return (
     <>
-      {' '}
       <div className="static flex flex-row items-center p-0">
         <Link to={AppRoute.NEW_BUILDINGS} className="text-black" activeClassName="text-green">
           <MenuItem text="New buildings" itemStyles="mr-14" iconStyles="mr-2">
@@ -34,7 +37,9 @@ const AppBar: React.FC = () => {
           </MenuItem>
         </Link>
       </div>
-      <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
+      {button && (
+        <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
+      )}
     </>
   )
 }
