@@ -34,7 +34,7 @@ const App: React.FC = () => {
         </Route>
       </Switch>
       <div className='m-auto mt-90 w-1/2 '>
-        <MultipleRange min={min} max={max} onChange={({min, max}) => handlerRange({min, max})}/>
+        <MultipleRange min={min} max={max} returnValues={({min, max}) => handlerRange({min, max})}/>
       </div>
       
     </>

@@ -2,14 +2,22 @@ import React from 'react';
 import './rangeMultipleStyle.css'
 
 interface Props {
-    min: number,
-    max: number,
-    onChange: ({min, max}:any) => void
+    min?: number,
+    max?: number,
+    returnValues: ({min, max}:ReturnValues) => void
 }
 
-const  MultipleRange: React.FC<Props> = ({min, max, onChange}) => {
+interface ReturnValues {
+    min?: number,
+    max?: number,
+}
+
+const  MultipleRange: React.FC<Props> = ({min = 0, max = 1000000, returnValues}) => {
     const [minValue, setMinValue] = React.useState(min);
     const [maxValue, setMaxValue] = React.useState(max);
+    const [inputMinValue, setInputMinValue] = React.useState(minValue);
+    const [inputMaxValue, setInputMaxValue] = React.useState(maxValue);
+    const [error, setError] = React.useState({ min: false, max: false});
     const minValRef: React.RefObject<HTMLInputElement> = React.useRef(null);
     const maxValRef: React.RefObject<HTMLInputElement> = React.useRef(null);
     const range: React.RefObject<HTMLDivElement> = React.useRef(null);
@@ -42,39 +50,47 @@ const  MultipleRange: React.FC<Props> = ({min, max, onChange}) => {
 
     React.useEffect(() => {
         if (maxValRef.current || minValRef.current) {
-            onChange({min: minValue, max: maxValue})
+            returnValues({min: minValue, max: maxValue})
         }
     },[minValue, maxValue])
 
 
-    function validateInputMin(value:any):boolean {
+    function validateInputMin(value:number):boolean {
         if (value >= min && value <= max && value < maxValue) {
             return false;
         }
         return true;
     }
 
-    function validateInputMax(value:any):boolean {
+    function validateInputMax(value:number):boolean {
         if (value >= min && value >= minValue && value <= max ) {
             return false;
         }
         return true;
     }
 
-    function hanlerMinValue(e:any) {
-        // if (validateInputMin(e.target.value)) {
-        //     return
-        // }
+    function handlerMinValue(e:number) {
+        setInputMinValue(e);
 
-        setMinValue(e.target.value)
+        if (validateInputMin(e)) {
+            setError({min: true, max: error.max})
+            return;
+        }
+
+        setError({min: false, max: error.max})
+        setMinValue(e)
     }
 
-    function hanlerMaxValue(e:any) {
-        // if (validateInputMax(e.target.value)) {
-        //     return
-        // }
+    function handlerMaxValue(e:number) {
+        setInputMaxValue(e);
+        
+        if (validateInputMax(e)) {
+            setError({min: error.min, max: true})
+            return
+        }
 
-        setMaxValue(e.target.value)
+        setError({min: error.min, max: false})
+        setMaxValue(e)
     }
 
     return(
@@ -90,6 +106,7 @@ const  MultipleRange: React.FC<Props> = ({min, max, onChange}) => {
                 onChange={(e) => {
                     const value = Math.min(+e.target.value, maxValue - 1);
                     setMinValue(value);
+                    handlerMinValue(value);
                     e.target.value = value.toString();
                 }}
                 className='thumb thumb--zindex-3'
@@ -103,6 +120,7 @@ const  MultipleRange: React.FC<Props> = ({min, max, onChange}) => {
                 onChange={(e) => {
                     const value = Math.max(+e.target.value, minValue + 1);
                     setMaxValue(value);
+                    handlerMaxValue(value);
                     e.target.value = value.toString();
                 }}
                 className='thumb thumb--zindex-4'
@@ -116,17 +134,17 @@ const  MultipleRange: React.FC<Props> = ({min, max, onChange}) => {
                 <input 
                     type="number" 
                     name="minValue"
-                    value={minValue} 
-                    className="border-2 text-center"
-                    onChange={(e) => hanlerMinValue(e)}
+                    value={inputMinValue} 
+                    className={'border-2 text-center focus:outline-none' + (error.min ? ' border-red' : '')}
+                    onChange={(e) => handlerMinValue(+e.target.value)}
                     placeholder="min"
                 />
                 <input 
-                    type="text" 
+                    type="number" 
                     name="maxValue"
-                    value={maxValue} 
-                    className="border-2 text-center"
-                    onChange={(e) => hanlerMaxValue(e)}
+                    value={inputMaxValue} 
+                    className={'border-2 text-center focus:outline-none' + (error.max ? ' border-red' : '')}
+                    onChange={(e) => handlerMaxValue(+e.target.value)}
                     placeholder="max"
                 />
             </div>
