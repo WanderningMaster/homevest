@@ -24,6 +24,7 @@ const App: React.FC = () => {
         <DashboardMapPage />
       </Route>
     </Switch>
+  </>
   )
 };
 
