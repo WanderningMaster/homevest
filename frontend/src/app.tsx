@@ -3,6 +3,7 @@ import { AppRoute } from 'common/enums';
 import SignUpPage from 'pages/auth/sign-up/sign-up.page';
 import { HomePage } from 'pages/home/home.page';
 import { Switch, Route } from 'react-router-dom';
+import { DashboardMapPage } from 'pages/dashboard-map/dashboard-map.page';
 import SignIn from 'pages/auth/signIn/signIn';
 
 const App: React.FC = () => {
@@ -18,9 +19,11 @@ const App: React.FC = () => {
         </Route>
         <Route exact path={AppRoute.ROOT}>
           <HomePage />
-        </Route>
-      </Switch>
-    </>
+      </Route>
+      <Route path={AppRoute.MAP}>
+        <DashboardMapPage />
+      </Route>
+    </Switch>
   )
 };
 
