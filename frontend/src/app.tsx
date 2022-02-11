@@ -6,18 +6,19 @@ import { Switch, Route } from 'react-router-dom';
 import { DashboardMapPage } from 'pages/dashboard-map/dashboard-map.page';
 import SignIn from 'pages/auth/signIn/signIn';
 
-
 const App: React.FC = () => {
+
   return (
-    <Switch>
-      <Route path={AppRoute.SIGN_UP}>
-        <SignUpPage />
-      </Route>
-      <Route path={AppRoute.SIGN_IN}>
-        <SignIn />
-      </Route>
-      <Route exact path={AppRoute.ROOT}>
-        <HomePage />
+    <>
+      <Switch>
+        <Route path={AppRoute.SIGN_UP}>
+          <SignUpPage />
+        </Route>
+        <Route path={AppRoute.SIGN_IN}>
+          <SignIn />
+        </Route>
+        <Route exact path={AppRoute.ROOT}>
+          <HomePage />
       </Route>
       <Route path={AppRoute.MAP}>
         <DashboardMapPage />
