@@ -3,49 +3,49 @@ import { overrideTailwindClasses } from "tailwind-override";
 import React, { useState } from "react";
 
 interface CheckboxProps {
-  name: string;
-  // value: string;
+  name?: string;
+  border?: string;
   className?: string;
   checkboxVar?: string;
-  // checked?: boolean;
-  // isChecked: boolean;
+  checked?: boolean;
   label?: string;
   htmlFor?: string;
   size?: "primary" | "secondary" | "tertiary";
   disabled?: boolean;
 }
 const STYLES = {
-  primary: " accent-pink-500 w-20 h-5 ",
-  secondary: "accent-pink-500 w-20 h-8 ",
-  tertiary: "accent-pink-500 w-20 h-11 ",
+  primary: "w-4 h-4",
+  secondary: "w-8 h-8",
+  tertiary: "w-12 h-12",
 };
 
 export const Checkbox: React.FC<CheckboxProps> = ({
-  className = "border-dashed",
+  className,
+  border = "border-2",
   name,
-  // value,
   disabled,
   size = "primary",
   htmlFor,
   label,
+  checked = true,
   ...restProps
 }) => {
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(checked);
 
   const toggleIsChecked = () => {
     setIsChecked(!isChecked);
-    console.log("yomayo");
+    console.log("checked");
   };
   return (
     <div className={clsx(className)}>
       <input
         className={overrideTailwindClasses(
           clsx(
-            ` border-2 
-            accent-[#50d71e]
-            appearance-none
-              checked:bg-blue-200 hover:bg-green-hover focus:bg-green-pressed disabled:bg-green-inactive   ${STYLES[size]}`,
-            className
+            `
+        border-gray-5 rounded text-indigo-800 focus:ring-indigo-600 hover:bg-indigo-500
+        ${STYLES[size]}`,
+            className,
+            border
           )
         )}
         type="checkbox"

@@ -16,12 +16,11 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   size: "primary",
-  // label: "Checkbox",
   checkboxVar: "Checkbox",
 };
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const WithLabel = Template.bind({});
+WithLabel.args = {
   size: "secondary",
-  // label: "Checkbox",
-  checkboxVar: "Checkbox",
+  label: "Checkbox",
+  htmlFor: "Checkbox",
 };
