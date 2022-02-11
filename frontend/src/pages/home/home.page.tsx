@@ -16,13 +16,13 @@ export const HomePage: React.FC = () => {
       {active ? (
         <>
           <SideBar />
-          <Header position="left-72 justify-start py-8 pl-110px ">
+          <Header position="justify-start py-8 pl-405px">
             <AppBar button={false} />
           </Header>
         </>
       ) : (
         <>
-          <Header position="left-0 justify-center py-6 px-75px">
+          <Header position="left-0 justify-center py-6">
             <Logo onClick={onClick} />
             <AppBar button={true} />
           </Header>

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-const REM_SIZE = 16;
-const pxToRem = (px) => `${px / REM_SIZE}rem`;
-const colors = require("./src/config/colors.json"); 
+const REM_SIZE = 16
+const pxToRem = px => `${px / REM_SIZE}rem`
+const colors = require('./src/config/colors.json')
 
 module.exports = {
-  important: "#root",
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  important: '#root',
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -37,11 +37,11 @@ module.exports = {
         h4: pxToRem(30),
         h5: pxToRem(24),
         h6: pxToRem(20),
-        "body-large": pxToRem(18),
+        'body-large': pxToRem(18),
         body: pxToRem(16),
-        "body-small": pxToRem(14),
-        "placeholder-small": pxToRem(11),
-        "line-14": pxToRem(14),
+        'body-small': pxToRem(14),
+        'placeholder-small': pxToRem(11),
+        'line-14': pxToRem(14),
       },
       lineHeight: {
         h1: pxToRem(64),
@@ -50,11 +50,11 @@ module.exports = {
         h4: pxToRem(40),
         h5: pxToRem(36),
         h6: pxToRem(30),
-        "body-large": pxToRem(28),
+        'body-large': pxToRem(28),
         body: pxToRem(24),
-        "body-small": pxToRem(21),
-        "placeholder-small": pxToRem(11),
-        "line-14": pxToRem(14),
+        'body-small': pxToRem(21),
+        'placeholder-small': pxToRem(11),
+        'line-14': pxToRem(14),
       },
       fontWeight: {
         normal: 400,
@@ -63,13 +63,14 @@ module.exports = {
         bold: 700,
       },
       screens: {
-        "3xl": "1920px", // full hd
-        "4xl": "2560px", // quad hd
+        '3xl': '1920px', // full hd
+        '4xl': '2560px', // quad hd
       },
       padding: {
         '10px': pxToRem(10),
         '75px': pxToRem(75),
         '110px': pxToRem(110),
+        '405px': pxToRem(405),
       },
       margin: {
         '2px': pxToRem(2),
@@ -81,7 +82,7 @@ module.exports = {
       },
       width: {
         '22px': pxToRem(22),
-         8.5: pxToRem(34),
+        8.5: pxToRem(34),
         '30px': pxToRem(30),
         '60px': pxToRem(60),
         '232px': pxToRem(232),
@@ -93,6 +94,7 @@ module.exports = {
         '646px': pxToRem(646),
         '1080px': pxToRem(1080),
         '1290px': pxToRem(1290),
+        '1440px': pxToRem(1440),
       },
       height: {
         '96px': pxToRem(96),
@@ -116,16 +118,11 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ["disabled", "checked"],
-      borderColor: ["disabled"],
-      translate: ["checked"],
+      backgroundColor: ['disabled', 'checked'],
+      borderColor: ['disabled'],
+      translate: ['checked'],
     },
   },
 
-  plugins: [
-    require("tailwindcss"),
-    require("autoprefixer"),
-    require("@tailwindcss/forms"),
-  ],
-};
-
+  plugins: [require('tailwindcss'), require('autoprefixer'), require('@tailwindcss/forms')],
+}
