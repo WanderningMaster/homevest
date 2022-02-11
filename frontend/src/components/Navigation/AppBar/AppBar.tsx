@@ -8,11 +8,11 @@ import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
 
-interface HederProps {
+interface AppBarProps {
   button?: boolean
 }
 
-const AppBar: React.FC<HederProps> = ({ button }) => {
+const AppBar: React.FC<AppBarProps> = ({ button }) => {
   return (
     <>
       <div className="static flex flex-row items-center p-0">

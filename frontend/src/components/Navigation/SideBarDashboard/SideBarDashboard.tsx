@@ -7,6 +7,7 @@ import { ReactComponent as ApartmentIcon } from 'assets/images/apartment-icon.sv
 import { ReactComponent as ReportsIcon } from 'assets/images/reports-icon.svg'
 import { ReactComponent as NotificationIcon } from 'assets/images/notification-icon.svg'
 import { ReactComponent as MessageIcon } from 'assets/images/message-icon.svg'
+import { ReactComponent as InvestmentIcon } from 'assets/images/investments-icon.svg'
 import { ReactComponent as FavouriteIcon } from 'assets/images/heart-icon.svg'
 import { Typography } from 'components/common/typography/typography'
 
@@ -24,16 +25,6 @@ const SideBarDashboard: React.FC = () => {
     },
     {
       to: AppRoute.ROOT,
-      text: 'Account Settings',
-      icon: <SettingsIcon />,
-    },
-    {
-      to: AppRoute.ROOT,
-      text: 'Account Settings',
-      icon: <SettingsIcon />,
-    },
-    {
-      to: AppRoute.ROOT,
       text: 'Reports',
       icon: <ReportsIcon />,
     },
@@ -46,6 +37,11 @@ const SideBarDashboard: React.FC = () => {
       to: AppRoute.ROOT,
       text: 'Messages',
       icon: <MessageIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'My investments',
+      icon: <InvestmentIcon />,
     },
     {
       to: AppRoute.ROOT,
