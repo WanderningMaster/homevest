@@ -50,7 +50,7 @@ const SideBarDashboard: React.FC = () => {
     },
   ]
   return (
-    <div className=" flex flex-col gap-8 items-start p-4 absolute w-286px h-624px top-0 left-0 shadow-header bg-white rounded-lg z-20">
+    <div className=" flex flex-col gap-8 items-start p-4 absolute w-286px top-0 left-0 shadow-header bg-white rounded-lg z-20">
       {data.map(({ text, to, icon }) => {
         return (
           <div key={text}>
