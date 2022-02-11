@@ -36,13 +36,14 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     setIsChecked(!isChecked);
     console.log("checked");
   };
+
   return (
     <div className={clsx(className)}>
       <input
         className={overrideTailwindClasses(
           clsx(
             `
-        border-gray-5 rounded text-indigo-800 focus:ring-indigo-600 hover:bg-indigo-500
+        border-gray-5 rounded text-indigo-900 focus:ring-indigo-800 hover:bg-indigo-700
         ${STYLES[size]}`,
             className,
             border
@@ -54,7 +55,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         id={htmlFor}
         name={name}
         disabled={disabled}
-        // size={size}
         value={htmlFor}
         {...restProps}
       />
