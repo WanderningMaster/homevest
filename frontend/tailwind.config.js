@@ -84,6 +84,7 @@ module.exports = {
         "295px": pxToRem(295),
         "300px": pxToRem(300),
         "630px": pxToRem(630),
+        "1290px":pxToRem(1290),
       },
       height: {
         "22px": pxToRem(22),
