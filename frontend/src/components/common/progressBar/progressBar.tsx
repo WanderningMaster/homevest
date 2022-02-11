@@ -15,7 +15,6 @@ const ProgressBar:React.FC<IProps> = ({full = 100, progress = 0}) => {
     function PercentStatus() {
         const value = (progress / (full/100))
         setPersent(parseFloat(value.toFixed(1)));
-        console.log(value)
     }
 
     return (
@@ -31,7 +30,6 @@ const ProgressBar:React.FC<IProps> = ({full = 100, progress = 0}) => {
             </div>
             <div className='bg-black h-1 rounded-lg w-full'>
                 <div className='bg-red h-1 rounded-xl' style={{width: percent+'%'}}>
-
                 </div>
             </div>
         </div>
