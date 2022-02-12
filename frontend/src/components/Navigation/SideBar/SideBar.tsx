@@ -1,27 +1,24 @@
 import * as React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { Link } from 'components/Navigation/NavLink'
 import { AppRoute } from 'common/enums'
 import { ReactComponent as DashboardIcon } from 'assets/images/dashboard-icon.svg'
 import { ReactComponent as SettingsIcon } from 'assets/images/settings-icon.svg'
 import MenuItem from '../MenuItem/MenuItem'
-import { divide } from 'lodash'
 
 const SideBar: React.FC = () => {
   const data = [
     {
-      key: '1',
       to: AppRoute.DASHBOARD_ONE,
       text: 'Dashboard',
       icon: <DashboardIcon />,
     },
     {
-      key: '2',
       to: AppRoute.DASHBOARD_TWO,
       text: 'Dashboard',
       icon: <DashboardIcon />,
     },
     {
-      key: '3',
       to: AppRoute.SETTINGS,
       text: 'Settings',
       icon: <SettingsIcon />,
@@ -34,9 +31,9 @@ const SideBar: React.FC = () => {
           Homevest
         </h3>
         <div className="flex flex-col items-start">
-          {data.map(({ key, to, text, icon }) => {
+          {data.map(({ to, text, icon }) => {
             return (
-              <div key={key}>
+              <div key={uuidv4()}>
                 <Link to={to} className="text-lightblue" activeClassName="active:text-red">
                   <MenuItem text={text} itemStyles="mb-6 p-10px" iconStyles="mr-4">
                     {icon}
