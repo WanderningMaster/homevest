@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { Link } from 'components/Navigation/NavLink'
 import { AppRoute } from 'common/enums'
 import { MenuItem } from 'components/Navigation/MenuItem'
@@ -11,8 +12,12 @@ import { ReactComponent as InvestmentIcon } from 'assets/images/investments-icon
 import { ReactComponent as FavouriteIcon } from 'assets/images/heart-icon.svg'
 import { Typography } from 'components/common/typography/typography'
 
-const SideBarDashboard: React.FC = () => {
-  const data = [
+interface Props {
+  isLoggedIn?: boolean
+}
+
+const SideBarDashboard: React.FC<Props> = ({ isLoggedIn }) => {
+  const investmentData = [
     {
       to: AppRoute.ROOT,
       text: 'Account Settings',
@@ -49,19 +54,64 @@ const SideBarDashboard: React.FC = () => {
       icon: <FavouriteIcon />,
     },
   ]
+  const DeveloperData = [
+    {
+      to: AppRoute.ROOT,
+      text: 'Account Settings',
+      icon: <SettingsIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Apartment Settings',
+      icon: <ApartmentIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Reports',
+      icon: <ReportsIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Notifications',
+      icon: <NotificationIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Messages',
+      icon: <MessageIcon />,
+    },
+    {
+      to: AppRoute.ROOT,
+      text: 'Favourites',
+      icon: <FavouriteIcon />,
+    },
+  ]
+
   return (
-    <div className=" flex flex-col gap-8 items-start p-4 absolute w-286px top-0 left-0 shadow-header bg-white rounded-lg z-20">
-      {data.map(({ text, to, icon }) => {
-        return (
-          <div key={text}>
-            <Link to={to} className="text-lightblue" activeClassName="text-green">
-              <MenuItem text={text} iconStyles="mr-4">
-                {icon}
-              </MenuItem>
-            </Link>
-          </div>
-        )
-      })}
+    <div className=" flex flex-col gap-8 items-start p-4 absolute w-286px top-0 left-75px shadow-header bg-white rounded-lg z-20">
+      {isLoggedIn
+        ? investmentData.map(({ text, to, icon }) => {
+            return (
+              <div key={uuidv4()}>
+                <Link to={to} className="text-lightblue" activeClassName="text-green">
+                  <MenuItem text={text} iconStyles="mr-4">
+                    {icon}
+                  </MenuItem>
+                </Link>
+              </div>
+            )
+          })
+        : DeveloperData.map(({ text, to, icon }) => {
+            return (
+              <div key={uuidv4()}>
+                <Link to={to} className="text-lightblue" activeClassName="text-green">
+                  <MenuItem text={text} iconStyles="mr-4">
+                    {icon}
+                  </MenuItem>
+                </Link>
+              </div>
+            )
+          })}
 
       <div className="flex flex-col gap-4">
         <div>
