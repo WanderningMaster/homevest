@@ -9,22 +9,23 @@ import { PropertyDevCard } from 'components/Dashboard/Property-dev-card'
 import Button from 'components/common/button/button'
 import { mockData } from 'components/Dashboard/mock-data/mock-data'
 import { FiltersDashboard } from 'components/Dashboard/FiltersDashboard'
-import { Container } from 'components/layouts/container'
+import { Dashboardlayout } from 'components/layouts/dashboard-layout'
 
 const PropertyDevelopersPage: React.FC = () => {
   const [active, setActive] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const onClick = () => {
+  const onMenuClick = () => {
     setActive(!active)
   }
   return (
     <>
       <Header position="left-0 justify-center py-6 px-75px ">
-        <Logo onClick={onClick} />
+        <Logo onClick={onMenuClick} />
         <AppBarDashboard />
       </Header>
 
-      <Container title="My buildings">
+      <Dashboardlayout title="My buildings">
         <FiltersDashboard />
         <ul className="flex flex-row justify-between grid-col-2 flex-wrap gap-6 mb-10">
           {mockData.map(({ id, name, price, currency, image, description }) => (
@@ -41,8 +42,8 @@ const PropertyDevelopersPage: React.FC = () => {
         <div>
           <Button label="Add property" onClick={() => console.log('Property added')} />
         </div>
-      </Container>
-      {active && <SideBarDashboard />}
+        {active && <SideBarDashboard isLoggedIn={isLoggedIn} />}
+      </Dashboardlayout>
     </>
   )
 }
