@@ -111,6 +111,7 @@ module.exports = {
         header: '0px 4px 18px rgba(34, 68, 68, 0.15)',
         'map-card': '0px 4px 18px 0 rgba(0, 0, 0, 0.15)',
         google: '0 4px 18px 0 rgba(0, 0, 0, 0.1)',
+        card: '0 0 15px rgba(0,0,0,.5)'
       },
     },
   },
