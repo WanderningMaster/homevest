@@ -95,7 +95,11 @@ module.exports = {
         '1290px': pxToRem(1290),
       },
       height: {
+        "22px": pxToRem(22),
+        8.5: pxToRem(34),
+        "60px": pxToRem(60),
         '96px': pxToRem(96),
+        "232px": pxToRem(232),
         '300px': pxToRem(300),
         '568px': pxToRem(568),
         '624px': pxToRem(624),
