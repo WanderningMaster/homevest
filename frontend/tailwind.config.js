@@ -94,7 +94,16 @@ module.exports = {
         '1080px': pxToRem(1080),
         '1290px': pxToRem(1290),
       },
+      minWidth: {
+        '190': pxToRem(190),
+        '550': pxToRem(550)
+      },
+      maxWidth: {
+        '210': pxToRem(210),
+        '630': pxToRem(630)
+      },
       height: {
+        '22px': pxToRem(22),
         '96px': pxToRem(96),
         '300px': pxToRem(300),
         '568px': pxToRem(568),
