@@ -27,7 +27,7 @@ const SideBar: React.FC = () => {
               <DashboardIcon />
             </MenuItem>
           </Link>
-          <Link to={AppRoute.SETTINGS} className="text-lightblue" activeClassName="text-green">
+          <Link to={AppRoute.ACCOUNT_SETTINGS} className="text-lightblue" activeClassName="text-green">
             <MenuItem text="Settings" itemStyles="mb-6 p-10px" iconStyles="mr-4">
               <SettingsIcon />
             </MenuItem>

@@ -55,13 +55,17 @@ module.exports = {
       },
       padding: {
         '10px': pxToRem(10),
+        '30px': pxToRem(30),
         '75px': pxToRem(75),
         '110px': pxToRem(110),
       },
       margin: {
         '2px': pxToRem(2),
         '10px': pxToRem(10),
+        '59px': pxToRem(59),
         '62px': pxToRem(62),
+        '69px': pxToRem(69),
+        '96px': pxToRem(96),
       },
       width: {
         '295px': pxToRem(295),
@@ -69,6 +73,11 @@ module.exports = {
       boxShadow: {
         header: '0px 4px 18px rgba(34, 68, 68, 0.15)',
         google: '0 4px 18px 0 rgba(0, 0, 0, 0.1)',
+      },
+      borderRadius: {
+        '4px': '4px',
+        '8px': '8px',
+        '12px': '12px',
       },
     },
   },

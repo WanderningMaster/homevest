@@ -4,6 +4,7 @@ import SignUpPage from 'pages/auth/sign-up/sign-up.page';
 import { HomePage } from 'pages/home/home.page';
 import { Switch, Route } from 'react-router-dom';
 import SignIn from 'pages/auth/signIn/signIn';
+import { AccountSettingsPage } from 'pages/settings/account-settings/account-settings.page';
 
 
 const App: React.FC = () => {
@@ -17,6 +18,9 @@ const App: React.FC = () => {
       </Route>
       <Route exact path={AppRoute.ROOT}>
         <HomePage />
+      </Route>
+      <Route path={AppRoute.ACCOUNT_SETTINGS}>
+        <AccountSettingsPage />
       </Route>
     </Switch>
   )
