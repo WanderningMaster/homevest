@@ -2,7 +2,7 @@ import React from "react";
 import MultipleRange from "../rangeMultiple/rangeMutiple";
 import ToggleButton from "../button/toggleBtn";
 import Button from "../button/button";
-import { IPropsPrice } from './types/types';
+import { IPropsPrice } from "./types/types";
 import clsx from "clsx";
 
 const Price: React.FC<IPropsPrice> = (props) => {
@@ -11,7 +11,7 @@ const Price: React.FC<IPropsPrice> = (props) => {
     className = {
       button:
         props.className?.button ||
-        'border-2 border-light-blue flex hover:bg-light-blue hover:text-white items-center justify-between leading-7 mix-w-150 px-2 rounded-md text-body-small text-green w-full',
+        "border-2 border-light-blue flex hover:bg-light-blue hover:text-white items-center justify-between leading-7 mix-w-150 px-2 rounded-md text-body-small text-green w-full",
     },
     fullPrice = props.fullPrice || 1000000,
     fullPriceM2 = props.fullPriceM2 || 65000,
@@ -63,10 +63,6 @@ const Price: React.FC<IPropsPrice> = (props) => {
     setPriceSelect({ ...priceSelect, mortgage: value });
   };
 
-  // const handlerReturnAllSelectProperty = () =>{
-  //     handlerSetSelectPrice(priceSelect)
-  // }
-
   const handlerReturnSelectProperty = () => {
     let result = {};
 
@@ -114,15 +110,12 @@ const Price: React.FC<IPropsPrice> = (props) => {
 
   return (
     <>
-      <div className={clsx('max-w-210 min-w-190 z-20')}>
-        <button 
-          onClick={handlerVisible} 
-          className={clsx(className.button)}
-          >
+      <div className={clsx("max-w-210 min-w-190 z-20")}>
+        <button onClick={handlerVisible} className={clsx(className.button)}>
           Price
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={clsx('h-4 w-6')}
+            className={clsx("h-4 w-6")}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -137,14 +130,13 @@ const Price: React.FC<IPropsPrice> = (props) => {
         </button>
         <div
           className={clsx(
-              (isVisible ? '' : 'hidden ') +
-              'absolute left-0 w-full bg-white font-medium mt-2 px-4 py-2 rounded-md shadow-card text-body-large text-left z-10'
-            )
-          }
+            (isVisible ? "" : "hidden ") +
+              "absolute left-0 w-full bg-white font-medium mt-2 px-4 py-2 rounded-md shadow-card text-body-large text-left z-10"
+          )}
         >
-          <div className={clsx('flex flex-col justify-start my-4')}>
+          <div className={clsx("flex flex-col justify-start my-4")}>
             <label>Price</label>
-            <div className={clsx('flex gap-1 mt-2 w-full flex-col')}>
+            <div className={clsx("flex gap-1 mt-2 w-full flex-col")}>
               <MultipleRange
                 fullMax={fullPrice}
                 min={priceSelect.price?.min}
@@ -153,9 +145,9 @@ const Price: React.FC<IPropsPrice> = (props) => {
               />
             </div>
           </div>
-          <div className={clsx('flex flex-col justify-start my-4')}>
+          <div className={clsx("flex flex-col justify-start my-4")}>
             <label>Price for m2</label>
-            <div className={clsx('flex gap-1 mt-2 w-full flex-col')}>
+            <div className={clsx("flex gap-1 mt-2 w-full flex-col")}>
               <MultipleRange
                 fullMax={fullPriceM2}
                 min={priceSelect.priceM2?.min}
@@ -164,23 +156,21 @@ const Price: React.FC<IPropsPrice> = (props) => {
               />
             </div>
           </div>
-          <div className={clsx('flex flex-col justify-start my-4')}>
+          <div className={clsx("flex flex-col justify-start my-4")}>
             <label>Currency</label>
-            <div className={clsx('flex gap-1')}>
+            <div className={clsx("flex gap-1")}>
               {!currency.length ? (
                 <h1>Currency not found</h1>
               ) : (
                 currency.map((item: string, index: number) => {
                   return (
                     <button
-                      key={'currently' + index}
+                      key={"currently" + index}
                       className={clsx(
-                          (priceSelect.currency?.indexOf(item) !== -1
-                          ? 'bg-grey '
-                          : 'bg-light-grey') 
-                          + ' p-1 px-3 hover:bg-grey'
-                        )
-                      }
+                        (priceSelect.currency?.indexOf(item) !== -1
+                          ? "bg-grey "
+                          : "bg-light-grey") + " p-1 px-3 hover:bg-grey"
+                      )}
                       onClick={() => handlerSetCurrency(item)}
                     >
                       {item}
@@ -190,39 +180,38 @@ const Price: React.FC<IPropsPrice> = (props) => {
               )}
             </div>
           </div>
-          <div className={clsx('flex justify-start my-4')}>
-            <label className={clsx('mr-4 mt-1')}>The option of lending</label>
-            <div className={clsx('flex gap-1')}>
+          <div className={clsx("flex justify-start my-4")}>
+            <label className={clsx("mr-4 mt-1")}>The option of lending</label>
+            <div className={clsx("flex gap-1")}>
               <ToggleButton
                 checked={priceSelect.lending}
                 getSwitched={handlerSetLending}
               />
             </div>
           </div>
-          <div className={clsx('flex justify-start my-4')}>
-            <label className={clsx('mr-4 mt-1')}>Installments</label>
-            <div className={clsx('flex gap-1')}>
+          <div className={clsx("flex justify-start my-4")}>
+            <label className={clsx("mr-4 mt-1")}>Installments</label>
+            <div className={clsx("flex gap-1")}>
               <ToggleButton
                 checked={priceSelect.installments}
                 getSwitched={handlerSetInstallments}
               />
             </div>
           </div>
-          <div className={clsx('flex justify-start my-4')}>
-            <label className={clsx('mr-4 mt-1')}>Mortgage</label>
-            <div className={clsx('flex gap-1')}>
+          <div className={clsx("flex justify-start my-4")}>
+            <label className={clsx("mr-4 mt-1")}>Mortgage</label>
+            <div className={clsx("flex gap-1")}>
               <ToggleButton
                 checked={priceSelect.mortgage}
                 getSwitched={handlerSetMortgage}
               />
             </div>
           </div>
-          <div className={clsx('flex gap-7 text-body text-green')}>
+          <div className={clsx("flex gap-7 text-body text-green")}>
             <Button
               className={clsx(
-                  'bg-white border-none box-border duration-200 flex focus:text-green-pressed font-medium h-9 items-center justify-start px-3 py-4 rounded-lg text-base text-green text-left w-40'
-                )
-              }
+                "bg-white border-none box-border duration-200 flex focus:text-green-pressed font-medium h-9 items-center justify-start px-3 py-4 rounded-lg text-base text-green text-left w-40"
+              )}
               nameBtn={"tertiary"}
               label={"Reset All Fiters"}
               onClick={handlerResetAllFilters}
@@ -230,7 +219,7 @@ const Price: React.FC<IPropsPrice> = (props) => {
             {/*  */}
             <Button
               className={clsx(
-                'bg-white border-none box-border duration-200 flex focus:text-green-pressed font-medium h-9 items-center justify-start px-3 py-4 rounded-lg text-base text-green text-left w-40'
+                "bg-white border-none box-border duration-200 flex focus:text-green-pressed font-medium h-9 items-center justify-start px-3 py-4 rounded-lg text-base text-green text-left w-40"
               )}
               nameBtn={"tertiary"}
               label={"Show"}

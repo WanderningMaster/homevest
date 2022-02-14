@@ -65,7 +65,11 @@ const ContainerFiltersAll: React.FC<IContainerFiters> = (props) => {
 
     if (Object.keys(result).length) {
       returnValueAll(result);
+
+      return;
     }
+
+    returnValueAll({});
   }
 
   function handlerSetSelectProperty(property: string[]): void {
