@@ -105,9 +105,13 @@ module.exports = {
         '630': pxToRem(630)
       },
       height: {
+<<<<<<< HEAD
+        '22px': pxToRem(22),
+=======
         "22px": pxToRem(22),
         8.5: pxToRem(34),
         "60px": pxToRem(60),
+>>>>>>> 212c2ae2a173c45d3f1b19bcb2008183cb544ab7
         '96px': pxToRem(96),
         "232px": pxToRem(232),
         '300px': pxToRem(300),

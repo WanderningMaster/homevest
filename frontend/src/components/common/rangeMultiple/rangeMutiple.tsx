@@ -2,17 +2,18 @@ import React from 'react';
 import './rangeMultipleStyle.css'
 
 interface Props {
+    fullMax?: number,
     min?: number,
     max?: number,
     returnValues: ({min, max}:ReturnValues) => void
 }
 
 interface ReturnValues {
-    min?: number,
-    max?: number,
+    min: number,
+    max: number,
 }
 
-const  MultipleRange: React.FC<Props> = ({min = 0, max = 1000000, returnValues}) => {
+const  MultipleRange: React.FC<Props> = ({fullMax = 1000000, min = 0, max = fullMax, returnValues}) => {
     const [minValue, setMinValue] = React.useState(min);
     const [maxValue, setMaxValue] = React.useState(max);
     const [inputMinValue, setInputMinValue] = React.useState(minValue);
@@ -23,7 +24,7 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 1000000, returnValues})
     const range: React.RefObject<HTMLDivElement> = React.useRef(null);
 
     const getPercent = React.useCallback((value) => {
-        return Math.round(((value - min) / (max - min)) * 100);
+        return Math.round(((value - 0) / (fullMax - min)) * 100);
     }, [min, max]);
     
     React.useEffect(() => {
@@ -56,14 +57,14 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 1000000, returnValues})
 
 
     function validateInputMin(value:number):boolean {
-        if (value >= min && value <= max && value < maxValue) {
+        if (value >= 0 && value <= fullMax && value < maxValue) {
             return false;
         }
         return true;
     }
 
     function validateInputMax(value:number):boolean {
-        if (value >= min && value >= minValue && value <= max ) {
+        if (value >= 0 && value >= minValue && value <= fullMax ) {
             return false;
         }
         return true;
@@ -99,8 +100,8 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 1000000, returnValues})
 
             <input 
                 type="range"
-                min={min}
-                max={max}
+                min={0}
+                max={fullMax}
                 value={minValue}
                 ref={minValRef}
                 onChange={(e) => {
@@ -113,8 +114,8 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 1000000, returnValues})
             />
             <input 
                 type="range"
-                min={min}
-                max={max}
+                min={0}
+                max={fullMax}
                 value={maxValue}
                 ref={maxValRef}
                 onChange={(e) => {
@@ -135,7 +136,7 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 1000000, returnValues})
                     type="number" 
                     name="minValue"
                     value={inputMinValue} 
-                    className={'border-2 text-center focus:outline-none' + (error.min ? ' border-red' : '')}
+                    className={'border-2 h-7 text-center focus:outline-none' + (error.min ? ' border-red' : '')}
                     onChange={(e) => handlerMinValue(+e.target.value)}
                     placeholder="min"
                 />
@@ -143,7 +144,7 @@ const  MultipleRange: React.FC<Props> = ({min = 0, max = 1000000, returnValues})
                     type="number" 
                     name="maxValue"
                     value={inputMaxValue} 
-                    className={'border-2 text-center focus:outline-none' + (error.max ? ' border-red' : '')}
+                    className={'border-2 h-7 text-center focus:outline-none' + (error.max ? ' border-red' : '')}
                     onChange={(e) => handlerMaxValue(+e.target.value)}
                     placeholder="max"
                 />
