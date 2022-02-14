@@ -4,18 +4,20 @@ import clsx from 'clsx'
 interface HederProps {
   children?: React.ReactNode
   position?: string
-  styles?: string
+  navBarWidth?: string
 }
 
-const Header: React.FC<HederProps> = ({ position, styles, children }) => {
+const Header: React.FC<HederProps> = ({ position, navBarWidth, children }) => {
   return (
     <header
       className={clsx(
-        'absolute top-0 min-w-full flex flex-row  items-center   bg-white mx-0 my-0 shadow-header h-96px transition-all ',
+        'absolute inset-x-0 shadow-xl bg-white  mx-auto rounded-lg rounded-t-none  w-1440px px-75px ',
         position,
       )}
     >
-      <div className={clsx('w-1290px flex items-center justify-between ', styles)}>{children}</div>
+      <div className={clsx(' m-auto  flex items-center justify-between ', navBarWidth)}>
+        {children}
+      </div>
     </header>
   )
 }
