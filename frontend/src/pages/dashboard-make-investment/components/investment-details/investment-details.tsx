@@ -8,7 +8,7 @@ export const InvestmentDetails: React.FC = () => {
       <Typography type="h4">
         Investment details
       </Typography>
-      <div className="shadow-card h-96 w-130 rounded-lg mt-6 p-6">
+      <div className="shadow-card-dashboard h-96 w-130 rounded-lg mt-6 p-6">
         {Object.keys(mockData).map((item) => (
           <div key={item} className="flex justify-between mb-6">
             <Typography type="body-medium">

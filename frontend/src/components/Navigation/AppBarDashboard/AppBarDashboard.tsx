@@ -3,16 +3,12 @@ import { AppRoute } from 'common/enums'
 import { Link } from 'components/Navigation/NavLink'
 import { ReactComponent as CompoundIcon } from 'assets/images/building-icon.svg'
 import { ReactComponent as MapIcon } from 'assets/images/map-icon.svg'
-import { ReactComponent as DeveloperIcon } from 'assets/images/developer-icon.svg'
+
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
 
-interface AppBarProps {
-  button?: boolean
-}
-
-const AppBar: React.FC<AppBarProps> = ({ button }) => {
+const AppBarDashboard: React.FC = () => {
   const data = [
     {
       to: AppRoute.NEW_BUILDINGS,
@@ -25,11 +21,6 @@ const AppBar: React.FC<AppBarProps> = ({ button }) => {
       icon: <MapIcon />,
     },
     {
-      to: AppRoute.PROPERTY,
-      text: 'Property developer',
-      icon: <DeveloperIcon />,
-    },
-    {
       to: AppRoute.SEARCH,
       text: 'Search',
       icon: <SearchIcon />,
@@ -37,8 +28,8 @@ const AppBar: React.FC<AppBarProps> = ({ button }) => {
   ]
   return (
     <>
-      <div className="static flex flex-row items-center p-0">
-        {data.map(({ to, text, icon }) => {
+      <div className="static flex flex-row items-center justify-between p-0">
+        {data.map(({ text, to, icon }) => {
           return (
             <div key={text}>
               <Link to={to} className="text-black" activeClassName="text-green">
@@ -50,11 +41,9 @@ const AppBar: React.FC<AppBarProps> = ({ button }) => {
           )
         })}
       </div>
-      {button && (
-        <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
-      )}
+      <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
     </>
   )
 }
 
-export default AppBar
+export default AppBarDashboard

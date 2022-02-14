@@ -4,14 +4,14 @@ enum AppRoute {
   SIGN_UP = '/sign-up',
   FORGOT_PASSWORD = '/forgot-password',
   HOME_PAGE = '/',
-  DASHBOARD_ONE = '/dashboard-1',
-  DASHBOARD_TWO = '/dashboard-2',
+  DASHBOARD = '/dashboard',
   SETTINGS = '/settings',
   NEW_BUILDINGS = '/new-buildings',
   MAP = '/map',
   SEARCH = '/search',
   PROPERTY = '/property',
-  MAKE_INVESTMENT = '/make-investment'
+  MAKE_INVESTMENT = '/make-investment',
+  SETTINGS_APARTMENT = '/settings/apartment',
 }
 
 export { AppRoute }
