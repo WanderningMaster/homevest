@@ -1,5 +1,4 @@
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { Link } from 'components/Navigation/NavLink'
 import { AppRoute } from 'common/enums'
 import { MenuItem } from 'components/Navigation/MenuItem'
@@ -92,7 +91,7 @@ const SideBarDashboard: React.FC<Props> = ({ isLoggedIn }) => {
       {isLoggedIn
         ? investmentData.map(({ text, to, icon }) => {
             return (
-              <div key={uuidv4()}>
+              <div key={text}>
                 <Link to={to} className="text-lightblue" activeClassName="text-green">
                   <MenuItem text={text} iconStyles="mr-4">
                     {icon}
@@ -103,7 +102,7 @@ const SideBarDashboard: React.FC<Props> = ({ isLoggedIn }) => {
           })
         : DeveloperData.map(({ text, to, icon }) => {
             return (
-              <div key={uuidv4()}>
+              <div key={text}>
                 <Link to={to} className="text-lightblue" activeClassName="text-green">
                   <MenuItem text={text} iconStyles="mr-4">
                     {icon}
