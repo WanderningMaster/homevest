@@ -6,8 +6,13 @@ interface IProp {
   disabled?: boolean;
   getSwitched:(value:boolean)=>void
 }
-const ToggleButton: React.FC<IProp> = ({ label = "", disabled, getSwitched}) => {
-  const [switched, setSwitched] = React.useState(false);
+const ToggleButton: React.FC<IProp> = ({ label = "", checked = false, disabled, getSwitched}) => {
+  const [switched, setSwitched] = React.useState(checked);
+
+  useEffect(() => {
+    setSwitched(checked);
+  }, [checked])
+
   useEffect(() => {
     getSwitched(switched);
   },[switched])
