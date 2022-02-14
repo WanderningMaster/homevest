@@ -11,6 +11,7 @@ enum AppRoute {
   MAP = '/map',
   SEARCH = '/search',
   PROPERTY = '/property',
+  MAKE_INVESTMENT = '/make-investment'
 }
 
 export { AppRoute }

@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 import { DashboardMapPage } from 'pages/dashboard-map/dashboard-map.page';
 import SignIn from 'pages/auth/signIn/signIn';
 import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page';
+import { DashboardMakeInvestmentPage } from 'pages/dashboard-make-investment/dashboard-make-investment-page';
 
 
 const App: React.FC = () => {
@@ -25,6 +26,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={AppRoute.MAP}>
         <DashboardMapPage />
+      </Route>
+      <Route path={AppRoute.MAKE_INVESTMENT}>
+        <DashboardMakeInvestmentPage />
       </Route>
     </Switch>
   )
