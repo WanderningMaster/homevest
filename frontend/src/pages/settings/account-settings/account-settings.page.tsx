@@ -58,7 +58,7 @@ export const AccountSettingsPage: React.FC = () => {
             </Header>
           </>
         )}
-        <div className="flex mt-96px mb-59px px-75px">
+        <div className="flex pt-20 mb-59px px-75px">
           <div className="flex-1 border-r">
             <Typography type="h4" className="pt-14 pb-12">Settings</Typography>
             <div className="flex">

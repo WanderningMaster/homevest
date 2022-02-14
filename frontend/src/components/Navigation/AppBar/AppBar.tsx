@@ -8,33 +8,51 @@ import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
 
-const AppBar: React.FC = () => {
+interface AppBarProps {
+  button?: boolean
+}
+
+const AppBar: React.FC<AppBarProps> = ({ button }) => {
+  const data = [
+    {
+      to: AppRoute.NEW_BUILDINGS,
+      text: 'New buildings',
+      icon: <CompoundIcon />,
+    },
+    {
+      to: AppRoute.MAP,
+      text: 'Map',
+      icon: <MapIcon />,
+    },
+    {
+      to: AppRoute.PROPERTY,
+      text: 'Property developer',
+      icon: <DeveloperIcon />,
+    },
+    {
+      to: AppRoute.SEARCH,
+      text: 'Search',
+      icon: <SearchIcon />,
+    },
+  ]
   return (
     <>
-      {' '}
       <div className="static flex flex-row items-center p-0">
-        <Link to={AppRoute.NEW_BUILDINGS} className="text-black" activeClassName="text-green">
-          <MenuItem text="New buildings" itemStyles="mr-14" iconStyles="mr-2">
-            <CompoundIcon />
-          </MenuItem>
-        </Link>
-        <Link to={AppRoute.MAP} className="text-black" activeClassName="text-green">
-          <MenuItem text="Map" itemStyles="mr-14" iconStyles="mr-2">
-            <MapIcon />
-          </MenuItem>
-        </Link>
-        <Link to={AppRoute.PROPERTY} className="text-black" activeClassName="text-green">
-          <MenuItem text="Property developer" itemStyles="mr-14 p-0" iconStyles="mr-2">
-            <DeveloperIcon />
-          </MenuItem>
-        </Link>
-        <Link to={AppRoute.SEARCH} className="text-black" activeClassName="text-green">
-          <MenuItem text="Search" itemStyles="mr-14" iconStyles="mr-2">
-            <SearchIcon />
-          </MenuItem>
-        </Link>
+        {data.map(({ to, text, icon }) => {
+          return (
+            <div key={text}>
+              <Link to={to} className="text-black" activeClassName="text-green">
+                <MenuItem text={text} itemStyles="mr-14" iconStyles="mr-2">
+                  {icon}
+                </MenuItem>
+              </Link>
+            </div>
+          )
+        })}
       </div>
-      <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
+      {button && (
+        <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
+      )}
     </>
   )
 }
