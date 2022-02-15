@@ -21,6 +21,7 @@ services:
     restart: always
     container_name: postgres
     environment:
+      PGDATA: /var/lib/posgresql/data/homevest/
       POSTGRES_USER: ${DB_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
       POSTGRES_DB: ${DB_NAME:-homevest}
