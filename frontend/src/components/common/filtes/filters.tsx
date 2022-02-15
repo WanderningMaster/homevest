@@ -175,7 +175,6 @@ const Filter: React.FC<IPropsFilters> = (props) => {
               label={"Reset All Filters"}
               onClick={handlerResetAllFilters}
             />
-            {/*  */}
             <Button
               className={clsx(
                 "bg-white border-none box-border duration-200 flex focus:text-green-pressed font-medium h-9 items-center justify-start px-3 py-4 rounded-lg text-base text-green text-left w-40"
