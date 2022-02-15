@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import { AppRoute } from 'common/enums'
 import SignUpPage from 'pages/auth/sign-up/sign-up.page'
@@ -8,9 +9,29 @@ import { AccountSettingsPage } from 'pages/settings/account-settings/account-set
 import SignIn from 'pages/auth/signIn/signIn'
 import PropertyDevelopersPage from 'pages/property-developers/property-developers.page'
 import { DashboardMapPage } from 'pages/dashboard-map/dashboard-map.page'
+=======
+import React, { useEffect } from 'react';
+import { AppRoute } from 'common/enums';
+import SignUpPage from 'pages/auth/sign-up/sign-up.page';
+import { HomePage } from 'pages/home/home.page';
+import { Switch, Route } from 'react-router-dom';
+import SignIn from 'pages/auth/signIn/signIn';
+import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserActionCreator } from 'store/slices/user';
+
+>>>>>>> feature/authApi
 
 const App: React.FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      dispatch({type: UserActionCreator.asyncCheckAuthSaga().type});
+    }
+  }, [])
+  const isAuth = useSelector<any>(store => store.user.isAuth);
   return (
+<<<<<<< HEAD
     <>
       <Switch>
         <Route path={AppRoute.SIGN_UP}>
@@ -36,6 +57,22 @@ const App: React.FC = () => {
         </Route>
       </Switch>
     </>
+=======
+    <Switch>
+      <Route path={AppRoute.SIGN_UP}>
+        {isAuth ? <HomePage /> : <SignUpPage />}
+      </Route>
+      <Route path={AppRoute.SIGN_IN}>
+        {isAuth ? <HomePage /> : <SignIn />}
+      </Route>
+      <Route exact path={AppRoute.ROOT}>
+        {isAuth ? <HomePage /> : <SignIn />}
+      </Route>
+      <Route exact path={AppRoute.FORGOT_PASSWORD}>
+        <ForgotPassword />
+      </Route>
+    </Switch>
+>>>>>>> feature/authApi
   )
 }
 

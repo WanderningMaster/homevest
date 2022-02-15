@@ -32,8 +32,8 @@ class MailService {
             text: '',
             html: `
                     <div>
-                        <h1>Activation code</h1>
-                        <a href="${link}">${APP_URL}/api/v1/auth/activate/${link}</a>
+                        <h1>Activation link</h1>
+                        <a href="http://${APP_URL}/api/v1/auth/activate/${link}">http://${APP_URL}/api/v1/auth/activate/${link}</a>
                     </div>
             `
         })

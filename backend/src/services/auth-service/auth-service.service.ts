@@ -25,7 +25,7 @@ class AuthService {
         const {id} = data;
         const activationLink = jwt.sign({id}, <string>JWT_ACTIVATION_SECRET_KEY,{
             expiresIn: JWT_ACTIVATION_EXPIRATION
-        })
+        });
         mailService.sendActivationMail(email, activationLink);
 
         return user;

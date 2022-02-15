@@ -1,11 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { ReducerName } from 'common/enums';
-import { counterReducer } from './slices';
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import createSagaMiddleware from "@redux-saga/core";
+import {reducer as userReducer} from "./slices/user"
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootSaga from "./sagas/index";
 
-const store = configureStore({
-  reducer: {
-    [ReducerName.COUNTER]: counterReducer,
-  },
-});
+const rootReducer = combineReducers({
+    user: userReducer
+})
 
-export { store };
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(
+    rootReducer,
+    composeWithDevTools(
+        applyMiddleware(sagaMiddleware)
+    )
+);
+
+sagaMiddleware.run(rootSaga);
+
+export {store};
+
