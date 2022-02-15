@@ -10,11 +10,8 @@ enum AppRoute {
   MAP = '/map',
   SEARCH = '/search',
   PROPERTY = '/property',
-<<<<<<< HEAD
   SETTINGS_APARTMENT = '/settings/apartment',
-=======
   FORGOT_PASSWORD = "/forgot-password"
->>>>>>> feature/authApi
 }
 
 export { AppRoute }

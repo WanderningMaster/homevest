@@ -10,7 +10,6 @@ import Button from 'components/common/button/button'
 import { useDispatch } from 'react-redux'
 import { UserActionCreator } from 'store/slices/user'
 
-<<<<<<< HEAD
 interface AppBarProps {
   button?: boolean
 }
@@ -38,10 +37,7 @@ const AppBar: React.FC<AppBarProps> = ({ button }) => {
       icon: <SearchIcon />,
     },
   ]
-=======
-const AppBar: React.FC = () => {
   const dispatch = useDispatch();
->>>>>>> feature/authApi
   return (
     <>
       <div className="static flex flex-row items-center p-0">
@@ -57,13 +53,9 @@ const AppBar: React.FC = () => {
           )
         })}
       </div>
-<<<<<<< HEAD
       {button && (
-        <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
+        <Button nameBtn="secondary" label="Log out" onClick={() => dispatch({type: UserActionCreator.asyncLogoutSaga().type})} />
       )}
-=======
-      <Button nameBtn="secondary" label="Log out" onClick={() => dispatch({type: UserActionCreator.asyncLogoutSaga().type})} />
->>>>>>> feature/authApi
     </>
   )
 }

@@ -1,15 +1,7 @@
-<<<<<<< HEAD
-import React from 'react'
-import { AppRoute } from 'common/enums'
-import SignUpPage from 'pages/auth/sign-up/sign-up.page'
-import { HomePage } from 'pages/home/home.page'
-import { Switch, Route } from 'react-router-dom'
 import { ApartmentPage } from 'pages/apartment/apartment'
 import { AccountSettingsPage } from 'pages/settings/account-settings/account-settings.page'
-import SignIn from 'pages/auth/signIn/signIn'
 import PropertyDevelopersPage from 'pages/property-developers/property-developers.page'
 import { DashboardMapPage } from 'pages/dashboard-map/dashboard-map.page'
-=======
 import React, { useEffect } from 'react';
 import { AppRoute } from 'common/enums';
 import SignUpPage from 'pages/auth/sign-up/sign-up.page';
@@ -20,7 +12,6 @@ import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserActionCreator } from 'store/slices/user';
 
->>>>>>> feature/authApi
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -31,18 +22,19 @@ const App: React.FC = () => {
   }, [])
   const isAuth = useSelector<any>(store => store.user.isAuth);
   return (
-<<<<<<< HEAD
-    <>
       <Switch>
         <Route path={AppRoute.SIGN_UP}>
-          <SignUpPage />
-        </Route>
-        <Route path={AppRoute.SIGN_IN}>
-          <SignIn />
-        </Route>
-        <Route exact path={AppRoute.ROOT}>
-          <HomePage />
-        </Route>
+        {isAuth ? <HomePage /> : <SignUpPage />}
+      </Route>
+      <Route path={AppRoute.SIGN_IN}>
+        {isAuth ? <HomePage /> : <SignIn />}
+      </Route>
+      <Route exact path={AppRoute.ROOT}>
+        {isAuth ? <HomePage /> : <SignIn />}
+      </Route>
+      <Route exact path={AppRoute.FORGOT_PASSWORD}>
+        <ForgotPassword />
+      </Route>
         <Route exact path={AppRoute.SETTINGS_APARTMENT}>
           <ApartmentPage />
         </Route>
@@ -55,24 +47,7 @@ const App: React.FC = () => {
         <Route path={AppRoute.MAP}>
           <DashboardMapPage />
         </Route>
-      </Switch>
-    </>
-=======
-    <Switch>
-      <Route path={AppRoute.SIGN_UP}>
-        {isAuth ? <HomePage /> : <SignUpPage />}
-      </Route>
-      <Route path={AppRoute.SIGN_IN}>
-        {isAuth ? <HomePage /> : <SignIn />}
-      </Route>
-      <Route exact path={AppRoute.ROOT}>
-        {isAuth ? <HomePage /> : <SignIn />}
-      </Route>
-      <Route exact path={AppRoute.FORGOT_PASSWORD}>
-        <ForgotPassword />
-      </Route>
     </Switch>
->>>>>>> feature/authApi
   )
 }
 
