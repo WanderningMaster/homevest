@@ -13,17 +13,17 @@ const { JWT_ACTIVATION_SECRET_KEY, JWT_ACTIVATION_EXPIRATION } = process.env;
 
 class AuthService {
 
-    public async registerUser(data: IUser):Promise<UserEntity>{
+    public async registerUser(data: IUser): Promise<UserEntity> {
         const { email } = data;
-        const alreadyCreatedUser = await userService.getUserByEmail(email); 
-        if(alreadyCreatedUser){
-            throw new Error("User is already registered");    
+        const alreadyCreatedUser = await userService.getUserByEmail(email);
+        if (alreadyCreatedUser) {
+            throw new Error("User is already registered");
         }
         const user = await userService.createNewUser(data);
 
         // send registration confirmation email to user
-        const {id} = data;
-        const activationLink = jwt.sign({id}, <string>JWT_ACTIVATION_SECRET_KEY,{
+        const { id } = data;
+        const activationLink = jwt.sign({ id }, <string>JWT_ACTIVATION_SECRET_KEY, {
             expiresIn: JWT_ACTIVATION_EXPIRATION
         })
         mailService.sendActivationMail(email, activationLink);
@@ -31,11 +31,11 @@ class AuthService {
         return user;
     }
 
-    public async activateUser(activationLink: string): Promise<UpdateResult>{
+    public async activateUser(activationLink: string): Promise<UpdateResult> {
         const { id } = jwt.verify(activationLink, <string>JWT_ACTIVATION_SECRET_KEY) as JwtPayload;
 
         const user = await userService.getUserById(<string>id);
-        if(user){
+        if (user) {
             user.isActivated = true;
             const updatedUser = await userService.updateUser(<string>id, user);
 
@@ -45,38 +45,38 @@ class AuthService {
     }
 
     public async loginUser(email: string, passwordToCompare: string):
-                             Promise<{accessToken: string, refreshToken: string}>{
+        Promise<{ accessToken: string, refreshToken: string }> {
         const user = await userService.getUserByEmail(email);
-        if(user){   
+        if (user) {
             const { id, password, role } = user;
             const match = await bcrypt.compare(passwordToCompare, password);
-            if(match){
-                const { accessToken, refreshToken } = tokenService.generateTokens({id, role});
-                await tokenService.saveToken({id, refreshToken});
-                
+            if (match) {
+                const { accessToken, refreshToken } = tokenService.generateTokens({ id, role });
+                await tokenService.saveToken({ id, refreshToken });
+
                 return {
                     accessToken,
                     refreshToken
                 }
             }
             else throw new Error("Wrong email or password");
-        }else
+        } else
             throw new Error("User not found");
     }
 
-    public async logoutUser(refreshToken: string): Promise<string>{
+    public async logoutUser(refreshToken: string): Promise<string> {
         await tokenService.removeToken(refreshToken);
         return refreshToken;
     }
 
-    public async refresh(token: string): 
-                        Promise<{accessToken: string, refreshToken: string}>{
-        if (!token){
+    public async refresh(token: string):
+        Promise<{ accessToken: string, refreshToken: string }> {
+        if (!token) {
             throw new Error("Unauthorized");
         }
         const userData = await tokenService.validateRefreshToken(token);
         const isTokenStored = await tokenService.isTokenStored(token);
-        if(!userData || !isTokenStored){
+        if (!userData || !isTokenStored) {
             throw new Error("Unauthorized");
         }
 
@@ -84,8 +84,8 @@ class AuthService {
         const user = await userService.getUserById(id);
         const role = <string>user?.role;
 
-        const {accessToken, refreshToken} = tokenService.generateTokens({id, role});
-        await tokenService.saveToken({id, refreshToken});
+        const { accessToken, refreshToken } = tokenService.generateTokens({ id, role });
+        await tokenService.saveToken({ id, refreshToken });
 
         return {
             accessToken,

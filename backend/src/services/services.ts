@@ -10,6 +10,7 @@ import { MailService } from './mail-service/mail-service.service';
 import { AuthService } from './auth-service/auth-service.service';
 import { AppartmentService } from './appartment-service/appartment-service.service';
 import { CompanyService } from './user-service/company-service.service';
+import { InvestmentService } from './user-service/investment-service.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -26,16 +27,18 @@ const mailService = new MailService();
 const companyService = new CompanyService();
 const estateService = new EstateService();
 const appartmentService = new AppartmentService();
+const investmentService = new InvestmentService();
 
-export { 
+export {
   appAsyncStorage,
-  logger, 
+  logger,
   userService,
-  investorService, 
+  investorService,
   tokenService,
-  authService, 
+  authService,
   mailService,
   estateService,
   companyService,
   appartmentService,
+  investmentService,
 };

@@ -1,11 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import { IInvestor } from '~/common/interfaces/investor';
+import { InvestmentEntity } from "./investmant.entity";
 import { UserEntity } from "./user.entity";
 
 @Entity({
-  name: 'investor',
+    name: 'investor',
 })
-export class InvestorEntity implements IInvestor{
+export class InvestorEntity implements IInvestor {
 
     @PrimaryGeneratedColumn("uuid")
     id!: string;
@@ -13,9 +14,12 @@ export class InvestorEntity implements IInvestor{
     @OneToOne(() => UserEntity, (user: UserEntity) => user.investor)
     @JoinColumn({ name: 'userId' })
     user!: UserEntity
-    
+
     @Column()
     userId!: string
+
+    @OneToMany(() => InvestmentEntity, (investment: InvestmentEntity) => investment.investor)
+    investments!: InvestmentEntity[];
 
     @Column()
     avatar!: string;
