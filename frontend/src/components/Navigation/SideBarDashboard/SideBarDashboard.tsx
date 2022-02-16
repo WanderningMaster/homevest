@@ -18,69 +18,69 @@ interface Props {
 const SideBarDashboard: React.FC<Props> = ({ isLoggedIn }) => {
   const investmentData = [
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.ACCOUNT_SETTINGS,
       text: 'Account Settings',
       icon: <SettingsIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.SETTINGS_APARTMENT,
       text: 'Apartment Settings',
       icon: <ApartmentIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.REPORTS,
       text: 'Reports',
       icon: <ReportsIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.NOTIFICATIONS,
       text: 'Notifications',
       icon: <NotificationIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.MESSAGES,
       text: 'Messages',
       icon: <MessageIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.MY_INVESTMENTS,
       text: 'My investments',
       icon: <InvestmentIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.FAVOURITES,
       text: 'Favourites',
       icon: <FavouriteIcon />,
     },
   ]
   const DeveloperData = [
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.ACCOUNT_SETTINGS,
       text: 'Account Settings',
       icon: <SettingsIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.SETTINGS_APARTMENT,
       text: 'Apartment Settings',
       icon: <ApartmentIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.REPORTS,
       text: 'Reports',
       icon: <ReportsIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.NOTIFICATIONS,
       text: 'Notifications',
       icon: <NotificationIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.MESSAGES,
       text: 'Messages',
       icon: <MessageIcon />,
     },
     {
-      to: AppRoute.ROOT,
+      to: AppRoute.FAVOURITES,
       text: 'Favourites',
       icon: <FavouriteIcon />,
     },

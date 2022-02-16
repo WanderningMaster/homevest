@@ -8,12 +8,12 @@ import MenuItem from '../MenuItem/MenuItem'
 const SideBar: React.FC = () => {
   const data = [
     {
-      to: AppRoute.DASHBOARD,
+      to: AppRoute.NEW_BUILDINGS,
       text: 'Dashboard',
       icon: <DashboardIcon />,
     },
     {
-      to: AppRoute.SETTINGS,
+      to: AppRoute.ACCOUNT_SETTINGS,
       text: 'Settings',
       icon: <SettingsIcon />,
     },
