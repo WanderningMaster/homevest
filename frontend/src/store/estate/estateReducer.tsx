@@ -34,22 +34,22 @@ const initialState: IEstate[] = [
     currency: 'usd',
     description: '1 is being built, 1 is build',
   },
-  {
-    id: '3',
-    name: 'RC Rainbow',
-    image: 'https://wallpaperaccess.com/full/1859246.jpg',
-    price: '647 000',
-    currency: 'uah',
-    description: '1 is being built, 1 is build',
-  },
-  {
-    id: '4',
-    name: 'RC Rainbow',
-    image: 'https://wallpaperaccess.com/full/1859246.jpg',
-    price: '500 000',
-    currency: 'usd',
-    description: '1 is being built, 1 is build',
-  },
+  // {
+  //   id: '3',
+  //   name: 'RC Rainbow',
+  //   image: 'https://wallpaperaccess.com/full/1859246.jpg',
+  //   price: '647 000',
+  //   currency: 'uah',
+  //   description: '1 is being built, 1 is build',
+  // },
+  // {
+  //   id: '4',
+  //   name: 'RC Rainbow',
+  //   image: 'https://wallpaperaccess.com/full/1859246.jpg',
+  //   price: '500 000',
+  //   currency: 'usd',
+  //   description: '1 is being built, 1 is build',
+  // },
 ]
 
 // const setEstate = (): Actions => ({ type: 'SET_ESTATE' })
