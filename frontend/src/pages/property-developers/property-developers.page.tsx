@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Header } from 'components/Navigation/Header'
@@ -16,6 +17,7 @@ import { EstateActionsCreator } from 'store/estate/estateReducer'
 function PropertyDevelopersPage(): JSX.Element {
   const [active, setActive] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const history = useHistory()
 
   const estate = useSelector(getDeveloperEstate)
   const dispatch = useDispatch()
@@ -27,6 +29,9 @@ function PropertyDevelopersPage(): JSX.Element {
 
   const onMenuClick = () => {
     setActive(!active)
+  }
+  const addPropertyPage = () => {
+    history.push('/settings/apartment')
   }
   return (
     <>
@@ -50,7 +55,7 @@ function PropertyDevelopersPage(): JSX.Element {
           ))}
         </ul>
         <div>
-          <Button label="Add property" onClick={() => console.log('Property added')} />
+          <Button label="Add property" onClick={addPropertyPage} />
         </div>
         {active && <SideBarDashboard isLoggedIn={isLoggedIn} />}
       </Dashboardlayout>
