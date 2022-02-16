@@ -29,7 +29,7 @@ const initAuthApi = (apiRouter: Router): Router => {
             });
             res
                 .status(HttpCode.OK)
-                .json({accessToken, refreshToken});    
+                .json({accessToken});    
         } catch(error: any) {
             logger.error(error.message);
             res.status(HttpCode.BAD_REQUEST).json({error: error.message});
@@ -75,7 +75,7 @@ const initAuthApi = (apiRouter: Router): Router => {
 
             res
                 .status(HttpCode.OK)
-                .json({accessToken, refreshToken});  
+                .json({accessToken});  
         }catch(error: any){
             logger.error(error.message);
             res.status(HttpCode.BAD_REQUEST).json({error: error.message});

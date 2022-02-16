@@ -3,6 +3,7 @@ enum ApiRoute{
     LOGOUT = "/auth/logout",
     REFRESH = "/auth/refresh",
     SIGHUP = "/auth/registration",
+    VERIFY = "/auth/activate/" 
 }
 
 export {ApiRoute};

@@ -14,6 +14,17 @@ export function* signUpSaga(action: any){
     }
 }
 
+export function* verifyEmailSaga(action: any){
+    console.log(action.code);
+    try{
+        const res: AxiosResponse = yield call(authService.verifyEmail, action.code);
+        yield put(UserActionCreator.verify());
+    }catch(e){
+        alert("Invalid activation code");
+        console.error(e);
+    }
+}
+
 export function* loginSaga(action: any){
     try{
         const res: AxiosResponse<loginResponse> = yield call(authService.login, action.email, action.password);
@@ -59,4 +70,5 @@ export function* watchLoginSaga(){
     yield takeEvery(UserActionCreator.asyncCheckAuthSaga().type, checkAuthSaga);
     yield takeEvery(UserActionCreator.asyncLogoutSaga().type, logoutSaga);
     yield takeEvery(UserActionCreator.asyncSIgnUpSaga().type, signUpSaga);
+    yield takeEvery(UserActionCreator.asyncVerifyEmailSaga().type, verifyEmailSaga);
 }

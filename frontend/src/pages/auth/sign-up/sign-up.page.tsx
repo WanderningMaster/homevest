@@ -48,9 +48,8 @@ const SignUpPage: React.FC = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
-          console.log({...values, role});
           dispatch({type: UserActionCreator.asyncSIgnUpSaga().type, payload: {...values, role, lastName: values.secondName}})
-          history.push("/");
+          history.push("/verify-email");
         }}
       >
         <Form>

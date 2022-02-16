@@ -11,6 +11,7 @@ import SignIn from 'pages/auth/signIn/signIn';
 import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserActionCreator } from 'store/slices/user';
+import VerifyEmail from 'pages/auth/verify-email/verify-email.page';
 
 
 const App: React.FC = () => {
@@ -34,6 +35,9 @@ const App: React.FC = () => {
       </Route>
       <Route exact path={AppRoute.FORGOT_PASSWORD}>
         <ForgotPassword />
+      </Route>
+      <Route exact path={AppRoute.VERIFY_EMAIL}>
+        <VerifyEmail />
       </Route>
         <Route exact path={AppRoute.SETTINGS_APARTMENT}>
           <ApartmentPage />

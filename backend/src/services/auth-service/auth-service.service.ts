@@ -47,10 +47,11 @@ class AuthService {
     public async loginUser(email: string, passwordToCompare: string):
                              Promise<{accessToken: string, refreshToken: string}>{
         const user = await userService.getUserByEmail(email);
+
         if(user){   
-            const { id, password, role } = user;
+            const { id, password, role, isActivated } = user;
             const match = await bcrypt.compare(passwordToCompare, password);
-            if(match){
+            if(match && isActivated){
                 const { accessToken, refreshToken } = tokenService.generateTokens({id, role});
                 await tokenService.saveToken({id, refreshToken});
                 

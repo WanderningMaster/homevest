@@ -22,6 +22,9 @@ class AuthService {
     async signUp(userData: IUser): Promise<AxiosResponse> {
         return await api.post(ApiRoute.SIGHUP, {...userData})
     }
+    async verifyEmail(code: string): Promise<AxiosResponse> {
+        return await api.get(ApiRoute.VERIFY+code);
+    }
 }
 
 const authService = new AuthService();
