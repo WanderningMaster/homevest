@@ -1,11 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { ReducerName } from 'common/enums';
-import { counterReducer } from './slices';
+import { configureStore } from '@reduxjs/toolkit'
+import createSagaMiddleware from 'redux-saga'
+import { ReducerName } from 'common/enums'
+import { buildersReducer } from 'store/slices/'
+import { rootWatcher } from './saga'
+import { estateReducer } from 'store/slices/'
+
+const sagaMiddleware = createSagaMiddleware()
+const middleware = [sagaMiddleware]
 
 const store = configureStore({
   reducer: {
-    [ReducerName.COUNTER]: counterReducer,
+    [ReducerName.BUILDERS]: buildersReducer,
+    [ReducerName.ESTATE]: estateReducer,
   },
-});
+  middleware: [...middleware],
+})
 
-export { store };
+sagaMiddleware.run(rootWatcher)
+
+export { store }
