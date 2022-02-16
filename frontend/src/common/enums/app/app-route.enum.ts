@@ -11,6 +11,8 @@ enum AppRoute {
   SEARCH = '/search',
   PROPERTY = '/property',
   SETTINGS_APARTMENT = '/settings/apartment',
+  FORGOT_PASSWORD = "/forgot-password",
+  VERIFY_EMAIL = "/verify-email"
 }
 
 export { AppRoute }

@@ -7,6 +7,8 @@ import { ReactComponent as DeveloperIcon } from 'assets/images/developer-icon.sv
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
+import { useDispatch } from 'react-redux'
+import { UserActionCreator } from 'store/slices/user'
 
 interface AppBarProps {
   button?: boolean
@@ -35,6 +37,7 @@ const AppBar: React.FC<AppBarProps> = ({ button }) => {
       icon: <SearchIcon />,
     },
   ]
+  const dispatch = useDispatch();
   return (
     <>
       <div className="static flex flex-row items-center p-0">
@@ -51,7 +54,7 @@ const AppBar: React.FC<AppBarProps> = ({ button }) => {
         })}
       </div>
       {button && (
-        <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
+        <Button nameBtn="secondary" label="Log out" onClick={() => dispatch({type: UserActionCreator.asyncLogoutSaga().type})} />
       )}
     </>
   )

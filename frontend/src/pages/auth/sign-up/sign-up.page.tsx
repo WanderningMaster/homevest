@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import Button from 'components/common/button/button';
@@ -6,6 +6,9 @@ import { Typography } from 'components/common/typography/typography';
 import { AuthLayout } from 'components/layouts/auth-layout/auth-layout';
 import { InputField } from 'components/common/input/input-field';
 import { PasswordInputField } from 'components/common/input/password-input-field';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { UserActionCreator } from 'store/slices/user';
 
 const SignupSchema = Yup.object({
   firstName: Yup.string()
@@ -30,6 +33,9 @@ const SignupSchema = Yup.object({
 
 const SignUpPage: React.FC = () => {
 
+  const [role, userRole] = useState('');
+  const dispatch = useDispatch();
+  const history = useHistory();
   return (
     <AuthLayout>
       <Formik
@@ -41,8 +47,9 @@ const SignUpPage: React.FC = () => {
           confirmPassword: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={values => {
-          alert(JSON.stringify(values, null, 2))
+        onSubmit={(values) => {
+          dispatch({type: UserActionCreator.asyncSIgnUpSaga().type, payload: {...values, role, lastName: values.secondName}})
+          history.push("/verify-email");
         }}
       >
         <Form>
@@ -59,13 +66,13 @@ const SignUpPage: React.FC = () => {
           <PasswordInputField name="confirmPassword" placeholder="Confirm password" className="w-102.5 mt-6" type="password" />
           <Typography type="body-semibold" className="mt-6 text-green-pressed">
             Already have an account?
-            <a className="text-green ml-1" href="/sign-in">Sign in</a>
+            <Link className="text-green ml-1" to="/sign-in">Sign in</Link>
           </Typography>
           <div className="w-102.5 flex mt-10">
-            <Button type="submit" nameBtn="primary" className="w-48 h-12 box-border">
+            <Button onClick={() => userRole("developer")} type="submit" nameBtn="primary" className="w-48 h-12 box-border">
               Sign up as developer
             </Button>
-            <Button type="submit" nameBtn="primary" className="w-48 h-12 box-border ml-6.5">
+            <Button onClick={() => userRole("investor")} type="submit" nameBtn="primary" className="w-48 h-12 box-border ml-6.5">
               Sign up as investor
             </Button>
           </div>
