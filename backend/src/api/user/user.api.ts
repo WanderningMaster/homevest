@@ -3,7 +3,6 @@ import { ApiPath, HttpCode, UsersApiPath } from '~/common/enums';
 import { userService } from '~/services/services';
 import { isAuth  } from '~/middlewares';
 
-
 const initUserApi = (apiRouter: Router): Router => {
   const userRouter = Router();
 

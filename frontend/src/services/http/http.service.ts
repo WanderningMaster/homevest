@@ -1,51 +1,20 @@
-import { HttpError } from 'exceptions';
-import { checkIsOneOf } from 'helpers';
-import { ContentType, HttpHeader, HttpMethod } from 'common/enums';
-import { HttpOptions } from 'common/types';
+import axios from "axios";
+import dotenv from "dotenv";
 
-class Http {
-  load<T = unknown>(url: string, options: Partial<HttpOptions> = {}): Promise<T> {
-    const { method = HttpMethod.GET, payload = null, contentType } = options;
-    const headers = this._getHeaders(contentType);
-    const isJSON = checkIsOneOf(contentType, ContentType.JSON);
+dotenv.config();
+const { REACT_APP_API_BASE_URL } = process.env;
 
-    return fetch(url, {
-      method,
-      headers,
-      body: isJSON ? JSON.stringify(payload) : (payload as string),
-    })
-      .then(this._checkStatus)
-      .then((res) => this._parseJSON<T>(res))
-      .catch(this._throwError);
-  }
+export const BASE_URL = REACT_APP_API_BASE_URL;
 
-  _getHeaders(contentType?: ContentType): Headers {
-    const headers = new Headers();
+const api = axios.create({
+    withCredentials: true,
+    baseURL: "http://localhost:3001/api/v1",
+})
 
-    if (contentType) {
-      headers.append(HttpHeader.CONTENT_TYPE, contentType);
-    }
+api.interceptors.request.use((config) => {
+    if(localStorage.getItem("token") && config.headers)
+        config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    return config;
+})
 
-    return headers;
-  }
-
-  _checkStatus(response: Response): Response {
-    if (!response.ok) {
-      throw new HttpError({
-        status: response.status,
-      });
-    }
-
-    return response;
-  }
-
-  _parseJSON<T>(response: Response): Promise<T> {
-    return response.json();
-  }
-
-  _throwError(err: Error): never {
-    throw err;
-  }
-}
-
-export { Http };
+export {api};

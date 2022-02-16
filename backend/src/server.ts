@@ -1,6 +1,7 @@
 import { join } from 'path';
 import express, { json, urlencoded } from 'express';
 import cookieParser from "cookie-parser";
+import  cors  from "cors";
 import { ENV } from '~/common/enums';
 import { initApi } from '~/api/api';
 import { logger } from '~/services/services';
@@ -31,6 +32,10 @@ app.use(logRequest);
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}))
 
 initApi(app);
 

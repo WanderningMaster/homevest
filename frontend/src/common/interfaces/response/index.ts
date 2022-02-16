@@ -1,0 +1,1 @@
+export type { loginResponse } from 'shared/common/interfaces';
