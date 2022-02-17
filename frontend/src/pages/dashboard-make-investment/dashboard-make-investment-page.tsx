@@ -1,11 +1,11 @@
+import React from "react";
+import { Form, Formik } from "formik";
 import Button from "components/common/button/button";
 import { Typography } from "components/common/typography/typography";
-import { Form, Formik } from "formik";
-import React from "react";
 import { InvestmentDetails } from "./components/investment-details/investment-details";
 import { DetailsCompany } from "./components/make-investment-datails-company/make-investment-details-company";
 import { PaymentInformation } from "./components/make-investment-payment-information/make-investment-payment-informatiom";
-import { MakeInvestmentSchema } from "./makeInvestmentSchema";
+import { MakeInvestmentInputSchema } from "common/input-models/make-investment-input-schema";
 
 export const DashboardMakeInvestmentPage: React.FC = () => {
   return (
@@ -23,7 +23,7 @@ export const DashboardMakeInvestmentPage: React.FC = () => {
         nameOfCard: '',
         expirationYear: '',
       }}
-      validationSchema={MakeInvestmentSchema}
+      validationSchema={MakeInvestmentInputSchema}
       onSubmit={values => {
         alert(JSON.stringify(values, null, 2))
       }}
@@ -39,7 +39,7 @@ export const DashboardMakeInvestmentPage: React.FC = () => {
             </Typography>
             <DetailsCompany />
             <PaymentInformation />
-            <Button nameBtn="primary" className="mt-12">
+            <Button nameBtn="primary" className="mt-12" type="submit">
               Confirm
             </Button>
           </div>

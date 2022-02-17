@@ -37,7 +37,7 @@ export const DetailsCompany: React.FC = () => {
               Option: () => 'w-81'
             }}
           />
-          <InputField name="zipCode" placeholder="Zip code" className="mt-6 w-85 h-8.5" />
+          <InputField name="zipcode" placeholder="Zip code" className="mt-6 w-85 h-8.5" />
         </div>
       </div>
     </div>

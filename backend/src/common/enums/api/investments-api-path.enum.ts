@@ -1,5 +1,5 @@
 enum InvestmentsApiPath {
-  ROOT = '/',
+  ROOT = '/estate/:estateId/investments',
 }
 
 export { InvestmentsApiPath };

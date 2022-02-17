@@ -1,8 +1,9 @@
 import { getRepository } from "typeorm";
+import { EstateEntity } from "~/data/models/estate.entity";
 import { InvestmentEntity } from "~/data/models/investmant.entity";
+import { InvestorEntity } from "~/data/models/investor.entity";
 
 interface IInvestment {
-  investorId: string;
   estateId: string;
   userId: string;
   fullName: string;
@@ -34,10 +35,21 @@ const maskCardNumber = (cardNumber: string) => {
 export class InvestmentService {
   public async makeInvestment(investmentData: IInvestment): Promise<InvestmentEntity> {
     const investmentRepository = getRepository(InvestmentEntity);
+    const investorRepository = getRepository(InvestorEntity);
+    const estateRepository = getRepository(EstateEntity);
+
+    const investor = await investorRepository.findOneOrFail({
+      where: {
+        userId: investmentData.userId,
+      }
+    });
+    const estate = await estateRepository.findOneOrFail(investmentData.estateId);
 
     return investmentRepository.save({
       ...investmentRepository.create(investmentData),
       cardNumberMask: maskCardNumber(investmentData.cardNumber),
+      investorId: investor.id,
+      estateId: estate.id,
     });
   }
 }
