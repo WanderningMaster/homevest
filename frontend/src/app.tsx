@@ -1,4 +1,3 @@
-import { ApartmentPage } from 'pages/apartment/apartment'
 import { AccountSettingsPage } from 'pages/settings/account-settings/account-settings.page'
 import PropertyDevelopersPage from 'pages/property-developers/property-developers.page'
 import { DashboardMapPage } from 'pages/dashboard-map/dashboard-map.page'
@@ -6,12 +5,14 @@ import React, { useEffect } from 'react';
 import { AppRoute } from 'common/enums';
 import SignUpPage from 'pages/auth/sign-up/sign-up.page';
 import { HomePage } from 'pages/home/home.page';
+import { ApartmentPage } from 'pages/apartment/apartment-page'
 import { Switch, Route } from 'react-router-dom';
 import SignIn from 'pages/auth/signIn/signIn';
 import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserActionCreator } from 'store/slices/user';
 import VerifyEmail from 'pages/auth/verify-email/verify-email.page';
+
 
 
 const App: React.FC = () => {
@@ -54,5 +55,6 @@ const App: React.FC = () => {
     </Switch>
   )
 }
+
 
 export default App

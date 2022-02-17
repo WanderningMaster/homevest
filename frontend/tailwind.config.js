@@ -26,7 +26,7 @@ module.exports = {
         83.5: pxToRem(334),
         90: pxToRem(360),
         102.5: pxToRem(410),
-        128: '32rem',
+        128: "32rem",
         157.5: pxToRem(630),
         233: pxToRem(932),
       },
@@ -111,6 +111,7 @@ module.exports = {
       height: {
         "22px": pxToRem(22),
         8.5: pxToRem(34),
+        "30px": pxToRem(30),
         "60px": pxToRem(60),
         '96px': pxToRem(96),
         "232px": pxToRem(232),
@@ -120,10 +121,10 @@ module.exports = {
         '736px': pxToRem(736),
       },
       inset: {
-        '75px': pxToRem(75),
-        '96px': pxToRem(96),
-        '200px': pxToRem(200),
-        '735px': pxToRem(735),
+        "75px": pxToRem(75),
+        "96px": pxToRem(96),
+        "200px": pxToRem(200),
+        "735px": pxToRem(735),
       },
       boxShadow: {
         header: '0px 4px 18px rgba(34, 68, 68, 0.15)',
@@ -140,11 +141,15 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ['disabled', 'checked'],
-      borderColor: ['disabled'],
-      translate: ['checked'],
+      backgroundColor: ["disabled", "checked", 'focus-within'],
+      borderColor: ["disabled",'focus-within'],
+      translate: ["checked"],
     },
   },
+  plugins: [
+    require("tailwindcss"),
+    require("autoprefixer"),
+    require("@tailwindcss/forms"),
+  ],
+};
 
-  plugins: [require('tailwindcss'), require('autoprefixer'), require('@tailwindcss/forms')],
-}

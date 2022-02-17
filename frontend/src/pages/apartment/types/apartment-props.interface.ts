@@ -1,4 +1,5 @@
 export interface ApartmentProps {
+  [key: string]: any;
   nameOfBuilding: string;
   numberOfRooms: number | string;
   numberOfBathrooms: number | string;

@@ -21,21 +21,17 @@ export const ApartmentSchema = Yup.object({
     .max(50, "Must be 50 characters or less")
     .required("Required"),
   appartmentClass: Yup.mixed()
-    .oneOf(["Premium", "Business", "Comfort", "Economy"])
-    .required("Required"),
+    .oneOf(["Premium", "Business", "Comfort", "Economy"]),
   floors: Yup.string()
-    .max(10, "Must be 10 characters or less")
-    .required("Required"),
+    .max(10, "Must be 10 characters or less"),
   appartmentState: Yup.mixed()
-    .oneOf(["With repair", "Without repair"])
-    .required("Required"),
-  currency: Yup.mixed().oneOf(["UAH", "USD", "EUR"]).required("Required"),
-  yearOfOperatio: Yup.string()
-    .max(10, "Must be 10 characters or less")
-    .required("Required"),
-  salesStatus: Yup.mixed().oneOf(["Started", "Finished"]).required("Required"),
+    .oneOf(["With repair", "Without repair"]),
+  currency: Yup.mixed().oneOf(["UAH", "USD", "EUR"]),
+  yearOfOperation: Yup.string()
+    .max(10, "Must be 10 characters or less"),
+  salesStatus: Yup.mixed().oneOf(["Started", "Finished"]),
   lending: Yup.boolean(),
   installments: Yup.boolean(),
   mortgage: Yup.boolean(),
-  images: Yup.array().of(Yup.string()),
+  images: Yup.array().of(Yup.string())
 });
