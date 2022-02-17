@@ -26,7 +26,7 @@ const ForgotPassword: React.FC = () => {
               .required("Required"),
           })}
           onSubmit={(values) => {
-            console.log(values);
+            console.log(values.email);
           }}
         >
           <Form>

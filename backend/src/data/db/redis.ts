@@ -4,15 +4,15 @@ import { logger } from "~/services/services";
 
 dotenv.config();
 
-const { REDIS_PORT } = process.env
+const { REDIS_CONNECTION } = process.env
 
 const redisCl = new Client();
 
 async function connectRedis(): Promise<void> {
     if(!redisCl.isOpen()) {
-        await redisCl.open(`redis://redis:${REDIS_PORT}`);
+        await redisCl.open(REDIS_CONNECTION);
         logger.log("Redis is already plugged in");
-    }
+    }   
 }
 
 export { connectRedis, redisCl };

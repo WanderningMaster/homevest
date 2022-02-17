@@ -6,6 +6,9 @@ import { Typography } from 'components/common/typography/typography';
 import { AuthLayout } from 'components/layouts/auth-layout/auth-layout';
 import { InputField } from 'components/common/input/input-field';
 import { PasswordInputField } from 'components/common/input/password-input-field';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { UserActionCreator } from 'store/slices/user';
 
 const SigninSchema = Yup.object({
   email: Yup.string()
@@ -20,15 +23,15 @@ const SigninSchema = Yup.object({
 });
 
 const SignIn: React.FC = () => {
-
-
+  const dispatch = useDispatch();
 
   return (<AuthLayout>
     <Formik initialValues={{
       email: '',
       password: '',
     }} validationSchema={SigninSchema} onSubmit={values => {
-      alert(JSON.stringify(values, null, 2))
+      const { email, password } = values;
+      dispatch({ type: UserActionCreator.asyncLoginSaga().type, email, password });
     }}>
       <Form>
         <Typography type="h2">
@@ -41,10 +44,10 @@ const SignIn: React.FC = () => {
         <PasswordInputField name="password" placeholder="Password" className="w-102.5 mt-6" type="password" />
         <div className="flex row">
           <Typography type="body-semibold" className="mt-6 text-green-pressed mr-8">
-            <a className="text-green ml-1" href="/sign-up">Register</a>
+            <Link className="text-green ml-1" to="/sign-up">Register</Link>
           </Typography>
           <Typography type="body-semibold" className="mt-6 text-green-pressed">
-            <a className="text-green ml-1" href="/forgot-password">Forgot Password?</a>
+            <Link className="text-green ml-1" to="/forgot-password">Forgot Password?</Link>
           </Typography>
         </div>
         <Button type="submit" nameBtn="primary" className="box-border w-102.5 mt-10">
