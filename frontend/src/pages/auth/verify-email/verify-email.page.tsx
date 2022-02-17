@@ -6,7 +6,7 @@ import React, { useEffect } from 'react'
 import * as Yup from 'yup'
 import { Formik, Form } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { UserActionCreator } from 'store/user/sagas/user'
+import { UserActionCreator } from 'store/user/user'
 import { useHistory } from 'react-router'
 
 const VerifyEmail: React.FC = () => {

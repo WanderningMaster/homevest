@@ -10,17 +10,21 @@ import { Switch, Route } from 'react-router-dom'
 import SignIn from 'pages/auth/signIn/signIn'
 import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page'
 import { useDispatch, useSelector } from 'react-redux'
-import { UserActionCreator } from 'store/user/sagas/user'
+import { UserActionCreator } from 'store/user/user'
 import VerifyEmail from 'pages/auth/verify-email/verify-email.page'
+import { RootState } from 'common/types'
 
 const App: React.FC = () => {
+  const { users } = useSelector(({ users }: RootState) => ({
+    users,
+  }))
   const dispatch = useDispatch()
   useEffect(() => {
     if (localStorage.getItem('token')) {
       dispatch({ type: UserActionCreator.asyncCheckAuthSaga().type })
     }
   }, [])
-  const isAuth = useSelector<any>(store => store.user.isAuth)
+  const isAuth = users.isAuth
   return (
     <Switch>
       <Route path={AppRoute.SIGN_UP}>{isAuth ? <HomePage /> : <SignUpPage />}</Route>
@@ -40,6 +44,9 @@ const App: React.FC = () => {
       <Route path={AppRoute.ACCOUNT_SETTINGS}>
         <AccountSettingsPage />
       </Route>
+      {/* <Route path={AppRoute.ROOT}>
+        <HomePage />
+      </Route> */}
       <Route exact path={AppRoute.NEW_BUILDINGS}>
         <PropertyDevelopersPage />
       </Route>

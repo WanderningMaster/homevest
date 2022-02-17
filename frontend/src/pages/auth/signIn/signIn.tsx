@@ -10,7 +10,7 @@ import { authService } from 'services'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { UserActionCreator } from 'store/user/sagas/user'
+import { UserActionCreator } from 'store/user/user'
 
 const SigninSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),

@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 import { loginResponse } from 'common/interfaces/response'
 import { takeEvery, put, call } from 'redux-saga/effects'
 import { authService } from 'services'
-import { UserActionCreator } from 'store/user/sagas/user'
+import { UserActionCreator } from '../user'
 
 export function* signUpSaga(action: any) {
   try {
