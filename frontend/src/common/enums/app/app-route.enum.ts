@@ -10,9 +10,14 @@ enum AppRoute {
   MAP = '/map',
   SEARCH = '/search',
   PROPERTY = '/property',
-  SETTINGS_APARTMENT = '/settings/apartment',
-  FORGOT_PASSWORD = "/forgot-password",
-  VERIFY_EMAIL = "/verify-email"
+  SETTINGS_APARTMENT = '/apartment-settings',
+  REPORTS = 'reports',
+  NOTIFICATIONS = 'notifications',
+  MESSAGES = 'messages',
+  MY_INVESTMENTS = 'my-investments',
+  FAVOURITES = 'favourites',
+  FORGOT_PASSWORD = '/forgot-password',
+  VERIFY_EMAIL = '/verify-email',
 }
 
 export { AppRoute }
