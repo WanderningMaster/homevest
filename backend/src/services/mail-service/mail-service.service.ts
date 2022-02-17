@@ -7,7 +7,6 @@ const {
     SMTP_PORT,
     SMTP_USER,
     SMTP_PASSWORD,
-    APP_URL
 } = process.env;
 
 class MailService {
@@ -33,7 +32,7 @@ class MailService {
             html: `
                     <div>
                         <h1>Activation code</h1>
-                        <a href="${link}">${APP_URL}/api/v1/auth/activate/${link}</a>
+                        <h2>${link}</h2>
                     </div>
             `
         })

@@ -16,6 +16,8 @@ enum AppRoute {
   MESSAGES = 'messages',
   MY_INVESTMENTS = 'my-investments',
   FAVOURITES = 'favourites',
+  FORGOT_PASSWORD = '/forgot-password',
+  VERIFY_EMAIL = '/verify-email',
 }
 
 export { AppRoute }

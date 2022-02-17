@@ -2,39 +2,50 @@ import Button from "components/common/button/button";
 import { InputField } from "components/common/input/input-field";
 import { Typography } from "components/common/typography/typography";
 import { AuthLayout } from "components/layouts/auth-layout/auth-layout";
-import React from "react";
+import React, { useEffect } from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { UserActionCreator } from "store/slices/user";
+import { useHistory } from "react-router";
 
-const ForgotPassword: React.FC = () => {
+const VerifyEmail: React.FC = () => {
+  const dispatch = useDispatch();  
+  const history = useHistory();
+  const isVerify = useSelector<any>(store => store.user.isVerify);
+  useEffect(() => {
+    if(isVerify){
+      history.push("/sign-in");
+    }
+  }, [isVerify])
   return (
     <AuthLayout>
       <div className=" align-middle">
         <Typography type="h2" className=" mt-20 ">
-          Forgot password
+          Verify your email to Sign in
         </Typography>
         <Typography type="body" className="mt-4 text-green-pressed">
-          We will send you the link to your email address to reset your password
+          We send you the activation code to your email address to verify your account
         </Typography>
         <Formik
           initialValues={{
-            email: "",
+            code: "",
           }}
           validationSchema={Yup.object({
-            email: Yup.string()
-              .email("Invalid email address")
+            code: Yup.string()
               .required("Required"),
           })}
           onSubmit={(values) => {
-            console.log(values.email);
+            const {code} = values;  
+            dispatch({type: UserActionCreator.asyncVerifyEmailSaga().type, code});
           }}
         >
           <Form>
             <InputField
-              name="email"
-              placeholder="Email address"
+              name="code"
+              placeholder="Activation code"
               className="w-102.5 mt-6"
-              type="email"
+              type="text"
             />
             <div className="w-102.5 flex mt-10">
               <Button
@@ -42,7 +53,7 @@ const ForgotPassword: React.FC = () => {
                 className="w-screen h-12 box-border mr-0 "
                 type="submit"
               >
-                Send the link
+                Send the code
               </Button>
             </div>
           </Form>
@@ -52,4 +63,4 @@ const ForgotPassword: React.FC = () => {
   );
 };
 
-export default ForgotPassword;
+export default VerifyEmail;
