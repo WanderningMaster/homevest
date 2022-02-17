@@ -8,11 +8,11 @@ import { AppBarDashboard } from 'components/Navigation/AppBarDashboard'
 import SideBarDashboard from 'components/Navigation/SideBarDashboard/SideBarDashboard'
 import { PropertyDevCard } from 'components/Dashboard/Property-dev-card'
 import Button from 'components/common/button/button'
-// import { estate } from 'components/Dashboard/mock-data/mock-data'
 import { FiltersDashboard } from 'components/Dashboard/FiltersDashboard'
 import { Dashboardlayout } from 'components/layouts/dashboard-layout'
 import { getDeveloperEstate } from 'store/estate/estateSelectors'
 import { EstateActionsCreator } from 'store/estate/estateReducer'
+import { AppRoute } from 'common/enums'
 
 function PropertyDevelopersPage(): JSX.Element {
   const [active, setActive] = useState(false)
@@ -31,7 +31,7 @@ function PropertyDevelopersPage(): JSX.Element {
     setActive(!active)
   }
   const addPropertyPage = () => {
-    history.push('/settings/apartment')
+    history.push(AppRoute.SETTINGS_APARTMENT)
   }
   return (
     <>
