@@ -1,21 +1,21 @@
-import Button from "components/common/button/button";
-import { InputField } from "components/common/input/input-field";
-import { Typography } from "components/common/typography/typography";
-import { AuthLayout } from "components/layouts/auth-layout/auth-layout";
-import React, { useEffect } from "react";
-import * as Yup from "yup";
-import { Formik, Form } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { UserActionCreator } from "store/slices/user";
-import { useHistory } from "react-router";
+import Button from 'components/common/button/button'
+import { InputField } from 'components/common/input/input-field'
+import { Typography } from 'components/common/typography/typography'
+import { AuthLayout } from 'components/layouts/auth-layout/auth-layout'
+import React, { useEffect } from 'react'
+import * as Yup from 'yup'
+import { Formik, Form } from 'formik'
+import { useDispatch, useSelector } from 'react-redux'
+import { UserActionCreator } from 'store/user/user'
+import { useHistory } from 'react-router'
 
 const VerifyEmail: React.FC = () => {
-  const dispatch = useDispatch();  
-  const history = useHistory();
-  const isVerify = useSelector<any>(store => store.user.isVerify);
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const isVerify = useSelector<any>(store => store.user.isVerify)
   useEffect(() => {
-    if(isVerify){
-      history.push("/sign-in");
+    if (isVerify) {
+      history.push('/sign-in')
     }
   }, [isVerify])
   return (
@@ -29,15 +29,14 @@ const VerifyEmail: React.FC = () => {
         </Typography>
         <Formik
           initialValues={{
-            code: "",
+            code: '',
           }}
           validationSchema={Yup.object({
-            code: Yup.string()
-              .required("Required"),
+            code: Yup.string().required('Required'),
           })}
-          onSubmit={(values) => {
-            const {code} = values;  
-            dispatch({type: UserActionCreator.asyncVerifyEmailSaga().type, code});
+          onSubmit={values => {
+            const { code } = values
+            dispatch({ type: UserActionCreator.asyncVerifyEmailSaga().type, code })
           }}
         >
           <Form>
@@ -48,11 +47,7 @@ const VerifyEmail: React.FC = () => {
               type="text"
             />
             <div className="w-102.5 flex mt-10">
-              <Button
-                nameBtn="primary"
-                className="w-screen h-12 box-border mr-0 "
-                type="submit"
-              >
+              <Button nameBtn="primary" className="w-screen h-12 box-border mr-0 " type="submit">
                 Send the code
               </Button>
             </div>
@@ -60,7 +55,7 @@ const VerifyEmail: React.FC = () => {
         </Formik>
       </div>
     </AuthLayout>
-  );
-};
+  )
+}
 
-export default VerifyEmail;
+export default VerifyEmail

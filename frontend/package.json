@@ -17,6 +17,7 @@
     "@react-google-maps/api": "^2.7.0",
     "@reduxjs/toolkit": "1.5.0",
     "@tailwindcss/forms": "^0.4.0",
+    "axios": "^0.26.0",
     "clsx": "1.1.1",
     "formik": "^2.2.9",
     "lodash": "^4.17.21",
