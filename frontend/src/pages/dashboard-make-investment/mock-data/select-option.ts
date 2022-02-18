@@ -1,16 +1,16 @@
 export const selectOptionCountry = [
-  { value: '1', label: 'Ukraine' },
+  { value: 'Ukraine', label: 'Ukraine' },
 ];
 
 export const selectOptionCity = [
-  { value: '1', label: 'Mukachevo' },
+  { value: 'Mukachevo', label: 'Mukachevo' },
 ];
 
 export const selectOptionNameOfBank = [
-  { value: '1', label: 'MonoBank' },
-  { value: '1', label: 'PriatBank' },
+  { value: 'Monobank', label: 'MonoBank' },
+  { value: 'Privatbank', label: 'PriatBank' },
 ];
 
 export const selectOptionNameOfCard = [
-  { value: '1', label: 'Universalna' },
+  { value: 'Universalna', label: 'Universalna' },
 ];

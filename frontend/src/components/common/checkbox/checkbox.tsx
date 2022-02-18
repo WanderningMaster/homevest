@@ -14,14 +14,13 @@ interface CheckboxProps {
   disabled?: boolean;
 }
 const STYLES = {
-  primary: "w-4 h-4",
+  primary: "w-5 h-5",
   secondary: "w-8 h-8",
   tertiary: "w-12 h-12",
 };
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   className,
-  border = "border-2",
   name,
   disabled,
   size = "primary",
@@ -43,10 +42,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         className={overrideTailwindClasses(
           clsx(
             `
-        border-gray-5 rounded text-indigo-900 focus:ring-indigo-800 hover:bg-indigo-700
+        border-light-gray rounded text-green 
         ${STYLES[size]}`,
-            className,
-            border
+            className
           )
         )}
         type="checkbox"
