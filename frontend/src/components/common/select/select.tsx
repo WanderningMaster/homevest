@@ -65,6 +65,7 @@ export const Select: React.FC<SelectProps> = ({
     IndicatorSeparator,
     DropdownIndicator,
   }, (item, key) => overrideClassName(item as any, overrideClassNames[key as keyof typeof overrideClassNames] as any));
+  const selectedOption = options.find(item => item.value === restProps.value);
 
   return (
     <ReactSelect
@@ -76,6 +77,7 @@ export const Select: React.FC<SelectProps> = ({
       isSearchable={false}
       placeholder={placeholder}
       {...restProps}
+      value={selectedOption}
     />
   );
 }

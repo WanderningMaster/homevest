@@ -78,7 +78,7 @@ export const DashboardMakeInvestmentPage: React.FC = () => {
                 </Typography>
                 <DetailsCompany disabled={isDisabled} />
                 <PaymentInformation disabled={isDisabled} />
-                <Button nameBtn="primary" className="mt-12" type="submit" disabled={isDisabled}>
+                <Button nameBtn="primary" className="mt-12 disabled:bg-green-inactive" type="submit" disabled={isDisabled}>
                   Confirm
                 </Button>
               </div>

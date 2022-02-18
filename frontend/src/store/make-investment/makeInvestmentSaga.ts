@@ -39,10 +39,12 @@ function* submitInvestmentDataWorker(action: ReturnType<typeof MakeInvestmentAct
     yield call(submitInvestmentData, action.payload.estateId, action.payload.values);
 
     yield put(MakeInvestmentActionCreators.submittingSuccess());
+    yield call(() => alert('Submitted successfuly'));
   } catch (e) {
     const error = e as Error;
     console.error(error);
     yield put(MakeInvestmentActionCreators.submittingFailure({ error: error.message }));
+    yield call(() => alert('Submitted successfuly'));
   }
 }
 

@@ -1,6 +1,7 @@
 import { Checkbox } from 'components/common/checkbox/checkbox';
 import { Typography } from 'components/common/typography/typography';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { IEstateInfo } from 'store/make-investment/makeInvestmentReducer';
 interface InvestmentDetailsProps {
   estate?: IEstateInfo;
@@ -36,7 +37,22 @@ export const InvestmentDetails: React.FC<InvestmentDetailsProps> = ({ estate }) 
             </Typography>
           </div>
         ))}
-        <Checkbox size='primary' />
+        <div>
+          <div className='flex'>
+            <Checkbox size='primary' />
+            <Typography type="body-small-medium" className='ml-4'>
+              By confirming you agree to the
+              <Link to="/" className='text-green-hover ml-1'>terms of Homevest and accept them hereby</Link>
+            </Typography>
+          </div>
+          <div className='flex mt-4'>
+            <Checkbox size='primary' />
+            <Typography type="body-small-medium" className='ml-4'>
+              I am aware of the
+              <Link to="/" className='text-green-hover ml-1'>risk</Link>
+            </Typography>
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 interface CheckboxProps {
   name?: string;
-  border?: string;
   className?: string;
   checkboxVar?: string;
   checked?: boolean;
@@ -42,13 +41,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         className={overrideTailwindClasses(
           clsx(
             `
-        border-light-gray rounded text-green 
+        border-light-gray rounded text-green outline-none
         ${STYLES[size]}`,
             className
           )
         )}
         type="checkbox"
-        checked={isChecked}
+        checked={!isChecked}
         onChange={toggleIsChecked}
         id={htmlFor}
         name={name}
