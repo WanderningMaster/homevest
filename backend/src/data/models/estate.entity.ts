@@ -12,7 +12,7 @@ export class EstateEntity implements IEstate {
   id!: string;
   
   @OneToOne(() => CompanyEntity, (company: CompanyEntity) => company.estate)
-  @JoinColumn({ name: 'companyId' })
+  @JoinColumn({ name: 'userId' })
   company!: CompanyEntity
 
   @OneToOne(() => AppartmentEntity, (appartment: AppartmentEntity) => appartment.estate)
