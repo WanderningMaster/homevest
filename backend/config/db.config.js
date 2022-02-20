@@ -21,7 +21,9 @@ const options = {
   database: DB_NAME,
   synchronize: true ,
   logging: false,
-  entities: [__dirname + '/../**/*.entity{.js,.ts}']
+  entities: [__dirname + '/../**/*.entity{.js,.ts}'],
+  seed: [__dirname + '/**/seeding/{.js,.ts}'],
+  factories: [__dirname + '/../**/*.factory{.js,.ts}']
 };
 
 export {options};

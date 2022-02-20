@@ -6,6 +6,9 @@
   },
   "scripts": {
     "migrate": "sequelize-cli db:migrate",
+    "db:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
+    "db:seed": "bash generateSeed.sh",
+    "schema:sync": "sudo ts-node ./node_modules/typeorm/cli.js schema:sync",
     "migrate:undo": "sequelize-cli db:migrate:undo",
     "start:dev": "nodemon --exec ts-node -r dotenv/config -r tsconfig-paths/register ./src/server.ts",
     "start": "node -r dotenv/config ./src/server.js",
@@ -30,6 +33,7 @@
     "redis": "^4.0.3",
     "redis-om": "^0.1.7",
     "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.16.1",
     "shared": "file:shared",
     "ts-node": "9.1.1",
     "typeorm": "^0.2.41",
@@ -48,7 +52,7 @@
     "@types/sequelize": "4.28.9",
     "@types/uuid": "^8.3.4",
     "nodemon": "2.0.7",
-    "sequelize-cli": "6.2.0",
+    "sequelize-cli": "^6.2.0",
     "tsconfig-paths": "3.9.0",
     "tscpaths": "0.0.9",
     "typescript": "4.1.2"
