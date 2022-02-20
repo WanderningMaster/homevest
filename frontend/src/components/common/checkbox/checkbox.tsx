@@ -1,16 +1,19 @@
 import clsx from "clsx";
 import { overrideTailwindClasses } from "tailwind-override";
-import React, { useState } from "react";
+import React from "react";
+import { Typography } from "../typography/typography";
 
-interface CheckboxProps {
-  name?: string;
+export interface CheckboxProps {
+  name: string;
   className?: string;
   checkboxVar?: string;
   checked?: boolean;
-  label?: string;
+  label?: React.ReactNode;
   htmlFor?: string;
   size?: "primary" | "secondary" | "tertiary";
   disabled?: boolean;
+  isInvalid?: boolean;
+  errorText?: string;
 }
 const STYLES = {
   primary: "w-5 h-5",
@@ -23,39 +26,39 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   name,
   disabled,
   size = "primary",
-  htmlFor,
+  htmlFor = name,
   label,
-  checked = true,
+  isInvalid,
+  errorText,
   ...restProps
 }) => {
-  const [isChecked, setIsChecked] = useState(checked);
-
-  const toggleIsChecked = () => {
-    setIsChecked(!isChecked);
-    console.log("checked");
-  };
-
   return (
-    <div className={clsx(className)}>
-      <input
-        className={overrideTailwindClasses(
-          clsx(
-            `
-        border-light-gray rounded text-green outline-none
+    <div className="flex-col">
+      <div className={clsx('flex flex-row', className)}>
+        <input
+          className={overrideTailwindClasses(
+            clsx(
+              `
+        border-light-gray rounded text-green shadow-none focus:shadow-none focus:ring-offset-0 focus:ring-0
         ${STYLES[size]}`,
-            className
-          )
-        )}
-        type="checkbox"
-        checked={!isChecked}
-        onChange={toggleIsChecked}
-        id={htmlFor}
-        name={name}
-        disabled={disabled}
-        value={htmlFor}
-        {...restProps}
-      />
-      <label htmlFor={htmlFor}>{label}</label>
+              className,
+              {
+                'bg-red': isInvalid
+              }
+            )
+          )}
+          type="checkbox"
+          id={htmlFor}
+          name={name}
+          disabled={disabled}
+          value={htmlFor}
+          {...restProps}
+        />
+        <label htmlFor={htmlFor}>{label}</label>
+      </div>
+      {isInvalid && errorText && (
+        <Typography type="placeholder-small" className={clsx("text-red mt-1")}>{errorText}</Typography>
+      )}
     </div>
   );
 };

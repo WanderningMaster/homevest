@@ -1,4 +1,4 @@
-import { Checkbox } from 'components/common/checkbox/checkbox';
+import { CheckboxField } from 'components/common/checkbox/checkbox-field';
 import { Typography } from 'components/common/typography/typography';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -39,18 +39,28 @@ export const InvestmentDetails: React.FC<InvestmentDetailsProps> = ({ estate }) 
         ))}
         <div>
           <div className='flex'>
-            <Checkbox size='primary' />
-            <Typography type="body-small-medium" className='ml-4'>
-              By confirming you agree to the
-              <Link to="/" className='text-green-hover ml-1'>terms of Homevest and accept them hereby</Link>
-            </Typography>
+            <CheckboxField
+              name="agreeTerms"
+              size='primary'
+              label={(
+                <Typography type="body-small-medium" className='ml-4'>
+                  By confirming you agree to the
+                  <Link to="/" className='text-green-hover ml-1'>terms of Homevest and accept them hereby</Link>
+                </Typography>
+              )}
+            />
           </div>
           <div className='flex mt-4'>
-            <Checkbox size='primary' />
-            <Typography type="body-small-medium" className='ml-4'>
-              I am aware of the
-              <Link to="/" className='text-green-hover ml-1'>risk</Link>
-            </Typography>
+            <CheckboxField
+              name="agreeRisks"
+              size='primary'
+              label={(
+                <Typography type="body-small-medium" className='ml-4'>
+                  I am aware of the
+                  <Link to="/" className='text-green-hover ml-1'>risk</Link>
+                </Typography>
+              )}
+            />
           </div>
         </div>
       </div>

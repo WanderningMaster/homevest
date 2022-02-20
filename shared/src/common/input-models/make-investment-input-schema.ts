@@ -39,6 +39,12 @@ export const MakeInvestmentInputSchema = Yup.object().shape({
     .max(2032)
     .required('Required'),
   paymentAmount: Yup.number()
+    .required('Required'),
+  agreeTerms: Yup.boolean()
+    .oneOf([true], 'Please, accept the terms')
+    .required(),
+  agreeRisks: Yup.boolean()
+    .oneOf([true], 'Please, accept the risks')
     .required()
 
 }).noUnknown();

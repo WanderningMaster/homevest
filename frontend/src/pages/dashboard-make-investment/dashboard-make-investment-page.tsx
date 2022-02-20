@@ -7,7 +7,6 @@ import { DetailsCompany } from "./components/make-investment-datails-company/mak
 import { PaymentInformation } from "./components/make-investment-payment-information/make-investment-payment-informatiom";
 import { MakeInvestmentInputSchema } from "common/input-models/make-investment-input-schema";
 import { Dashboardlayout } from "components/layouts/dashboard-layout";
-import { AppBarDashboard } from "components/Navigation/AppBarDashboard";
 import { Header } from "components/Navigation/Header";
 import { Logo } from "components/Navigation/Logo";
 import SideBarDashboard from "components/Navigation/SideBarDashboard/SideBarDashboard";
@@ -15,6 +14,7 @@ import { MakeInvestmentActionCreators } from "store/slices";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getMakeInvestmentState } from "store/make-investment/makeInvesmtnetSelectors";
+import { AppBar } from "components/Navigation/AppBar";
 
 export const DashboardMakeInvestmentPage: React.FC = () => {
   const [active, setActive] = useState(false)
@@ -44,7 +44,7 @@ export const DashboardMakeInvestmentPage: React.FC = () => {
     <>
       <Header position="left-0 justify-center py-6 px-75px ">
         <Logo onClick={onMenuClick} />
-        <AppBarDashboard />
+        <AppBar button={true} />
       </Header>
 
       <Dashboardlayout>
@@ -62,13 +62,15 @@ export const DashboardMakeInvestmentPage: React.FC = () => {
             cvv: '',
             nameOfCard: '',
             expirationYear: '',
-            paymentAmount: ''
+            paymentAmount: '',
+            agreeTerms: false,
+            agreeRisks: false,
           }}
           validationSchema={MakeInvestmentInputSchema}
           onSubmit={submitData}
         >
           <Form>
-            <div className="flex flex-row pl-19 h-full mt-0">
+            <div className="flex flex-row h-full mt-0">
               <div className="w-184 py-14 border-r border-background">
                 <Typography type="h4">
                   Investment confirmation
