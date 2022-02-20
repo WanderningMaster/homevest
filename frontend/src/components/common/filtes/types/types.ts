@@ -1,6 +1,20 @@
 export interface ICompany {
     id: string,
-    company: string
+    companyId?: string,
+    estateName?: string,
+    estateLogo?: string,
+    numberOfFlats?: number,
+    numberOfBuildings?: number,
+    constructionDetails?: string,
+    amountOfMoney?: string,
+    lacation?: string,
+    status?: string,
+    fundingState?: string,
+    annualReturn?: number,
+    duration?: number,
+    distribution?: number,
+    profit?: string,
+    favorite?: boolean
 }
 
 export interface IClassName {
@@ -29,7 +43,7 @@ export interface IPropsPrice {
 
 export interface ISelectPrice {
     price?: { min: number; max: number };
-    priceM2?: { min: number; max: number };
+    priceForM2?: { min: number; max: number };
     currency?: string[];
     lending?: boolean;
     installments?: boolean;
@@ -50,8 +64,8 @@ export interface IDataFilters {
     yearOfOperation?: IDataItemFilters | string[];
     salesStatus?: IDataItemFilters | string[];
     apartmentClass?: IDataItemFilters | string[];
-    floor?: IDataItemFilters | string[];
-    apartmentState?: IDataItemFilters | string[];
+    floors?: IDataItemFilters | string[];
+    appartmentState?: IDataItemFilters | string[];
 }
 
 export interface IDataItemFilters {

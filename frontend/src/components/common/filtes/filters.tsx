@@ -37,7 +37,7 @@ const Filter: React.FC<IPropsFilters> = (props) => {
         label: "Apartment class",
         data: ["Economy", "Comfort", "Bisness", "Premium"],
       },
-      floor: props.data?.floor || {
+      floors: props.data?.floors || {
         label: "Floor",
         data: ["till 5", "6-10", "17-26", "from 27"],
       },
@@ -56,7 +56,7 @@ const Filter: React.FC<IPropsFilters> = (props) => {
       yearOfOperation: props.selectFilters?.yearOfOperation || [],
       salesStatus: props.selectFilters?.salesStatus || [],
       apartmentClass: props.selectFilters?.apartmentClass || [],
-      floor: props.selectFilters?.floor || [],
+      floors: props.selectFilters?.floors || [],
       apartmentState: props.selectFilters?.apartmentState || [],
     },
     className = {
@@ -127,14 +127,27 @@ const Filter: React.FC<IPropsFilters> = (props) => {
       yearOfOperation: [],
       salesStatus: [],
       apartmentClass: [],
-      floor: [],
+      floors: [],
       apartmentState: [],
     });
     handlerReturnFilters({});
   };
 
   const handlerReturnSelectProperty = () => {
-    handlerReturnFilters(filtersSelect);
+    let result = {};
+
+    const nameKey: string[]  = Object.keys(filtersSelect);
+
+    for (let i = 0; i < nameKey.length; i++) {
+      if (filtersSelect[nameKey[i]].length) {
+        let obj = {};
+        obj = {[nameKey[i]] : [...filtersSelect[nameKey[i]]]};
+
+        result = { ...result, ...obj};
+      }
+    }
+
+    handlerReturnFilters(result);
     handlerVisible();
   };
 

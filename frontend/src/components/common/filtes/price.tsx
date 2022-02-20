@@ -18,7 +18,7 @@ const Price: React.FC<IPropsPrice> = (props) => {
     currency = props.currency || ["hryvnia", "dollar"],
     selectPrice = {
       price: props.selectPrice?.price || { min: 0, max: fullPrice },
-      priceM2: props.selectPrice?.priceM2 || { min: 0, max: fullPriceM2 },
+      priceForM2: props.selectPrice?.priceForM2 || { min: 0, max: fullPriceM2 },
       currency: props.selectPrice?.currency || [],
       lending: props.selectPrice?.lending || false,
       installments: props.selectPrice?.installments || false,
@@ -48,7 +48,7 @@ const Price: React.FC<IPropsPrice> = (props) => {
   };
 
   const handlerPriceM2 = (value: { min: number; max: number }): void => {
-    setPriceSelect({ ...priceSelect, priceM2: value });
+    setPriceSelect({ ...priceSelect, priceForM2: value });
   };
 
   const handlerSetLending = (value: boolean) => {
@@ -71,10 +71,10 @@ const Price: React.FC<IPropsPrice> = (props) => {
     }
 
     if (
-      priceSelect.priceM2?.min !== 0 ||
-      priceSelect.priceM2.max !== fullPriceM2
+      priceSelect.priceForM2?.min !== 0 ||
+      priceSelect.priceForM2.max !== fullPriceM2
     ) {
-      result = { ...result, priceM2: priceSelect.priceM2 };
+      result = { ...result, priceForM2: priceSelect.priceForM2 };
     }
 
     if (priceSelect.currency?.length) {
@@ -94,12 +94,13 @@ const Price: React.FC<IPropsPrice> = (props) => {
     }
 
     handlerSetSelectPrice(result);
+    handlerVisible();
   };
 
   const handlerResetAllFilters = () => {
     setPriceSelect({
       price: { min: 0, max: fullPrice },
-      priceM2: { min: 0, max: fullPriceM2 },
+      priceForM2: { min: 0, max: fullPriceM2 },
       currency: [],
       lending: false,
       installments: false,
@@ -150,8 +151,8 @@ const Price: React.FC<IPropsPrice> = (props) => {
             <div className={clsx("flex gap-1 mt-2 w-full flex-col")}>
               <MultipleRange
                 fullMax={fullPriceM2}
-                min={priceSelect.priceM2?.min}
-                max={priceSelect.priceM2?.max}
+                min={priceSelect.priceForM2?.min}
+                max={priceSelect.priceForM2?.max}
                 returnValues={handlerPriceM2}
               />
             </div>
