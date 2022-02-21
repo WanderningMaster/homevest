@@ -7,7 +7,6 @@ axios.defaults.baseURL = 'http://localhost:3001/api/v1/'
 const fetchEstateFromApi = async () => {
   try {
     const data = await axios.get<IEstate[]>('/appartments')
-    console.log(data)
     return data
   } catch (error) {
     console.log(error)

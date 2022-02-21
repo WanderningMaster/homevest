@@ -8,7 +8,6 @@ export { fetchEstateFromApi }
 
 function* fetchEstateWorker() {
   const { data }: AxiosResponse = yield call(fetchEstateFromApi)
-  console.log(data)
   yield put(EstateActionsCreator.setEstate(data))
 }
 

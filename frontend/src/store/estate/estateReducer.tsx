@@ -40,8 +40,6 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     setEstate: (_, action: PayloadAction<IEstate[]>) => {
-      console.log(action.payload)
-
       return action.payload
     },
   },
