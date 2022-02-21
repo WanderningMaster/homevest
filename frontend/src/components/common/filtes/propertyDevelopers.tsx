@@ -31,6 +31,7 @@ const PropertyDevelopers: React.FC<IPropsPropertyDevelopers> = ({
     
   function handlerReturnSelectProperty() {
     returnPropertyDevelopers(selectProperty);
+    handlerVisible();
   }
 
   function handlerResetAllFilters() {
@@ -71,7 +72,7 @@ const PropertyDevelopers: React.FC<IPropsPropertyDevelopers> = ({
             {
                 !property.length ? 
                 <h1>Company Not found</h1> :
-                property.map(({id, company}:ICompany) => {
+                property.map(({id, estateName}:ICompany) => {
                   return (
                       <button 
                           key={id}
@@ -85,7 +86,7 @@ const PropertyDevelopers: React.FC<IPropsPropertyDevelopers> = ({
                           onClick={() => handlerSetSelectProperty(id)}
                       >
                           <img src={home_icon} alt="home-icon" className={clsx('-mt-1.5 w-6 h-6')}/>
-                          {company}
+                          {estateName}
                       </button>
                   )
               })

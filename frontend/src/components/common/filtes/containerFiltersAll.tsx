@@ -60,7 +60,7 @@ const ContainerFiltersAll: React.FC<IContainerFiters> = (props) => {
     }
 
     if (selectProperty.length) {
-      result = { ...result, price: selectProperty };
+      result = { ...result, property: selectProperty };
     }
 
     if (Object.keys(result).length) {
@@ -74,7 +74,6 @@ const ContainerFiltersAll: React.FC<IContainerFiters> = (props) => {
 
   function handlerSetSelectProperty(property: string[]): void {
     setSelectProperty(property);
-    setIsPropertyVisible(false);
   }
 
   function handlerVisibleFilters() {
