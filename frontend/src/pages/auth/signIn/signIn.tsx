@@ -11,6 +11,9 @@ import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { UserActionCreator } from 'store/slices'
+import Alert from 'components/common/alerts/Alert'
+import { AlertType } from 'components/common/alerts/enums/alert.enum'
+import ErrorAlert from 'components/common/alerts/Alert.error'
 
 const SigninSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),
@@ -29,7 +32,13 @@ const SigninSchema = Yup.object({
 })
 
 const SignIn: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const message = useSelector<any>(store => store.users.message) as string;
+  const [errorPopup, setErrorPopup] = useState('');
+  useEffect(() => {
+    console.log(message);
+    setErrorPopup(message);
+  }, [message])
   return (
     <AuthLayout>
       <Formik
@@ -70,8 +79,16 @@ const SignIn: React.FC = () => {
               <Link className="text-green ml-1" to="/forgot-password">
                 Forgot Password?
               </Link>
-            </Typography>
+            </Typography>    
           </div>
+          {
+            message 
+                ? <ErrorAlert 
+                    title="Login failed!"
+                    message={errorPopup}
+                />  
+                : null
+          }
           <Button type="submit" nameBtn="primary" className="box-border w-102.5 mt-10">
             Sign in
           </Button>
