@@ -15,14 +15,27 @@ class MailService {
         this.transporter = nodeMailer.createTransport({
             host: SMTP_HOST,
             port: Number(SMTP_PORT),
-            secure: false,
+            secure: true,
             auth: {
                 user: SMTP_USER,
                 pass: SMTP_PASSWORD
             }
         });
     }
-
+    public async sendResetPasswordLink(to: string, link: string): Promise<void>{
+        await this.transporter.sendMail({
+            from: SMTP_USER,
+            to,
+            subject: 'Homevest Reset password',
+            text: '',
+            html: `
+                    <div>
+                        <h1>Follow the link bellow to reset your password</h1>
+                        <h2><a href="http://localhost:3000/reset-password/${link}">Reset your password</a></h2>
+                    </div>
+            `
+        })
+    }
     public async sendActivationMail(to: string, link: string): Promise<void>{
         await this.transporter.sendMail({
             from: SMTP_USER,

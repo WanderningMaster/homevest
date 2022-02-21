@@ -6,13 +6,13 @@ import React, { useEffect } from 'react'
 import * as Yup from 'yup'
 import { Formik, Form } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { UserActionCreator } from 'store/user/user'
+import { UserActionCreator } from 'store/user/userReducer'
 import { useHistory } from 'react-router'
 
 const VerifyEmail: React.FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const isVerify = useSelector<any>(store => store.user.isVerify)
+  const isVerify = useSelector<any>(store => store.users.isVerify)
   useEffect(() => {
     if (isVerify) {
       history.push('/sign-in')

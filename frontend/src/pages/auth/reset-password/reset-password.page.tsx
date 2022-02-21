@@ -5,6 +5,10 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { PasswordInputField } from "components/common/input/password-input-field";
+import { Redirect, useHistory, useParams } from "react-router";
+import { authService } from "services";
+import { useDispatch } from "react-redux";
+import { UserActionCreator } from "store/slices";
 const resetPasswordSchema = Yup.object({
   password: Yup.string()
     .required("Required")
@@ -23,6 +27,9 @@ const resetPasswordSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Password must match"),
 });
 const ResetPassword: React.FC = () => {
+  const params: {id: string} = useParams();
+  const history = useHistory();
+  const dispatch = useDispatch();
   return (
     <AuthLayout>
       <div className=" align-middle">
@@ -38,8 +45,9 @@ const ResetPassword: React.FC = () => {
             confirmPassword: "",
           }}
           validationSchema={resetPasswordSchema}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={async (values) => {
+              const { password } = values;
+              dispatch({type: UserActionCreator.asyncResetPasswordSaga().type, code: params.id, password, history});
           }}
         >
           <Form>

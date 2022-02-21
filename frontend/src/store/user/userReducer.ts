@@ -12,8 +12,8 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  isVerify: true,
-  isAuth: true,
+  isVerify: false,
+  isAuth: false,
   userData: {} as UserData,
 }
 
@@ -45,6 +45,8 @@ const asyncLogoutSaga = () => ({ type: 'asyncLogout' })
 const asyncCheckAuthSaga = () => ({ type: 'asyncCheckAuth' })
 const asyncSIgnUpSaga = () => ({ type: 'asyncSignUp' })
 const asyncVerifyEmailSaga = () => ({ type: 'asyncVerifyEmail' })
+const asyncResetPasswordSaga = () => ({ type: 'asyncResetPassword' });
+const asyncForgotPasswordSaga = () => ({ type: 'asyncForgotPassword' });
 
 const UserActionCreator = {
   ...actions,
@@ -53,6 +55,8 @@ const UserActionCreator = {
   asyncCheckAuthSaga,
   asyncSIgnUpSaga,
   asyncVerifyEmailSaga,
+  asyncResetPasswordSaga,
+  asyncForgotPasswordSaga
 }
 
 export { reducer, UserActionCreator }

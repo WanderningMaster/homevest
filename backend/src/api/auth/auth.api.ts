@@ -49,6 +49,33 @@ const initAuthApi = (apiRouter: Router): Router => {
             res.status(HttpCode.BAD_REQUEST).json({error: error.message});
         }
     });
+    authRouter.post(AuthApiPath.FORGOT_PASSWORD, async (_req, res) => {
+        try{
+            const { email } = _req.body
+            await authService.forgotPassword(email);
+
+            res
+                .status(HttpCode.OK)
+                .json({data: null});
+        }catch(error: any){
+            logger.error(error.message);
+            res.status(HttpCode.BAD_REQUEST).json({error: error.message});
+        }
+    });
+    authRouter.post(AuthApiPath.$RESET_PASSWORD, async (_req, res) => {
+        try{
+            const link = _req.params.link;
+            const { newPassword } = _req.body
+            await authService.resetPassword(link, newPassword);
+
+            res
+                .status(HttpCode.OK)
+                .json({data: null});
+        }catch(error: any){
+            logger.error(error.message);
+            res.status(HttpCode.BAD_REQUEST).json({error: error.message});
+        }
+    });
 
     authRouter.post(AuthApiPath.LOGOUT, async (_req, res) => {
         try {
