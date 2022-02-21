@@ -39,7 +39,7 @@ function PropertyDevelopersPage(): JSX.Element {
         <AppBarDashboard />
       </Header>
 
-      <Dashboardlayout title="My buildings">
+      <Dashboardlayout title="My buildings" className="pt-40">
         <FiltersDashboard />
         <ul className="flex flex-row justify-between grid-col-2 flex-wrap gap-6 mb-10">
           {estate &&

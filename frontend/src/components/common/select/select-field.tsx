@@ -7,7 +7,7 @@ export const SelectField: React.FC<SelectProps> = ({
   options,
   ...rest
 }) => {
-  const [field, state, { setValue }] = useField(name);
+  const [field, meta, { setValue }] = useField(name);
 
   const handleChange = (option: any) => {
     setValue(option.value);
@@ -16,8 +16,10 @@ export const SelectField: React.FC<SelectProps> = ({
   return <Select
     {...field}
     {...rest}
-    value={state.value}
+    value={meta.value}
     onChange={handleChange}
     options={options}
+    isInvalid={Boolean(meta.error && meta.touched)}
+    errorText={String(meta.error)}
   />;
 }

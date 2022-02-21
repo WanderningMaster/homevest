@@ -6,13 +6,10 @@ import { Typography } from 'components/common/typography/typography'
 import { AuthLayout } from 'components/layouts/auth-layout/auth-layout'
 import { InputField } from 'components/common/input/input-field'
 import { PasswordInputField } from 'components/common/input/password-input-field'
-import { authService } from 'services'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { UserActionCreator } from 'store/slices'
-import Alert from 'components/common/alerts/Alert'
-import { AlertType } from 'components/common/alerts/enums/alert.enum'
 import ErrorAlert from 'components/common/alerts/Alert.error'
 
 const SigninSchema = Yup.object({
@@ -79,15 +76,15 @@ const SignIn: React.FC = () => {
               <Link className="text-green ml-1" to="/forgot-password">
                 Forgot Password?
               </Link>
-            </Typography>    
+            </Typography>
           </div>
           {
-            message 
-                ? <ErrorAlert 
-                    title="Login failed!"
-                    message={errorPopup}
-                />  
-                : null
+            message
+              ? <ErrorAlert
+                title="Login failed!"
+                message={errorPopup}
+              />
+              : null
           }
           <Button type="submit" nameBtn="primary" className="box-border w-102.5 mt-10">
             Sign in

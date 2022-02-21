@@ -6,8 +6,16 @@ import { initInvestorApi } from './user/investor.api';
 import { initAuthApi } from './auth/auth.api';
 import { initCompanyApi } from './user/company.api';
 import { initAppartmentApi } from './appartment/appartment.api';
+import { initInvestmentApi } from './investment/investment.api';
 
-const apis = [initUserApi, initInvestorApi, initCompanyApi, initEstateApi, initAppartmentApi, initAuthApi];
+const apis = [initUserApi,
+  initInvestorApi,
+  initCompanyApi,
+  initEstateApi,
+  initAppartmentApi,
+  initAuthApi,
+  initInvestmentApi
+];
 
 const initApi = (app: Router): Router => {
   const apiRouter = Router();
