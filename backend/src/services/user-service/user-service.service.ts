@@ -26,6 +26,10 @@ class UserService {
     const userRepository = getCustomRepository(UserRepository);
     return userRepository.updateById(id, data)
   }
+  public async resetPassword(id:string, data: IUser):Promise<UpdateResult>{
+    const userRepository = getCustomRepository(UserRepository);
+    return userRepository.resetPassword(id, data);
+  }
   public deleteUser(id:string):Promise<DeleteResult>{
     const userRepository = getCustomRepository(UserRepository);
     return userRepository.deleteById(id)

@@ -5,8 +5,11 @@ import { AuthLayout } from "components/layouts/auth-layout/auth-layout";
 import React from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { useDispatch } from "react-redux";
+import { UserActionCreator } from "store/slices";
 
 const ForgotPassword: React.FC = () => {
+  const dispatch = useDispatch();
   return (
     <AuthLayout>
       <div className=" align-middle">
@@ -26,7 +29,8 @@ const ForgotPassword: React.FC = () => {
               .required("Required"),
           })}
           onSubmit={(values) => {
-            console.log(values.email);
+            const {email} = values;
+            dispatch({type: UserActionCreator.asyncForgotPasswordSaga().type, email})
           }}
         >
           <Form>

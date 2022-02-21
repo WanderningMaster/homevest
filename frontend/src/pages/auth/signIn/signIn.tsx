@@ -10,7 +10,7 @@ import { authService } from 'services'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { UserActionCreator } from 'store/user/user'
+import { UserActionCreator } from 'store/slices'
 
 const SigninSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),
@@ -30,7 +30,6 @@ const SigninSchema = Yup.object({
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch()
-
   return (
     <AuthLayout>
       <Formik

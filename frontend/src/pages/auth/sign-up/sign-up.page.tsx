@@ -8,7 +8,7 @@ import { InputField } from 'components/common/input/input-field'
 import { PasswordInputField } from 'components/common/input/password-input-field'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { UserActionCreator } from 'store/user/user'
+import { UserActionCreator } from 'store/user/userReducer'
 
 const SignupSchema = Yup.object({
   firstName: Yup.string().max(50, 'Must be 50 characters or less').required('Required'),
