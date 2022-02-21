@@ -32,6 +32,13 @@ export class UserRepository extends Repository<UserEntity> {
       data
     );
   }
+  public async resetPassword(id:string, user: IUser): Promise<UpdateResult>{
+    user = await this.getHash(user);
+    return await this.update(
+      id,
+      user
+    );
+  }
   public async deleteById(id:string): Promise<DeleteResult>{
     return await this.delete({ 
         id 

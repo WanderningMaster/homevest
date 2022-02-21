@@ -23,8 +23,15 @@ const  MultipleRange: React.FC<Props> = ({fullMax = 1000000, min = 0, max = full
     const maxValRef: React.RefObject<HTMLInputElement> = React.useRef(null);
     const range: React.RefObject<HTMLDivElement> = React.useRef(null);
 
+    React.useEffect(() => {
+        if (minValue != min || maxValue != max) {
+            setMinValue(min);
+            setMaxValue(max);
+        }
+    }, [min, max])
+
     const getPercent = React.useCallback((value) => {
-        return Math.round(((value - 0) / (fullMax - min)) * 100);
+        return Math.round(((value - 0) / (fullMax - 0)) * 100);
     }, [min, max]);
     
     React.useEffect(() => {

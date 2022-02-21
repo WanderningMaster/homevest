@@ -2,19 +2,21 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface UserData {
   id: string
-  role: string
+  role: string,
 }
 
 export interface UserState {
   isAuth: boolean
   isVerify: boolean
   userData: UserData
+  message: string | null
 }
 
 const initialState: UserState = {
-  isVerify: true,
-  isAuth: true,
+  isVerify: false,
+  isAuth: false,
   userData: {} as UserData,
+  message: null
 }
 
 const { actions, reducer } = createSlice({
@@ -26,17 +28,16 @@ const { actions, reducer } = createSlice({
       state.isVerify = true
       state.userData = action.payload
     },
-    loginFailed: state => {
-      state.isAuth = false
-      state.userData = {} as UserData
-    },
     logout: (state, action: PayloadAction<UserData>) => {
       state.isAuth = false
       state.userData = action.payload
     },
-    verify: state => {
+    verify: (state) => {
       state.isVerify = true
     },
+    setMessage: (state, action: PayloadAction<{message: string | null}>) => {
+      state.message = action.payload.message;
+    }
   },
 })
 
@@ -45,6 +46,8 @@ const asyncLogoutSaga = () => ({ type: 'asyncLogout' })
 const asyncCheckAuthSaga = () => ({ type: 'asyncCheckAuth' })
 const asyncSIgnUpSaga = () => ({ type: 'asyncSignUp' })
 const asyncVerifyEmailSaga = () => ({ type: 'asyncVerifyEmail' })
+const asyncResetPasswordSaga = () => ({ type: 'asyncResetPassword' });
+const asyncForgotPasswordSaga = () => ({ type: 'asyncForgotPassword' });
 
 const UserActionCreator = {
   ...actions,
@@ -53,6 +56,8 @@ const UserActionCreator = {
   asyncCheckAuthSaga,
   asyncSIgnUpSaga,
   asyncVerifyEmailSaga,
+  asyncResetPasswordSaga,
+  asyncForgotPasswordSaga
 }
 
 export { reducer, UserActionCreator }

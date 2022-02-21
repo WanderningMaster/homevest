@@ -8,7 +8,11 @@ import { IUser } from '~/common/interfaces';
 import dotenv from "dotenv";
 dotenv.config();
 
-const { JWT_ACTIVATION_SECRET_KEY, JWT_ACTIVATION_EXPIRATION } = process.env;
+const { 
+    JWT_ACTIVATION_SECRET_KEY, 
+    JWT_ACTIVATION_EXPIRATION,
+    JWT_REFRESH_PASSWORD_SECRET_KEY,
+} = process.env;
 
 
 class AuthService {
@@ -38,6 +42,28 @@ class AuthService {
         if (user) {
             user.isActivated = true;
             const updatedUser = await userService.updateUser(<string>id, user);
+
+            return updatedUser;
+        }
+        else throw new Error("Invalid activation link");
+    }
+    public async forgotPassword(email: string): Promise<void>{
+        const user = await userService.getUserByEmail(email);
+        if(user){
+            const { id } = user;
+            const refreshLink = jwt.sign({id}, <string>JWT_REFRESH_PASSWORD_SECRET_KEY,{
+                expiresIn: JWT_ACTIVATION_EXPIRATION
+            });
+            mailService.sendResetPasswordLink(email, refreshLink);
+        }
+    }
+    public async resetPassword(refreshLink: string, newPassword: string): Promise<UpdateResult>{
+        const { id } = jwt.verify(refreshLink, <string>JWT_REFRESH_PASSWORD_SECRET_KEY) as JwtPayload;
+
+        const user = await userService.getUserById(<string>id);
+        if(user){
+            user.password = newPassword;
+            const updatedUser = await userService.resetPassword(id, user);
 
             return updatedUser;
         }

@@ -1,13 +1,13 @@
-// import axios from 'axios'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { AxiosResponse } from 'axios'
 import { put, takeEvery, call } from 'redux-saga/effects'
 import { EstateActionsCreator } from 'store/estate/estateReducer'
+import { fetchEstateFromApi } from './operations'
 
-const fetchEstateFromApi = () => fetch('http://localhost:3001/api/v1/estate', { mode: 'no-cors' })
-
-// export const fetchEstateFromApi = () => axios.get<IEstate[]>('http://localhost:3001/api/v1/estate')
+export { fetchEstateFromApi }
 
 function* fetchEstateWorker() {
-  const { data } = yield call(fetchEstateFromApi)
+  const { data }: AxiosResponse = yield call(fetchEstateFromApi)
   yield put(EstateActionsCreator.setEstate(data))
 }
 

@@ -25,6 +25,16 @@ class AuthService {
     async verifyEmail(code: string): Promise<AxiosResponse> {
         return await api.get(ApiRoute.VERIFY+code);
     }
+    async resetPassword(code: string, newPassword: string): Promise<AxiosResponse> {
+        return await api.post(ApiRoute.RESET_PASSWORD+code, {
+            newPassword
+        });
+    }
+    async forgotPassword(email: string): Promise<AxiosResponse>{
+        return await api.post(ApiRoute.FORGOT_PASSWORD, {
+            email
+        });
+    }
 }
 
 const authService = new AuthService();

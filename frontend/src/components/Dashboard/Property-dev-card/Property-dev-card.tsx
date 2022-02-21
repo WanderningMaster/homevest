@@ -7,7 +7,8 @@ interface LayoutProps {
   image?: string
   price?: string
   currency?: string
-  description?: string
+  yearOfOperation?: string
+  salesStatus?: string
 }
 
 const PropertyDevCard: React.FC<LayoutProps> = ({
@@ -16,7 +17,8 @@ const PropertyDevCard: React.FC<LayoutProps> = ({
   id,
   price,
   currency,
-  description,
+  yearOfOperation,
+  salesStatus,
 }) => {
   return (
     <li
@@ -47,7 +49,9 @@ const PropertyDevCard: React.FC<LayoutProps> = ({
         </Typography>
       </span>
       <div className=" flex items-center justify-start p-6">
-        <Typography type="h6">{description}</Typography>
+        <Typography type="h6">
+          Building start {yearOfOperation}, sales status {salesStatus}
+        </Typography>
       </div>
     </li>
   )
