@@ -15,6 +15,15 @@ export const options = {
 export const apiSpecification = swaggerJSDoc(options);
 
 Object.assign(apiSpecification, {
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT'
+      }
+    }
+  },
   tags: [
     {
       name: "Auth",

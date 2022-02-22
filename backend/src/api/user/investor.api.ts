@@ -7,6 +7,17 @@ const initInvestorApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.INVESTORS, investorRouter);
 
+  /**
+   * @openapi
+   * /api/v1/investors:
+   *  get:
+   *    summary: Return a list of investors
+   *    tags:
+   *      - Investor
+   *    responses:
+   *      200:
+   *        description: Successful response
+   */
   investorRouter.get(InvestorsApiPath.ROOT, async (_req, res) => {
     try {
       const investors = await investorService.getAllInvestors();
@@ -16,6 +27,22 @@ const initInvestorApi = (apiRouter: Router): Router => {
     }
   });
 
+  /**
+  * @openapi
+  * /api/v1/investors/{id}:
+  *  get:
+  *    summary: Return a investor by id
+  *    tags:
+  *      - Investor
+  *    parameters:
+  *      - in: path
+  *        name: id
+  *    responses:
+  *      200:
+  *        description: Successful response
+  *      404:
+  *        description: Not found response
+  */
   investorRouter.get(InvestorsApiPath.$ID, async (_req, res) => {
     try {
       const investor = await investorService.getInvestorById(_req.params.id);
@@ -25,6 +52,50 @@ const initInvestorApi = (apiRouter: Router): Router => {
     }
   });
 
+  /**
+   * @openapi
+   * /api/v1/investors:
+   *  post:
+   *    summary: Create a new investor
+   *    tags:
+   *      - Investor
+   *    requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *          schema:
+   *            type: object
+   *            properties:
+   *              userId:
+   *                type: string
+   *              avatar:
+   *                type: string
+   *              username:
+   *                type: string
+   *              followersCount:
+   *                type: number
+   *              followingCount:
+   *                type: number
+   *              interest:
+   *                type: string
+   *              investment:
+   *                type: string
+   *              publication:
+   *                type: string
+   *              city:
+   *                type: string
+   *              phoneNumber:
+   *                type: string
+   *              paymentMethods:
+   *                type: string
+   *              zipcode:
+   *                type: string
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   investorRouter.post(InvestorsApiPath.ROOT, async (_req, res) => {
     try {
       const investor = await investorService.createNewInvestor(_req.body);
@@ -34,6 +105,53 @@ const initInvestorApi = (apiRouter: Router): Router => {
     }
   });
 
+  /**
+ * @openapi
+ * /api/v1/investors/{id}:
+ *  put:
+ *    summary: Update an investor
+ *    tags:
+ *      - Investor
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              userId:
+ *                type: string
+ *              avatar:
+ *                type: string
+ *              username:
+ *                type: string
+ *              followersCount:
+ *                type: number
+ *              followingCount:
+ *                type: number
+ *              interest:
+ *                type: string
+ *              investment:
+ *                type: string
+ *              publication:
+ *                type: string
+ *              city:
+ *                type: string
+ *              phoneNumber:
+ *                type: string
+ *              paymentMethods:
+ *                type: string
+ *              zipcode:
+ *                type: string
+ *    responses:
+ *      200:
+ *        description: Successful response
+ *      404:
+ *        description: Not found response
+ */
   investorRouter.put(InvestorsApiPath.$ID, async (_req, res) => {
     try {
       const updateResult = await investorService.updateInvestor(_req.params.id, _req.body);
@@ -43,6 +161,22 @@ const initInvestorApi = (apiRouter: Router): Router => {
     }
   });
 
+  /**
+   * @openapi
+   * /api/v1/investors/{id}:
+   *  delete:
+   *    summary: Delete an investors by id
+   *    tags:
+   *      - Investor
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    responses:
+   *      204:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   investorRouter.delete(InvestorsApiPath.$ID, async (_req, res) => {
     try {
       const deleteResult = await investorService.deleteInvestor(_req.params.id);
@@ -51,6 +185,23 @@ const initInvestorApi = (apiRouter: Router): Router => {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
+
+  /**
+   * @openapi
+   * /api/v1/investors/{id}/user:
+   *  get:
+   *    summary: Return user by investor by id
+   *    tags:
+   *      - Investor
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   investorRouter.get(InvestorsApiPath.GET_USER, async (_req, res) => {
     try {
       const user = await investorService.getUser(_req.params.id);
