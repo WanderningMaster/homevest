@@ -5,13 +5,14 @@ import { InvestmentsApiPath } from '~/common/enums/api/investments-api-path.enum
 import { isAuth } from '~/middlewares';
 import { investmentService } from '~/services/services';
 import { MakeInvestmentInputSchema } from '~/common/input-models/make-investment-input-schema';
+import { isInvestor } from '~/middlewares/Auth/isInvestor.middleware';
 
 export const initInvestmentApi = (apiRouter: Router): Router => {
   const investmentRouter = Router();
 
   apiRouter.use(ApiPath.INVESTMENTS, investmentRouter);
 
-  investmentRouter.post(InvestmentsApiPath.ROOT, isAuth, async (req, res) => {
+  investmentRouter.post(InvestmentsApiPath.ROOT, isAuth, isInvestor, async (req, res) => {
     try {
       const userId = get(req, 'user.id');
       const estateId = get(req, 'params.estateId');

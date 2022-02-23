@@ -11,7 +11,7 @@ export class AppartmentEntity implements IAppartment{
     id!: string;
 
     @OneToOne(() => EstateEntity, (estate: EstateEntity) => estate.appartment)
-    @JoinColumn({ name: 'userId' })
+    @JoinColumn({ name: 'estateId' })
     estate!: EstateEntity
     
     @Column()
