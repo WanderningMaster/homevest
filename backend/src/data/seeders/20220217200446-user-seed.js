@@ -23,7 +23,7 @@ module.exports = {
         lastName: 'Dou',
         email: 'test3@mail.com',
         password: '$2b$08$Z4hk0aO06xuOizBuBZjtSOX04xUDCc7bACg14noJ00uUUM1/ZKSYK',
-        role: 'investor',
+        role: 'developer',
         isActivated: true,
       },
       {
@@ -31,7 +31,7 @@ module.exports = {
         lastName: 'Dou',
         email: 'test4@mail.com',
         password: '$2b$08$Z4hk0aO06xuOizBuBZjtSOX04xUDCc7bACg14noJ00uUUM1/ZKSYK',
-        role: 'investor',
+        role: 'developer',
         isActivated: true,
       },
     ])

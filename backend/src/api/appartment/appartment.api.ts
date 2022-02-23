@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { ApiPath, HttpCode, AppartmentsApiPath } from '~/common/enums';
+import { isAuth } from '~/middlewares';
+import { isDeveloper } from '~/middlewares/Auth/isDeveloper.middleware';
 import { appartmentService } from '~/services/services';
 
 const initAppartmentApi = (apiRouter: Router): Router => {
@@ -14,11 +16,13 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *    summary: Return a list of appartment
    *    tags:
    *      - Appartment
+   *    security:
+   *      - bearerAuth: []
    *    responses:
    *      200:
    *        description: Successful response
    */
-  appartmentRouter.get(AppartmentsApiPath.ROOT, async (_req, res) => {
+  appartmentRouter.get(AppartmentsApiPath.ROOT, isAuth, async (_req, res) => {
     try {
       const appartments = await appartmentService.getAllAppartments();
       res.status(HttpCode.OK).json(appartments);
@@ -34,6 +38,8 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *    summary: Return an appartment by id
    *    tags:
    *      - Appartment
+   *    security:
+   *      - bearerAuth: []
    *    parameters:
    *      - in: path
    *        name: id
@@ -43,7 +49,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  appartmentRouter.get(AppartmentsApiPath.$ID, async (_req, res) => {
+  appartmentRouter.get(AppartmentsApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const appartment = await appartmentService.getAppartmentById(_req.params.id);
       res.status(HttpCode.OK).json(appartment);
@@ -59,6 +65,8 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *    summary: Create a new appartment
    *    tags:
    *      - Appartment
+   *    security:
+   *      - bearerAuth: []
    *    requestBody:
    *      required: true
    *      content:
@@ -110,7 +118,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  appartmentRouter.post(AppartmentsApiPath.ROOT, async (_req, res) => {
+  appartmentRouter.post(AppartmentsApiPath.ROOT, isAuth, isDeveloper, async (_req, res) => {
     try {
       const appartment = await appartmentService.createAppartment(_req.body);
       res.status(HttpCode.OK).json(appartment);
@@ -126,6 +134,8 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *    summary: Update an appartment
    *    tags:
    *      - Appartment
+   *    security:
+   *      - bearerAuth: []
    *    parameters:
    *      - in: path
    *        name: id
@@ -180,7 +190,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  appartmentRouter.put(AppartmentsApiPath.$ID, async (_req, res) => {
+  appartmentRouter.put(AppartmentsApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const updateResult = await appartmentService.updateAppartment(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(updateResult);
@@ -196,6 +206,8 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *    summary: Delete an appartment by id
    *    tags:
    *      - Appartment
+   *    security:
+   *      - bearerAuth: []
    *    parameters:
    *      - in: path
    *        name: id
@@ -205,7 +217,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  appartmentRouter.delete(AppartmentsApiPath.$ID, async (_req, res) => {
+  appartmentRouter.delete(AppartmentsApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const deleteResult = await appartmentService.deleteAppartment(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json(deleteResult);
@@ -221,6 +233,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
    *    summary: Return an estate by appartment id
    *    tags:
    *      - Appartment
+   * 
    *    parameters:
    *      - in: path
    *        name: id

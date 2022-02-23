@@ -36,7 +36,9 @@ const initUserApi = (apiRouter: Router): Router => {
    *  get:
    *    summary: Return an user by id
    *    tags:
-   *      - User 
+   *      - User
+   *    security:
+   *      - bearerAuth: []
    *    parameters:
    *      - in: path
    *        name: id
@@ -44,7 +46,7 @@ const initUserApi = (apiRouter: Router): Router => {
    *      200:
    *        description: Successful response
    */
-  userRouter.get(UsersApiPath.$ID, async (_req, res) => {
+  userRouter.get(UsersApiPath.$ID, isAuth, async (_req, res) => {
     console.log(_req.params.id);
     try {
       const user = await userService.getUserById(_req.params.id);
@@ -102,6 +104,8 @@ const initUserApi = (apiRouter: Router): Router => {
    *    summary: Update an user
    *    tags:
    *      - User
+   *    security:
+   *      - bearerAuth: []
    *    parameters:
    *      - in: path
    *        name: id
@@ -130,7 +134,7 @@ const initUserApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  userRouter.put(UsersApiPath.$ID, async (_req, res) => {
+  userRouter.put(UsersApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const updateResult = await userService.updateUser(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(updateResult);
@@ -146,6 +150,8 @@ const initUserApi = (apiRouter: Router): Router => {
    *    summary: Delete an user by id
    *    tags:
    *      - User
+   *    security:
+   *      - bearerAuth: []
    *    parameters:
    *      - in: path
    *        name: id
@@ -155,7 +161,7 @@ const initUserApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  userRouter.delete(UsersApiPath.$ID, async (_req, res) => {
+  userRouter.delete(UsersApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const deleteResult = await userService.deleteUser(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json(deleteResult);

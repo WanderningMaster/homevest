@@ -1,3 +1,5 @@
+import { isDeveloper } from '~/middlewares/Auth/isDeveloper.middleware';
+import { isAuth } from '~/middlewares';
 import { Router } from 'express';
 import { ApiPath, HttpCode, EstatesApiPath } from '~/common/enums';
 import { estateService } from '~/services/services';
@@ -14,11 +16,13 @@ const initEstateApi = (apiRouter: Router): Router => {
    *    summary: Return a list of estate
    *    tags:
    *      - Estate
+   *    security:
+   *      - bearerAuth: []
    *    responses:
    *      200:
    *        description: Successful response
    */
-  estateRouter.get(EstatesApiPath.ROOT, async (_req, res) => {
+  estateRouter.get(EstatesApiPath.ROOT, isAuth, async (_req, res) => {
     try {
       const estates = await estateService.getAllEstates()
       res.status(HttpCode.OK).json(estates);
@@ -34,6 +38,8 @@ const initEstateApi = (apiRouter: Router): Router => {
     *    summary: Return an estate by id
     *    tags:
     *      - Estate
+    *    security:
+   *      - bearerAuth: []
     *    parameters:
     *      - in: path
     *        name: id
@@ -43,7 +49,7 @@ const initEstateApi = (apiRouter: Router): Router => {
     *      404:
     *        description: Not found response
     */
-  estateRouter.get(EstatesApiPath.$ID, async (_req, res) => {
+  estateRouter.get(EstatesApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const estate = await estateService.getEstateById(_req.params.id);
       res.status(HttpCode.OK).json(estate);
@@ -59,6 +65,8 @@ const initEstateApi = (apiRouter: Router): Router => {
    *    summary: Create a new estate
    *    tags:
    *      - Estate
+   *    security:
+   *      - bearerAuth: []
    *    requestBody:
    *      required: true
    *      content:
@@ -102,7 +110,7 @@ const initEstateApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  estateRouter.post(EstatesApiPath.ROOT, async (_req, res) => {
+  estateRouter.post(EstatesApiPath.ROOT, isAuth, isDeveloper, async (_req, res) => {
     try {
       const estate = await estateService.createNewEstate(_req.body);
       res.status(HttpCode.OK).json(estate);
@@ -118,6 +126,8 @@ const initEstateApi = (apiRouter: Router): Router => {
    *    summary: Update an estate
    *    tags:
    *      - Estate
+   *    security:
+   *      - bearerAuth: []
    *    parameters:
    *      - in: path
    *        name: id
@@ -164,7 +174,7 @@ const initEstateApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  estateRouter.put(EstatesApiPath.$ID, async (_req, res) => {
+  estateRouter.put(EstatesApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const estate = await estateService.updateEstate(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(estate);
@@ -180,6 +190,8 @@ const initEstateApi = (apiRouter: Router): Router => {
    *    summary: Delete an estate by id
    *    tags:
    *      - Estate
+   *    security:
+   *      - bearerAuth: []
    *    parameters:
    *      - in: path
    *        name: id
@@ -189,7 +201,7 @@ const initEstateApi = (apiRouter: Router): Router => {
    *      404:
    *        description: Not found response
    */
-  estateRouter.delete(EstatesApiPath.$ID, async (_req, res) => {
+  estateRouter.delete(EstatesApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       await estateService.deleteEstate(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json();

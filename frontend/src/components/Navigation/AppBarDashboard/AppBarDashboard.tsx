@@ -7,8 +7,11 @@ import { ReactComponent as MapIcon } from 'assets/images/map-icon.svg'
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
+import { UserActionCreator } from 'store/user/userReducer'
+import { useDispatch } from 'react-redux'
 
 const AppBarDashboard: React.FC = () => {
+  const dispatch = useDispatch();
   const data = [
     {
       to: AppRoute.NEW_BUILDINGS,
@@ -41,7 +44,7 @@ const AppBarDashboard: React.FC = () => {
           )
         })}
       </div>
-      <Button nameBtn="secondary" label="Log out" onClick={() => console.log('click')} />
+      <Button nameBtn="secondary" label="Log out" onClick={() => dispatch({ type: UserActionCreator.asyncLogoutSaga().type })} />
     </>
   )
 }
