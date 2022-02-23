@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-constant-condition */
 import React from 'react'
@@ -19,26 +20,29 @@ import { selectDatas } from 'pages/apartment/mock-data/select-data'
 import { toggleDatas } from 'pages/apartment/mock-data/toggle-data'
 import { ImageUploadInput, ImageThumb } from 'pages/apartment/component/ImageUpload'
 import { AppRoute } from 'common/enums'
-import { postNewAppartment } from 'store/appartment/appartmentOperations'
 import { ApartmentActionsCreator } from 'store/appartment/appartmentReducer'
 
 const FormApartment: React.FC = () => {
   const inputFile = useRef(null)
   const [imgState, setImgState] = useState<string[]>([])
-  console.log(imgState.join(',').split(' '))
+  console.log(imgState)
+
   const dispatch = useDispatch()
   const history = useHistory()
-  // const [successMessage, setSuccessMessage] = useState(false)
-  // const [errMessage, setErrMessage] = useState(false)
 
   const onImageUpload = (event: { preventDefault: () => void; target: { files: any } }) => {
     event.preventDefault()
     const files: any = event.target.files
-    console.log(files[0])
-    const myFiles = URL.createObjectURL(files[0])
-    console.log(myFiles)
+    const allBlobs: any[] = []
+    console.log(allBlobs)
 
-    setImgState([...imgState, myFiles])
+    const blobs = Object.keys(files)
+
+    for (const blob of blobs) {
+      const myFiles: any = URL.createObjectURL(files[blob])
+      allBlobs.push(myFiles)
+    }
+    setImgState([...imgState, ...allBlobs])
   }
 
   const onSubmitData = (values: any) => {
@@ -61,8 +65,7 @@ const FormApartment: React.FC = () => {
       lending: values.lending,
       installments: values.installments,
       mortgage: values.mortgage,
-      // images: values.images,
-      images: imgState.join(),
+      images: imgState.length > 0 ? imgState.join() : values.images,
     }
 
     dispatch(ApartmentActionsCreator.submitApartment(data))
@@ -125,7 +128,6 @@ const FormApartment: React.FC = () => {
                               name={item.name}
                               label={item.label}
                               value={values[item.name]}
-                              // onChange={handleChange}
                               className={clsx('', {
                                 'border-green': dirty,
                               })}
@@ -154,7 +156,6 @@ const FormApartment: React.FC = () => {
                                   Menu: () => 'w-300px ',
                                   Option: () => 'w-72',
                                 }}
-                                // value={values[el.name]}
                                 onChange={option => setFieldValue(el.name, (option as any).value)}
                               />
                               {values[el.name] !== '' && (
