@@ -20,6 +20,8 @@ enum AppRoute {
   VERIFY_EMAIL = '/verify-email',
   MAKE_INVESTMENT = '/estates/:estateId/make-investment',
   RESET_PASSWORD = '/reset-password/:id',
+  INVESTOR_DASHBOARD = '/investor',
+  
 }
 
 export { AppRoute }

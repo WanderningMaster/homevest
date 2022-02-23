@@ -1,5 +1,7 @@
+import { isDeveloper } from '~/middlewares/Auth/isDeveloper.middleware';
 import { Router } from 'express';
 import { ApiPath, HttpCode, CompaniesApiPath } from '~/common/enums';
+import { isAuth } from '~/middlewares';
 import { companyService } from '~/services/services';
 
 import multer from 'multer';
@@ -15,7 +17,20 @@ const initCompanyApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.COMPANIES, companyRouter);
 
-  companyRouter.get(CompaniesApiPath.ROOT, async (_req, res) => {
+  /**
+   * @openapi
+   * /api/v1/companies:
+   *  get:
+   *    summary: Return a list of companies
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    responses:
+   *      200:
+   *        description: Successful response
+   */
+  companyRouter.get(CompaniesApiPath.ROOT, isAuth, async (_req, res) => {
     try {
       const companies = await companyService.getAllCompanies();
       res.status(HttpCode.OK).json(companies);
@@ -24,7 +39,25 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
-  companyRouter.get(CompaniesApiPath.$ID, async (_req, res) => {
+  /**
+   * @openapi
+   * /api/v1/companies/{id}:
+   *  get:
+   *    summary: Return a company by id
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
+  companyRouter.get(CompaniesApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const company = await companyService.getCompanyById(_req.params.id);
       res.status(HttpCode.OK).json(company);
@@ -58,7 +91,45 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
-  companyRouter.post(CompaniesApiPath.ROOT, async (_req, res) => {
+  /**
+   * @openapi
+   * /api/v1/companies:
+   *  post:
+   *    summary: Create a new company
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *          schema:
+   *            type: object
+   *            properties:
+   *              userId:
+   *                type: string
+   *              companyName:
+   *                type: string
+   *              companyLogo:
+   *                type: string
+   *              dateOfEstablishment:
+   *                type: string
+   *              website:
+   *                type: string
+   *              address:
+   *                type: string
+   *              phoneNumber:
+   *                type: string
+   *              documents:
+   *                type: string
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
+  companyRouter.post(CompaniesApiPath.ROOT, isAuth, isDeveloper, async (_req, res) => {
     try {
       const company = await companyService.createCompany(_req.body);
       res.status(HttpCode.OK).json(company);
@@ -67,7 +138,48 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
-  companyRouter.put(CompaniesApiPath.$ID, async (_req, res) => {
+  /**
+   * @openapi
+   * /api/v1/companies/{id}:
+   *  put:
+   *    summary: Update a company
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *          schema:
+   *            type: object
+   *            properties:
+   *              userId:
+   *                type: string
+   *              companyName:
+   *                type: string
+   *              companyLogo:
+   *                type: string
+   *              dateOfEstablishment:
+   *                type: string
+   *              website:
+   *                type: string
+   *              address:
+   *                type: string
+   *              phoneNumber:
+   *                type: string
+   *              documents:
+   *                type: string
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
+  companyRouter.put(CompaniesApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const updateResult = await companyService.updateCompany(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(updateResult);
@@ -76,7 +188,25 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
-  companyRouter.delete(CompaniesApiPath.$ID, async (_req, res) => {
+  /**
+   * @openapi
+   * /api/v1/companies/{id}:
+   *  delete:
+   *    summary: Delete an appartment by id
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    responses:
+   *      204:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
+  companyRouter.delete(CompaniesApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const deleteResult = await companyService.deleteCompany(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json(deleteResult);
@@ -84,7 +214,26 @@ const initCompanyApi = (apiRouter: Router): Router => {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
-  companyRouter.get(CompaniesApiPath.GET_USER, async (_req, res) => {
+
+  /**
+   * @openapi
+   * /api/v1/companies/{id}/user:
+   *  get:
+   *    summary: Return a user by company id
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
+  companyRouter.get(CompaniesApiPath.GET_USER, isAuth, async (_req, res) => {
     try {
       const user = await companyService.getUser(_req.params.id);
       res.status(HttpCode.OK).json(user[0].user);

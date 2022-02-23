@@ -17,7 +17,7 @@ export async function isAuth(_req: any, res: Response, next: NextFunction){
         const userData = await tokenService.validateAccessToken(accessToken);
         if(!userData){
             return res.status(401).json({error: "Unauthorized"});
-        }
+        }   
         _req.user = userData;
         next();
     } catch (error: any) {

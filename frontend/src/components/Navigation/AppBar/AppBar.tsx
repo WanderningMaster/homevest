@@ -7,7 +7,7 @@ import { ReactComponent as DeveloperIcon } from 'assets/images/developer-icon.sv
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { UserActionCreator } from 'store/user/userReducer'
 
 interface AppBarProps {
@@ -15,10 +15,29 @@ interface AppBarProps {
 }
 
 const AppBar: React.FC<AppBarProps> = ({ button }) => {
-  const data = [
+  const role = useSelector<any>(store => store.users.userData.role);
+  const data = role === "investor" ? [
     {
       to: AppRoute.NEW_BUILDINGS,
       text: 'New buildings',
+      icon: <CompoundIcon />,
+    }
+    ,
+    {
+      to: AppRoute.MAP,
+      text: 'Map',
+      icon: <MapIcon />,
+    },
+    {
+      to: AppRoute.SEARCH,
+      text: 'Search',
+      icon: <SearchIcon />,
+    },
+  ] :
+  [
+    {
+      to: AppRoute.NEW_BUILDINGS,
+      text: 'My buildings',
       icon: <CompoundIcon />,
     },
     {

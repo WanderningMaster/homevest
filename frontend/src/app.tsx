@@ -17,7 +17,9 @@ import VerifyEmail from 'pages/auth/verify-email/verify-email.page'
 import { RootState } from 'common/types'
 import { DashboardMakeInvestmentPage } from 'pages/dashboard-make-investment/dashboard-make-investment-page'
 import ResetPassword from 'pages/auth/reset-password/reset-password.page'
-
+import { PrivateRoute } from 'components/Routes/PrivateRoute'
+import DashboardContainer from 'pages/investor/dashboard/investorDashboard'
+import { PublicRoute } from 'components/Routes/PublicRoute'
 
 
 const App: React.FC = () => {
@@ -30,14 +32,30 @@ const App: React.FC = () => {
       dispatch({ type: UserActionCreator.asyncCheckAuthSaga().type });
     }
   }, [])
-  const isAuth = users.isAuth
+  const isAuth = users.isAuth;
+  const role = users.userData.role;
+  console.log(role);
   return (
     <Switch>
-      <Route path={AppRoute.SIGN_UP}>{isAuth ? <HomePage /> : <SignUpPage />}</Route>
-      <Route path={AppRoute.SIGN_IN}>{isAuth ? <HomePage /> : <SignIn />}</Route>
-      <Route exact path={AppRoute.ROOT}>
-        {isAuth ? <HomePage /> : <SignIn />}
-      </Route>
+      <PrivateRoute 
+        developerComponent={PropertyDevelopersPage}
+        investorComponent={HomePage}
+        // component={{PropertyDevelopersPage, HomePage}}
+        isAuth={isAuth}
+        role={role}
+        exact path={AppRoute.HOME_PAGE} 
+      />
+      <PublicRoute 
+        component={SignIn}
+        isAuth={isAuth}
+        role={role}
+        exact path={AppRoute.SIGN_IN}
+      />
+      <PublicRoute 
+        component={SignUpPage}
+        isAuth={isAuth}
+        exact path={AppRoute.SIGN_UP}
+      />
       <Route exact path={AppRoute.FORGOT_PASSWORD}>
         <ForgotPassword />
       </Route>
@@ -61,6 +79,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={AppRoute.MAP}>
         <DashboardMapPage />
+      </Route>
+      <Route path={AppRoute.INVESTOR_DASHBOARD}>
+        <DashboardContainer />
       </Route>
       <Route path={AppRoute.MAKE_INVESTMENT}>
         <DashboardMakeInvestmentPage />
