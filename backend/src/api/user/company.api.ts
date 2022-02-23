@@ -9,6 +9,19 @@ const initCompanyApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.COMPANIES, companyRouter);
 
+  /**
+   * @openapi
+   * /api/v1/companies:
+   *  get:
+   *    summary: Return a list of companies
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    responses:
+   *      200:
+   *        description: Successful response
+   */
   companyRouter.get(CompaniesApiPath.ROOT, isAuth, async (_req, res) => {
     try {
       const companies = await companyService.getAllCompanies();
@@ -18,6 +31,24 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
+  /**
+   * @openapi
+   * /api/v1/companies/{id}:
+   *  get:
+   *    summary: Return a company by id
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   companyRouter.get(CompaniesApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const company = await companyService.getCompanyById(_req.params.id);
@@ -27,6 +58,44 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
+  /**
+   * @openapi
+   * /api/v1/companies:
+   *  post:
+   *    summary: Create a new company
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *          schema:
+   *            type: object
+   *            properties:
+   *              userId:
+   *                type: string
+   *              companyName:
+   *                type: string
+   *              companyLogo:
+   *                type: string
+   *              dateOfEstablishment:
+   *                type: string
+   *              website:
+   *                type: string
+   *              address:
+   *                type: string
+   *              phoneNumber:
+   *                type: string
+   *              documents:
+   *                type: string
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   companyRouter.post(CompaniesApiPath.ROOT, isAuth, isDeveloper, async (_req, res) => {
     try {
       const company = await companyService.createCompany(_req.body);
@@ -36,6 +105,47 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
+  /**
+   * @openapi
+   * /api/v1/companies/{id}:
+   *  put:
+   *    summary: Update a company
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *          schema:
+   *            type: object
+   *            properties:
+   *              userId:
+   *                type: string
+   *              companyName:
+   *                type: string
+   *              companyLogo:
+   *                type: string
+   *              dateOfEstablishment:
+   *                type: string
+   *              website:
+   *                type: string
+   *              address:
+   *                type: string
+   *              phoneNumber:
+   *                type: string
+   *              documents:
+   *                type: string
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   companyRouter.put(CompaniesApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const updateResult = await companyService.updateCompany(_req.params.id, _req.body);
@@ -45,6 +155,24 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
+  /**
+   * @openapi
+   * /api/v1/companies/{id}:
+   *  delete:
+   *    summary: Delete an appartment by id
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    responses:
+   *      204:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   companyRouter.delete(CompaniesApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const deleteResult = await companyService.deleteCompany(_req.params.id);
@@ -53,6 +181,25 @@ const initCompanyApi = (apiRouter: Router): Router => {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
+
+  /**
+   * @openapi
+   * /api/v1/companies/{id}/user:
+   *  get:
+   *    summary: Return a user by company id
+   *    tags:
+   *      - Company
+   *    security:
+   *      - bearerAuth: []
+   *    parameters:
+   *      - in: path
+   *        name: id
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   companyRouter.get(CompaniesApiPath.GET_USER, isAuth, async (_req, res) => {
     try {
       const user = await companyService.getUser(_req.params.id);
