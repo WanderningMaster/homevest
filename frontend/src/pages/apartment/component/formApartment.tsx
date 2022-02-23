@@ -34,6 +34,7 @@ const FormApartment: React.FC = () => {
   const onImageUpload = (event: { preventDefault: () => void; target: { files: any } }) => {
     event.preventDefault()
     const files: any = event.target.files
+    console.log(files[0])
     const myFiles = URL.createObjectURL(files[0])
     console.log(myFiles)
 
@@ -60,24 +61,18 @@ const FormApartment: React.FC = () => {
       lending: values.lending,
       installments: values.installments,
       mortgage: values.mortgage,
-      images: values.images,
-      // images: imgState.join(),
+      // images: values.images,
+      images: imgState.join(),
     }
-    // const formData = new FormData()
-    // for (const value in values) {
-    //   console.log(value, values[value])
-
-    //   formData.append(value, values[value])
-    // }
-    // console.log({ ...formData })
-
-    // postNewAppartment(data)
 
     dispatch(ApartmentActionsCreator.submitApartment(data))
     backToDashboard()
   }
 
-  const backToDashboard = () => history.push(AppRoute.NEW_BUILDINGS)
+  const backToDashboard = () => {
+    history.push(AppRoute.NEW_BUILDINGS)
+    window.location.reload()
+  }
 
   const initialValues: ApartmentProps = {
     estateId: '9d9a3338-1c6c-4a10-9341-36840b4e4d55',
