@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { ApiPath, HttpCode, AppartmentsApiPath } from '~/common/enums';
+import { isAuth } from '~/middlewares';
+import { isDeveloper } from '~/middlewares/Auth/isDeveloper.middleware';
 import { appartmentService } from '~/services/services';
 
 const initAppartmentApi = (apiRouter: Router): Router => {
@@ -7,7 +9,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.APPARTMENTS, appartmentRouter);
 
-  appartmentRouter.get(AppartmentsApiPath.ROOT, async (_req, res) => {
+  appartmentRouter.get(AppartmentsApiPath.ROOT, isAuth, async (_req, res) => {
     try {
       const appartments = await appartmentService.getAllAppartments();
       res.status(HttpCode.OK).json(appartments);
@@ -16,7 +18,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
     }
   });
 
-  appartmentRouter.get(AppartmentsApiPath.$ID, async (_req, res) => {
+  appartmentRouter.get(AppartmentsApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const appartment = await appartmentService.getAppartmentById(_req.params.id);
       res.status(HttpCode.OK).json(appartment);
@@ -25,7 +27,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
     }
   });
 
-  appartmentRouter.post(AppartmentsApiPath.ROOT, async (_req, res) => {
+  appartmentRouter.post(AppartmentsApiPath.ROOT, isAuth, isDeveloper, async (_req, res) => {
     try {
       const appartment = await appartmentService.createAppartment(_req.body);
       res.status(HttpCode.OK).json(appartment);
@@ -34,7 +36,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
     }
   });
 
-  appartmentRouter.put(AppartmentsApiPath.$ID, async (_req, res) => {
+  appartmentRouter.put(AppartmentsApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const updateResult = await appartmentService.updateAppartment(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(updateResult);
@@ -43,7 +45,7 @@ const initAppartmentApi = (apiRouter: Router): Router => {
     }
   });
 
-  appartmentRouter.delete(AppartmentsApiPath.$ID, async (_req, res) => {
+  appartmentRouter.delete(AppartmentsApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const deleteResult = await appartmentService.deleteAppartment(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json(deleteResult);

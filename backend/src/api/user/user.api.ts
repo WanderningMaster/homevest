@@ -16,7 +16,7 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-  userRouter.get(UsersApiPath.$ID, async (_req, res) => {
+  userRouter.get(UsersApiPath.$ID, isAuth, async (_req, res) => {
     console.log(_req.params.id);
     try {
       const user = await userService.getUserById(_req.params.id);
@@ -35,7 +35,7 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-  userRouter.put(UsersApiPath.$ID, async (_req, res) => {
+  userRouter.put(UsersApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const updateResult = await userService.updateUser(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(updateResult);
@@ -44,7 +44,7 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-  userRouter.delete(UsersApiPath.$ID, async (_req, res) => {
+  userRouter.delete(UsersApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const deleteResult = await userService.deleteUser(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json(deleteResult);
