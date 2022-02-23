@@ -1,3 +1,4 @@
+import { isAuth } from '~/middlewares';
 import { Router } from 'express';
 import { authService, logger } from '~/services/services';
 import { ApiPath, HttpCode, AuthApiPath } from '~/common/enums';
@@ -77,7 +78,7 @@ const initAuthApi = (apiRouter: Router): Router => {
         }
     });
 
-    authRouter.post(AuthApiPath.LOGOUT, async (_req, res) => {
+    authRouter.post(AuthApiPath.LOGOUT, isAuth, async (_req, res) => {
         try {
             const {refresh_token} = _req.cookies;
             const token = await authService.logoutUser(refresh_token);
