@@ -18,13 +18,13 @@ function PropertyDevelopersPage(): JSX.Element {
   const [active, setActive] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const history = useHistory()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(EstateActionsCreator.fetchEstate())
   }, [])
 
   const estate = useSelector(getDeveloperEstate)
-  const dispatch = useDispatch()
 
   const onMenuClick = () => {
     setActive(!active)

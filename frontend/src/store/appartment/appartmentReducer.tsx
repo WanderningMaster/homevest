@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ReducerName } from 'common/enums'
 
 export interface Actions {
@@ -37,8 +36,6 @@ const initialState: IApartmentState = {
   isSubmitting: false,
 }
 
-// const submitApartment = (): Actions => ({ type: 'SUBMIT_APARTMENT' })
-
 const submitApartment = (values: any): Actions => ({
   type: 'SUBMIT_APARTMENT',
   payload: values,
@@ -68,9 +65,6 @@ const { reducer, actions } = createSlice({
 
 const ApartmentActionsCreator = {
   ...actions,
-  // submitApartment: createAction('SUBMIT_APARTMENT', values => ({
-  //   payload: { values },
-  // })),
 
   submitApartment,
 }

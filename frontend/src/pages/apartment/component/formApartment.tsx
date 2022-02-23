@@ -72,7 +72,7 @@ const FormApartment: React.FC = () => {
     // console.log({ ...formData })
 
     // postNewAppartment(data)
-    // console.log(data, data.images)
+
     dispatch(ApartmentActionsCreator.submitApartment(data))
     backToDashboard()
   }

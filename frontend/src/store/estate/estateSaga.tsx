@@ -2,13 +2,17 @@
 import { AxiosResponse } from 'axios'
 import { put, takeEvery, call } from 'redux-saga/effects'
 import { EstateActionsCreator } from 'store/estate/estateReducer'
-import { fetchEstateFromApi } from './operations'
+import { fetchEstateFromApi } from './estateOperations'
 
 export { fetchEstateFromApi }
 
 function* fetchEstateWorker() {
-  const { data }: AxiosResponse = yield call(fetchEstateFromApi)
-  yield put(EstateActionsCreator.setEstate(data))
+  try {
+    const { data }: AxiosResponse = yield call(fetchEstateFromApi)
+    yield put(EstateActionsCreator.setEstate(data))
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

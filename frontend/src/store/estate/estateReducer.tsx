@@ -47,7 +47,6 @@ const { reducer, actions } = createSlice({
 
 const EstateActionsCreator = {
   ...actions,
-
   fetchEstate,
 }
 
