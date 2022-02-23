@@ -1,7 +1,8 @@
+import { estateNewReducer } from 'store/slices/';
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 import { ReducerName } from 'common/enums'
-import { estateReducer, userReducer, makeInvestmentReducer } from 'store/slices';
+import { estateReducer, userReducer, makeInvestmentReducer, apartmentReducer } from 'store/slices';
 import { rootWatcher } from 'store/saga'
 
 const sagaMiddleware = createSagaMiddleware()
@@ -12,6 +13,8 @@ const store = configureStore({
     [ReducerName.ESTATE]: estateReducer,
     [ReducerName.USERS]: userReducer,
     [ReducerName.MAKE_INVESTMENT]: makeInvestmentReducer,
+    [ReducerName.APARTMENTS]: apartmentReducer,
+    [ReducerName.ESTATE_NEW]: estateNewReducer
   },
   middleware: [...middleware],
 })

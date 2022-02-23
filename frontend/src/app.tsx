@@ -18,8 +18,8 @@ import { RootState } from 'common/types'
 import { DashboardMakeInvestmentPage } from 'pages/dashboard-make-investment/dashboard-make-investment-page'
 import ResetPassword from 'pages/auth/reset-password/reset-password.page'
 import { PrivateRoute } from 'components/Routes/PrivateRoute'
+import DashboardContainer from 'pages/investor/dashboard/investorDashboard'
 import { PublicRoute } from 'components/Routes/PublicRoute'
-
 
 
 const App: React.FC = () => {
@@ -79,6 +79,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={AppRoute.MAP}>
         <DashboardMapPage />
+      </Route>
+      <Route path={AppRoute.INVESTOR_DASHBOARD}>
+        <DashboardContainer />
       </Route>
       <Route path={AppRoute.MAKE_INVESTMENT}>
         <DashboardMakeInvestmentPage />
