@@ -8,7 +8,7 @@ import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
 import { useDispatch } from 'react-redux'
-import { UserActionCreator } from 'store/user/user'
+import { UserActionCreator } from 'store/user/userReducer'
 
 interface AppBarProps {
   button?: boolean

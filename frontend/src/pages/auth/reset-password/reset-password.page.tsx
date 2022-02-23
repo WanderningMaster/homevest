@@ -1,10 +1,15 @@
 import Button from "components/common/button/button";
 import { Typography } from "components/common/typography/typography";
 import { AuthLayout } from "components/layouts/auth-layout/auth-layout";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { PasswordInputField } from "components/common/input/password-input-field";
+import { Redirect, useHistory, useParams } from "react-router";
+import { authService } from "services";
+import { useDispatch, useSelector } from "react-redux";
+import { UserActionCreator } from "store/slices";
+import ErrorAlert from "components/common/alerts/Alert.error";
 const resetPasswordSchema = Yup.object({
   password: Yup.string()
     .required("Required")
@@ -23,6 +28,15 @@ const resetPasswordSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Password must match"),
 });
 const ResetPassword: React.FC = () => {
+  const params: {id: string} = useParams();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const message = useSelector<any>(store => store.users.message) as string;
+  const [errorPopup, setErrorPopup] = useState('');
+  useEffect(() => {
+    console.log(message);
+    setErrorPopup(message);
+  }, [message])
   return (
     <AuthLayout>
       <div className=" align-middle">
@@ -38,8 +52,9 @@ const ResetPassword: React.FC = () => {
             confirmPassword: "",
           }}
           validationSchema={resetPasswordSchema}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={async (values) => {
+              const { password } = values;
+              dispatch({type: UserActionCreator.asyncResetPasswordSaga().type, code: params.id, password, history});
           }}
         >
           <Form>
@@ -55,6 +70,14 @@ const ResetPassword: React.FC = () => {
               className="w-102.5 mt-6"
               type="password"
             />
+            {
+              message 
+                  ? <ErrorAlert 
+                      title="Error!"
+                      message={errorPopup}
+                  />  
+                  : null
+            }
             <div className="w-102.5 flex mt-10">
               <Button
                 nameBtn="primary"

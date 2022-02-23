@@ -19,7 +19,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     try {
       const companies = await companyService.getAllCompanies();
       res.status(HttpCode.OK).json(companies);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.NOT_FOUND).json(error);
     }
   });
@@ -28,7 +28,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     try {
       const company = await companyService.getCompanyById(_req.params.id);
       res.status(HttpCode.OK).json(company);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.NOT_FOUND).json(error);
     }
   });
@@ -62,7 +62,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     try {
       const company = await companyService.createCompany(_req.body);
       res.status(HttpCode.OK).json(company);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
@@ -71,7 +71,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     try {
       const updateResult = await companyService.updateCompany(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(updateResult);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
@@ -80,7 +80,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     try {
       const deleteResult = await companyService.deleteCompany(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json(deleteResult);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
@@ -88,7 +88,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     try {
       const user = await companyService.getUser(_req.params.id);
       res.status(HttpCode.OK).json(user[0].user);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.NOT_FOUND).json(error);
     }
   });

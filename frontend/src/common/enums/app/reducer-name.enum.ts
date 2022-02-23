@@ -6,6 +6,7 @@ enum ReducerName {
   BUILDERS = 'builders',
   COMPANY = 'company',
   USER = 'user',
+  MAKE_INVESTMENT = 'make-investment',
 }
 
 export { ReducerName }

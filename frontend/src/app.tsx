@@ -12,9 +12,11 @@ import { Switch, Route } from 'react-router-dom'
 import SignIn from 'pages/auth/signIn/signIn'
 import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page'
 
-import { UserActionCreator } from 'store/user/user'
+import { UserActionCreator } from 'store/user/userReducer'
 import VerifyEmail from 'pages/auth/verify-email/verify-email.page'
 import { RootState } from 'common/types'
+import { DashboardMakeInvestmentPage } from 'pages/dashboard-make-investment/dashboard-make-investment-page'
+import ResetPassword from 'pages/auth/reset-password/reset-password.page'
 
 
 
@@ -24,8 +26,8 @@ const App: React.FC = () => {
   }))
   const dispatch = useDispatch()
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      dispatch({ type: UserActionCreator.asyncCheckAuthSaga().type })
+    if (localStorage.getItem("token")) {
+      dispatch({ type: UserActionCreator.asyncCheckAuthSaga().type });
     }
   }, [])
   const isAuth = users.isAuth
@@ -38,6 +40,9 @@ const App: React.FC = () => {
       </Route>
       <Route exact path={AppRoute.FORGOT_PASSWORD}>
         <ForgotPassword />
+      </Route>
+      <Route exact path={AppRoute.RESET_PASSWORD}>
+        <ResetPassword />
       </Route>
       <Route exact path={AppRoute.VERIFY_EMAIL}>
         <VerifyEmail />
@@ -56,6 +61,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={AppRoute.MAP}>
         <DashboardMapPage />
+      </Route>
+      <Route path={AppRoute.MAKE_INVESTMENT}>
+        <DashboardMakeInvestmentPage />
       </Route>
     </Switch>
   )

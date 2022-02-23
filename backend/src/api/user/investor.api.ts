@@ -11,7 +11,7 @@ const initInvestorApi = (apiRouter: Router): Router => {
     try {
       const investors = await investorService.getAllInvestors();
       res.status(HttpCode.OK).json(investors);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.NOT_FOUND).json(error);
     }
   });
@@ -20,7 +20,7 @@ const initInvestorApi = (apiRouter: Router): Router => {
     try {
       const investor = await investorService.getInvestorById(_req.params.id);
       res.status(HttpCode.OK).json(investor);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.NOT_FOUND).json(error);
     }
   });
@@ -29,7 +29,7 @@ const initInvestorApi = (apiRouter: Router): Router => {
     try {
       const investor = await investorService.createNewInvestor(_req.body);
       res.status(HttpCode.OK).json(investor);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
@@ -38,7 +38,7 @@ const initInvestorApi = (apiRouter: Router): Router => {
     try {
       const updateResult = await investorService.updateInvestor(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(updateResult);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
@@ -47,7 +47,7 @@ const initInvestorApi = (apiRouter: Router): Router => {
     try {
       const deleteResult = await investorService.deleteInvestor(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json(deleteResult);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
@@ -55,7 +55,7 @@ const initInvestorApi = (apiRouter: Router): Router => {
     try {
       const user = await investorService.getUser(_req.params.id);
       res.status(HttpCode.OK).json(user[0].user);
-    } catch(error) {
+    } catch (error) {
       res.status(HttpCode.NOT_FOUND).json(error);
     }
   });

@@ -18,6 +18,8 @@ enum AppRoute {
   FAVOURITES = 'favourites',
   FORGOT_PASSWORD = '/forgot-password',
   VERIFY_EMAIL = '/verify-email',
+  MAKE_INVESTMENT = '/estates/:estateId/make-investment',
+  RESET_PASSWORD = '/reset-password/:id',
 }
 
 export { AppRoute }

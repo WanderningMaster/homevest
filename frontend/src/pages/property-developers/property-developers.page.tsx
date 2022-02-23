@@ -19,13 +19,12 @@ function PropertyDevelopersPage(): JSX.Element {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const history = useHistory()
 
-  const estate = useSelector(getDeveloperEstate)
-  const dispatch = useDispatch()
-  console.log(estate)
-
   useEffect(() => {
     dispatch(EstateActionsCreator.fetchEstate())
   }, [])
+
+  const estate = useSelector(getDeveloperEstate)
+  const dispatch = useDispatch()
 
   const onMenuClick = () => {
     setActive(!active)
@@ -40,19 +39,23 @@ function PropertyDevelopersPage(): JSX.Element {
         <AppBarDashboard />
       </Header>
 
-      <Dashboardlayout title="My buildings">
+      <Dashboardlayout title="My buildings" className="pt-40">
         <FiltersDashboard />
         <ul className="flex flex-row justify-between grid-col-2 flex-wrap gap-6 mb-10">
-          {estate.map(({ id, name, price, currency, image, description }) => (
-            <PropertyDevCard
-              key={id}
-              name={name}
-              image={image}
-              price={price}
-              currency={currency}
-              description={description}
-            />
-          ))}
+          {estate &&
+            estate.map(
+              ({ id, nameOfBuilding, price, currency, images, yearOfOperation, salesStatus }) => (
+                <PropertyDevCard
+                  key={id}
+                  name={nameOfBuilding}
+                  image={images}
+                  price={price}
+                  currency={currency}
+                  yearOfOperation={yearOfOperation}
+                  salesStatus={salesStatus}
+                />
+              ),
+            )}
         </ul>
         <div>
           <Button label="Add property" onClick={addPropertyPage} />

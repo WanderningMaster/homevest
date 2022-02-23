@@ -1,30 +1,34 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-constant-condition */
 import React from 'react'
+import { useRef, useState } from 'react'
 import { Formik, Form } from 'formik'
-import { Title } from './title'
+import { Title } from 'pages/apartment/component/title'
 import Button from 'components/common/button/button'
-import { ApartmentSchema } from '../apartmentSchema'
-import { ApartmentProps } from '../types/apartment-props.interface'
-import { InputApartmentField } from './inputFieldApartment'
+import { ApartmentSchema } from 'pages/apartment/apartmentSchema'
+import { ApartmentProps } from 'pages/apartment/types/apartment-props.interface'
+import { InputApartmentField } from 'pages/apartment/component/inputFieldApartment'
 import { Select } from 'components/common/select/select'
 import ToggleButton from 'components/common/button/toggleBtn'
-import { ReactComponent as ImagesLoad } from '../../../assets/images/images-load.svg'
 import clsx from 'clsx'
-import { LabelSelectApartment } from './labelSelectApartment'
-import { inputDatas } from '../mock-data/input-data'
-import { selectDatas } from '../mock-data/select-data'
-import { toggleDatas } from '../mock-data/toggle-data'
-
-interface InputMapProps {
-  inputDatas: typeof inputDatas
-}
-interface SelectMapProps {
-  selectDatas: typeof inputDatas
-}
-interface ToogleMapProps {
-  toggleDatas: typeof toggleDatas
-}
+import { LabelSelectApartment } from 'pages/apartment/component/labelSelectApartment'
+import { inputDatas } from 'pages/apartment/mock-data/input-data'
+import { selectDatas } from 'pages/apartment/mock-data/select-data'
+import { toggleDatas } from 'pages/apartment/mock-data/toggle-data'
+import { ImageUploadInput, ImageThumb } from 'pages/apartment/component/ImageUpload'
 
 const FormApartment: React.FC = () => {
+  const inputFile = useRef(null)
+  const [imgState, setImgState] = useState<any[]>([])
+
+  const onImageUpload = (event: { preventDefault: () => void; target: { files: any } }) => {
+    event.preventDefault()
+    const files: any = event.target.files
+    const myFiles = URL.createObjectURL(files[0])
+
+    setImgState([...imgState, myFiles])
+  }
+
   const initialValues: ApartmentProps = {
     nameOfBuilding: '',
     numberOfRooms: '',
@@ -55,6 +59,8 @@ const FormApartment: React.FC = () => {
               onSubmit={(values, actions) => {
                 setTimeout(() => {
                   console.log(values)
+                  console.log(values.images)
+
                   actions.setSubmitting(false)
                 }, 1000)
               }}
@@ -105,8 +111,7 @@ const FormApartment: React.FC = () => {
                                   Menu: () => 'w-300px ',
                                   Option: () => 'w-72',
                                 }}
-                                value={values[el.name]}
-                                onChange={option => setFieldValue(el.name, option)}
+                                onChange={option => setFieldValue(el.name, (option as any).value)}
                               />
                               {values[el.name] !== '' && (
                                 <LabelSelectApartment labelName={el.labelName} />
@@ -124,13 +129,27 @@ const FormApartment: React.FC = () => {
                           ))}
                         </div>
                       </div>
-                      <div className="flex  w-1/2 ml-30px">
-                        <div className=" flex flex-col justify-center items-center text-center w-630px h-232px border border-dashed border-grey border-box rounded-8px">
-                          <ImagesLoad className="w-80 h-60px cursor-pointer" />
-                          <p className="text-center text-black font-semibold text-body leading-body mt-6">
-                            Drag or click to browse photos of your property (up to 6 photos)
-                          </p>
-                        </div>
+                      <div className="flex  w-1/2 ml-30px flex-col">
+                        {imgState && imgState.length > 0 ? (
+                          <div className=" flex flex-wrap items-center justify-between">
+                            {imgState.map((path: string) => (
+                              <div key={path}>
+                                <ImageThumb path={path} />
+                              </div>
+                            ))}
+                            <ImageUploadInput
+                              size="h-232px  w-300px "
+                              onImageUpload={onImageUpload}
+                              inputFile={inputFile}
+                            />
+                          </div>
+                        ) : (
+                          <ImageUploadInput
+                            size="h-232px  w-630px "
+                            onImageUpload={onImageUpload}
+                            inputFile={inputFile}
+                          />
+                        )}
                       </div>
                     </div>
                     <Button

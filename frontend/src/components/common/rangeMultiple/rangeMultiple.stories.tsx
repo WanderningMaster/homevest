@@ -17,7 +17,7 @@ export const Empty = Template.bind({});
 
 export const minValue = Template.bind({});
 minValue.args = {
-    min: 0
+    min: 16688
 }
 
 export const maxValue = Template.bind({});

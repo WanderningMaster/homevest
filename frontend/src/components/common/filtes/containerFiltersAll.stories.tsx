@@ -10,31 +10,31 @@ export default {
 const property = [
     {
         "id": "0001",
-        "company": "RC Rainbow"
+        "estateName": "RC Rainbow"
     },
     {
         "id": "0002",
-        "company": "RC Mynai"
+        "estateName": "RC Mynai"
     },
     {
         "id": "0003",
-        "company": "RC River"
+        "estateName": "RC River"
     },
     {
         "id": "0004",
-        "company": "Drop"
+        "estateName": "Drop"
     },
     {
         "id": "0005",
-        "company": "RC Tree"
+        "estateName": "RC Tree"
     },
     {
         "id": "0006",
-        "company": "RC White"
+        "estateName": "RC White"
     },
     {
         "id": "0007",
-        "company": "RC Brown"
+        "estateName": "RC Brown"
     }
 ]
 
