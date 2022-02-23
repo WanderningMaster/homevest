@@ -12,6 +12,59 @@ export const initInvestmentApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.INVESTMENTS, investmentRouter);
 
+  /**
+   * @openapi
+   * /api/v1/estate/{estateId}/investments:
+   *  post:
+   *    summary: Make investment
+   *    tags:
+   *      - Investment
+   *    parameters:
+   *      - in: path
+   *        name: estateId
+   *    security:
+   *      - bearerAuth: []
+   *    requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *          schema:
+   *            type: object
+   *            properties:
+   *              fullName:
+   *                type: string
+   *              companyName:
+   *                type: string
+   *              country:
+   *                type: string
+   *              city:
+   *                type: string
+   *              street:
+   *                type: string
+   *              zipcode:
+   *                type: string
+   *              nameOfBank:
+   *                type: string
+   *              nameOfCard:
+   *                type: string
+   *              cardNumber:
+   *                type: string
+   *              cvv:
+   *                type: string
+   *              agreeTerms:
+   *                type: boolean
+   *              agreeRisks:
+   *                type: boolean
+   *              expirationYear:
+   *                type: number
+   *              paymentAmount:
+   *                type: number
+   *    responses:
+   *      200:
+   *        description: Successful response
+   *      404:
+   *        description: Not found response
+   */
   investmentRouter.post(InvestmentsApiPath.ROOT, isAuth, isInvestor, async (req, res) => {
     try {
       const userId = get(req, 'user.id');
