@@ -25,16 +25,13 @@ import { ApartmentActionsCreator } from 'store/appartment/appartmentReducer'
 const FormApartment: React.FC = () => {
   const inputFile = useRef(null)
   const [imgState, setImgState] = useState<string[]>([])
-  console.log(imgState)
 
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const onImageUpload = (event: { preventDefault: () => void; target: { files: any } }) => {
-    event.preventDefault()
+  const onImageUpload = (event: { target: { files: any }; nativeEvent: any }) => {
     const files: any = event.target.files
     const allBlobs: any[] = []
-    console.log(allBlobs)
 
     const blobs = Object.keys(files)
 
