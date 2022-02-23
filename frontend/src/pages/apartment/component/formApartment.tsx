@@ -2,6 +2,8 @@
 /* eslint-disable no-constant-condition */
 import React from 'react'
 import { useRef, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { Formik, Form } from 'formik'
 import { Title } from 'pages/apartment/component/title'
 import Button from 'components/common/button/button'
@@ -16,38 +18,90 @@ import { inputDatas } from 'pages/apartment/mock-data/input-data'
 import { selectDatas } from 'pages/apartment/mock-data/select-data'
 import { toggleDatas } from 'pages/apartment/mock-data/toggle-data'
 import { ImageUploadInput, ImageThumb } from 'pages/apartment/component/ImageUpload'
+import { AppRoute } from 'common/enums'
+import { postNewAppartment } from 'store/appartment/appartmentOperations'
+import { ApartmentActionsCreator } from 'store/appartment/appartmentReducer'
 
 const FormApartment: React.FC = () => {
   const inputFile = useRef(null)
-  const [imgState, setImgState] = useState<any[]>([])
+  const [imgState, setImgState] = useState<string[]>([])
+  console.log(imgState.join(',').split(' '))
+  const dispatch = useDispatch()
+  const history = useHistory()
+  // const [successMessage, setSuccessMessage] = useState(false)
+  // const [errMessage, setErrMessage] = useState(false)
 
   const onImageUpload = (event: { preventDefault: () => void; target: { files: any } }) => {
     event.preventDefault()
     const files: any = event.target.files
     const myFiles = URL.createObjectURL(files[0])
+    console.log(myFiles)
 
     setImgState([...imgState, myFiles])
   }
 
+  const onSubmitData = (values: any) => {
+    const data = {
+      estateId: values.estateId,
+      nameOfBuilding: values.nameOfBuilding,
+      numberOfRooms: values.numberOfRooms,
+      numberOfBathrooms: values.numberOfBathrooms,
+      typeOfParking: values.typeOfParking,
+      price: values.price,
+      priceForM2: values.priceForM2,
+      location: values.location,
+      appartmentClass: values.appartmentClass,
+      floors: values.floors,
+      appartmentState: values.appartmentState,
+      currency: values.currency,
+      yearOfOperation: values.yearOfOperation,
+      salesStatus: values.salesStatus,
+      investmentType: values.investmentType,
+      lending: values.lending,
+      installments: values.installments,
+      mortgage: values.mortgage,
+      images: values.images,
+      // images: imgState.join(),
+    }
+    // const formData = new FormData()
+    // for (const value in values) {
+    //   console.log(value, values[value])
+
+    //   formData.append(value, values[value])
+    // }
+    // console.log({ ...formData })
+
+    // postNewAppartment(data)
+    // console.log(data, data.images)
+    dispatch(ApartmentActionsCreator.submitApartment(data))
+    backToDashboard()
+  }
+
+  const backToDashboard = () => history.push(AppRoute.NEW_BUILDINGS)
+
   const initialValues: ApartmentProps = {
-    nameOfBuilding: '',
-    numberOfRooms: '',
-    numberOfBathrooms: '',
-    typeOfParking: '',
-    price: '',
-    priceForM2: '',
-    location: '',
+    estateId: '9d9a3338-1c6c-4a10-9341-36840b4e4d55',
+    nameOfBuilding: 'RC Rainbow',
+    numberOfRooms: '4',
+    numberOfBathrooms: '1',
+    typeOfParking: 'underground',
+    price: '500 000',
+    priceForM2: '1000',
+    location: 'Kyiv',
     appartmentClass: '',
     floors: '',
     appartmentState: '',
     currency: '',
     yearOfOperation: '',
+    investmentType: 'payment via bank card',
     salesStatus: '',
     lending: false,
     installments: false,
     mortgage: false,
-    images: [],
+    images:
+      'https://c1.wallpaperflare.com/preview/183/25/215/pool-backyard-pool-swimming-backyard-patio.jpg',
   }
+
   return (
     <div className="absolute inset-x-0  mx-auto w-1440px px-75px  ">
       <div className="flex item-center justify-center mx-auto">
@@ -56,19 +110,13 @@ const FormApartment: React.FC = () => {
             <Formik
               initialValues={initialValues}
               validationSchema={ApartmentSchema}
-              onSubmit={(values, actions) => {
-                setTimeout(() => {
-                  console.log(values)
-                  console.log(values.images)
-
-                  actions.setSubmitting(false)
-                }, 1000)
-              }}
+              onSubmit={onSubmitData}
             >
               {props => {
                 const { values, handleSubmit, handleChange, setFieldValue, dirty } = props
                 return (
                   <Form
+                    method="POST"
                     className="items-center  text-body-small text-green"
                     onSubmit={handleSubmit}
                   >
@@ -82,7 +130,7 @@ const FormApartment: React.FC = () => {
                               name={item.name}
                               label={item.label}
                               value={values[item.name]}
-                              onChange={handleChange}
+                              // onChange={handleChange}
                               className={clsx('', {
                                 'border-green': dirty,
                               })}
@@ -111,6 +159,7 @@ const FormApartment: React.FC = () => {
                                   Menu: () => 'w-300px ',
                                   Option: () => 'w-72',
                                 }}
+                                // value={values[el.name]}
                                 onChange={option => setFieldValue(el.name, (option as any).value)}
                               />
                               {values[el.name] !== '' && (
@@ -129,6 +178,7 @@ const FormApartment: React.FC = () => {
                           ))}
                         </div>
                       </div>
+
                       <div className="flex  w-1/2 ml-30px flex-col">
                         {imgState && imgState.length > 0 ? (
                           <div className=" flex flex-wrap items-center justify-between">
