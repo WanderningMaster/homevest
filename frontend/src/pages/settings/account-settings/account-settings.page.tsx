@@ -19,6 +19,15 @@ import { AppBar } from "components/Navigation/AppBar";
 import { Logo } from "components/Navigation/Logo";
 import { AccountSettingsProps } from "./types/account-settings-props.interface";
 import { AccountSettingsSchema } from "./account-settings.schema";
+import axios from "axios";
+
+async function postDocument({document} : {document : any}) {
+  const formData = new FormData();
+  formData.append("document", document)
+
+  const result = await axios.post('api/v1/companies/files', formData, { headers: {'Content-Type': 'multipart/form-data'}})
+  return result.data
+}
 
 export const AccountSettingsPage: React.FC = () => {
   const initialValues: AccountSettingsProps = {
@@ -33,6 +42,21 @@ export const AccountSettingsPage: React.FC = () => {
     street: "street",
     documents: "documents"
   };
+
+  const [file, setFile] = useState()
+  const [documents, setDocuments] = useState<any>([])
+
+  const submit = async (event: any) => {
+    event.preventDefault()
+    const result = await postDocument({document: file})
+    setDocuments([result.document, ...documents])
+    console.log(result);
+  }
+
+  const fileSelected = (event: any) => {
+    const file = event.target.files[0]
+		setFile(file)
+	}
 
   const [active, setActive] = useState(false);
 
@@ -203,6 +227,7 @@ export const AccountSettingsPage: React.FC = () => {
               type="submit"
               label="Save changes"
               className="mr-14 disabled:bg-green-inactive"
+              form="documentForm"
               />
               <Button
               nameBtn="tertiary"
@@ -216,11 +241,16 @@ export const AccountSettingsPage: React.FC = () => {
               <Typography type="body-large" className="mb-12">
                 You can manage your documents here. We need your documents to prove that you company is real.
               </Typography>
-              <div className="flex-auto flex-col justify-center cursor-pointer">
-                <div className="py-6 border border-dashed border-grey border-box rounded-4px">
-                  <ImagesLoad className="mx-auto mb-9"/>
-                  <Typography type="body-semibold" className="text-center">Click to browse files</Typography>
-                </div>
+              <form onSubmit={submit} id="documentForm" encType="multipart/form-data">
+                <input onChange={fileSelected} type="file" name="document" className="" id="documentInput"/>
+              </form>
+              <div className="flex-auto flex-col justify-center">
+                <label htmlFor="documentInput" className="cursor-pointer">
+                  <div className="py-6 border border-dashed border-grey border-box rounded-4px">
+                    <ImagesLoad className="mx-auto mb-9"/>
+                    <Typography type="body-semibold" className="text-center">Click to browse files</Typography>
+                  </div>
+                </label>
               </div>
               <div className="flex justify-between items-center mt-8 py-4 pr-2 bg-light-grey text-white rounded-12px">
                 <div className="flex items-center">
