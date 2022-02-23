@@ -8,6 +8,8 @@ enum ReducerName {
   USER = 'user',
   MAKE_INVESTMENT = 'make-investment',
   APARTMENT = 'apartment',
+  ESTATE_NEW = 'estateNew',
+  APARTMENTS = 'apartments',
 }
 
 export { ReducerName }
