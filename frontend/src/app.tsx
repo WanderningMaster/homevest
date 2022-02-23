@@ -17,7 +17,7 @@ import VerifyEmail from 'pages/auth/verify-email/verify-email.page'
 import { RootState } from 'common/types'
 import { DashboardMakeInvestmentPage } from 'pages/dashboard-make-investment/dashboard-make-investment-page'
 import ResetPassword from 'pages/auth/reset-password/reset-password.page'
-
+import DashboardContainer from 'pages/investor/dashboard/investorDashboard'
 
 
 const App: React.FC = () => {
@@ -61,6 +61,9 @@ const App: React.FC = () => {
       </Route>
       <Route path={AppRoute.MAP}>
         <DashboardMapPage />
+      </Route>
+      <Route path={AppRoute.INVESTOR_DASHBOARD}>
+        <DashboardContainer />
       </Route>
       <Route path={AppRoute.MAKE_INVESTMENT}>
         <DashboardMakeInvestmentPage />
