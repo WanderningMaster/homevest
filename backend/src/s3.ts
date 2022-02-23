@@ -18,13 +18,13 @@ interface uploadParams {
   Key: any,
 }
 
-export function uploadFile(file: { path: fs.PathLike; filename: any; }) {
+export function uploadFile(file: { path: fs.PathLike; originalname: any; }) {
   const fileStream = fs.createReadStream(file.path)
 
   const uploadParams: uploadParams = {
     Bucket: bucketName,
     Body: fileStream,
-    Key: file.filename
+    Key: file.originalname
   }
 
   return s3.upload(uploadParams).promise()

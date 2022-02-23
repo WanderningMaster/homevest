@@ -25,7 +25,7 @@ async function postDocument({document} : {document : any}) {
   const formData = new FormData();
   formData.append("document", document)
 
-  const result = await axios.post('api/v1/companies/files', formData, { headers: {'Content-Type': 'multipart/form-data'}})
+  const result = await axios.post('/companies/files', formData, { headers: {'Content-Type': 'multipart/form-data'}})
   return result.data
 }
 
@@ -45,6 +45,7 @@ export const AccountSettingsPage: React.FC = () => {
 
   const [file, setFile] = useState()
   const [documents, setDocuments] = useState<any>([])
+  const [active, setActive] = useState(false);
 
   const submit = async (event: any) => {
     event.preventDefault()
@@ -58,7 +59,6 @@ export const AccountSettingsPage: React.FC = () => {
 		setFile(file)
 	}
 
-  const [active, setActive] = useState(false);
 
   const onClick = () => {
     setActive(true);
@@ -242,7 +242,7 @@ export const AccountSettingsPage: React.FC = () => {
                 You can manage your documents here. We need your documents to prove that you company is real.
               </Typography>
               <form onSubmit={submit} id="documentForm" encType="multipart/form-data">
-                <input onChange={fileSelected} type="file" name="document" className="" id="documentInput"/>
+                <input onChange={fileSelected} type="file" name="document" className="hidden" id="documentInput"/>
               </form>
               <div className="flex-auto flex-col justify-center">
                 <label htmlFor="documentInput" className="cursor-pointer">
