@@ -1,5 +1,7 @@
+import { isDeveloper } from '~/middlewares/Auth/isDeveloper.middleware';
 import { Router } from 'express';
 import { ApiPath, HttpCode, CompaniesApiPath } from '~/common/enums';
+import { isAuth } from '~/middlewares';
 import { companyService } from '~/services/services';
 
 const initCompanyApi = (apiRouter: Router): Router => {
@@ -7,7 +9,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.COMPANIES, companyRouter);
 
-  companyRouter.get(CompaniesApiPath.ROOT, async (_req, res) => {
+  companyRouter.get(CompaniesApiPath.ROOT, isAuth, async (_req, res) => {
     try {
       const companies = await companyService.getAllCompanies();
       res.status(HttpCode.OK).json(companies);
@@ -16,7 +18,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
-  companyRouter.get(CompaniesApiPath.$ID, async (_req, res) => {
+  companyRouter.get(CompaniesApiPath.$ID, isAuth, async (_req, res) => {
     try {
       const company = await companyService.getCompanyById(_req.params.id);
       res.status(HttpCode.OK).json(company);
@@ -25,7 +27,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
-  companyRouter.post(CompaniesApiPath.ROOT, async (_req, res) => {
+  companyRouter.post(CompaniesApiPath.ROOT, isAuth, isDeveloper, async (_req, res) => {
     try {
       const company = await companyService.createCompany(_req.body);
       res.status(HttpCode.OK).json(company);
@@ -34,7 +36,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
-  companyRouter.put(CompaniesApiPath.$ID, async (_req, res) => {
+  companyRouter.put(CompaniesApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const updateResult = await companyService.updateCompany(_req.params.id, _req.body);
       res.status(HttpCode.OK).json(updateResult);
@@ -43,7 +45,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
     }
   });
 
-  companyRouter.delete(CompaniesApiPath.$ID, async (_req, res) => {
+  companyRouter.delete(CompaniesApiPath.$ID, isAuth, isDeveloper, async (_req, res) => {
     try {
       const deleteResult = await companyService.deleteCompany(_req.params.id);
       res.status(HttpCode.NO_CONTENT).json(deleteResult);
@@ -51,7 +53,7 @@ const initCompanyApi = (apiRouter: Router): Router => {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
-  companyRouter.get(CompaniesApiPath.GET_USER, async (_req, res) => {
+  companyRouter.get(CompaniesApiPath.GET_USER, isAuth, async (_req, res) => {
     try {
       const user = await companyService.getUser(_req.params.id);
       res.status(HttpCode.OK).json(user[0].user);
