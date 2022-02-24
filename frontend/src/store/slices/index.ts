@@ -1,3 +1,4 @@
+export { reducer as estateReducer, EstateActionsCreator } from 'store/estate/estateReducer'
 export {
   reducer as makeInvestmentReducer,
   MakeInvestmentActionCreators,
