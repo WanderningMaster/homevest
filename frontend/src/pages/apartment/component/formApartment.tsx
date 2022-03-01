@@ -20,7 +20,7 @@ import { selectDatas } from 'pages/apartment/mock-data/select-data'
 import { toggleDatas } from 'pages/apartment/mock-data/toggle-data'
 import { ImageUploadInput, ImageThumb } from 'pages/apartment/component/ImageUpload'
 import { AppRoute } from 'common/enums'
-import { ApartmentActionsCreator } from 'store/appartment/appartmentReducer'
+import { EstateApartmentsActionsCreator } from 'store/estateApartments/estateApartmentsReducer'
 
 const FormApartment: React.FC = () => {
   const inputFile = useRef(null)
@@ -65,7 +65,7 @@ const FormApartment: React.FC = () => {
       images: imgState.length > 0 ? imgState.join() : values.images,
     }
 
-    dispatch(ApartmentActionsCreator.submitApartment(data))
+    dispatch(EstateApartmentsActionsCreator.submitApartment(data))
     backToDashboard()
   }
 

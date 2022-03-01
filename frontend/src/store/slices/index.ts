@@ -1,4 +1,7 @@
-export { reducer as estateReducer, EstateActionsCreator } from 'store/estate/estateReducer'
+export {
+  reducer as estateApartmentsReducer,
+  EstateApartmentsActionsCreator,
+} from 'store/estateApartments/estateApartmentsReducer'
 export {
   reducer as makeInvestmentReducer,
   MakeInvestmentActionCreators,
@@ -12,7 +15,3 @@ export {
   reducer as apartmentReducer,
   ApartmentActionCreator,
 } from 'store/apartment/apartmentReducer'
-export {
-  reducer as submitApartmentsReducer,
-  ApartmentActionsCreator,
-} from 'store/appartment/appartmentReducer'
