@@ -1,41 +1,34 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ReducerName } from 'common/enums'
-import { Actions } from 'store/test/types'
 import {
   IEstateApartment,
   FETCH_APARTMENTS,
   FETCH_APARTMENTS_FILTER,
   POST_NEW_APARTMENT,
+  IActions,
+  IInitialState,
+  IFilter,
 } from 'store/estateApartments/types'
-
-export interface IActions {
-  type: string
-  payload?: any
-}
-
-export interface IInitialState {
-  apartments: IEstateApartment[]
-  newApartment: IEstateApartment | undefined
-  filters: any
-  isLoading: boolean
-  error: string | null
-}
 
 const initialState: IInitialState = {
   apartments: [],
   newApartment: {},
-  filters: null,
+  filters: [],
   isLoading: false,
   error: null,
 }
 
 const fetchEstate = (): IActions => ({ type: FETCH_APARTMENTS })
-const submitApartment = (values: any): Actions => ({
+const submitApartment = (values: any): IActions => ({
   type: POST_NEW_APARTMENT,
   payload: values,
 })
-const fetchApartmentsFilters = (): IActions => ({ type: FETCH_APARTMENTS_FILTER })
+const fetchApartmentsFilters = (filter: any): IActions => ({
+  type: FETCH_APARTMENTS_FILTER,
+  payload: filter,
+})
 
 const { reducer, actions } = createSlice({
   name: ReducerName.ESTATE,
@@ -49,6 +42,10 @@ const { reducer, actions } = createSlice({
       ...state,
       apartments: [...state.apartments, action.payload],
       newApartment: action.payload,
+    }),
+    setFilters: (state, action: PayloadAction<IFilter>) => ({
+      ...state,
+      filters: action.payload,
     }),
     showLoader: state => ({
       ...state,

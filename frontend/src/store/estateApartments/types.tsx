@@ -1,12 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const CREATE_APARTMENT = 'ESTATE/CREATE_APARTMENT'
-// export const REQUEST_APARTMENTS = 'ESTATE/REQUEST_APARTMENTS'
 export const FETCH_APARTMENTS = 'ESTATE/FETCH_APARTMENTS'
 export const FETCH_APARTMENTS_FILTER = 'FETCH_APARTMENTS_FILTERS'
 export const POST_NEW_APARTMENT = 'SUBMIT_APARTMENT'
-// export const SHOW_LOADER = 'APP/SHOW_LOADER'
-// export const HIDE_LOADER = 'APP/HIDE_LOADER'
-// export const SHOW_ALERT = 'APP/SHOW_ALERT'
-// export const HIDE_ALERT = 'APP/SHOW_ALERT'
 
 export interface IEstateApartment {
   id?: string
@@ -33,7 +29,25 @@ export interface IEstateApartment {
   updatedAt?: string
 }
 
-export interface Actions {
+export interface IActions {
   type: string
   payload?: IEstateApartment[]
+}
+
+export interface IInitialState {
+  apartments: IEstateApartment[]
+  newApartment: IEstateApartment | undefined
+  filters: any
+  // filters: IFilter | [] | null
+  isLoading: boolean
+  error: string | null
+}
+
+export interface IFilter {
+  apartmentClass?: string[]
+  apartmentState?: string[]
+  floors?: string[]
+  numberOfRooms?: string[]
+  salesStatus?: string[]
+  yearOfOperation?: string[]
 }

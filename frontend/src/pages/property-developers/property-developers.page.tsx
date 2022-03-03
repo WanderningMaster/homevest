@@ -13,7 +13,9 @@ import { Dashboardlayout } from 'components/layouts/dashboard-layout'
 import {
   getDeveloperEstate,
   getUniqueDeveloperEstate,
-} from 'store/estateApartments/estateAparttmentsSelectors'
+  getFilter,
+  getVisibleEstate,
+} from 'store/estateApartments/estateApartmentsSelectors'
 // import { EstateActionsCreator } from 'store/estate/estateReducer'
 import { EstateApartmentsActionsCreator } from 'store/estateApartments/estateApartmentsReducer'
 import { AppRoute } from 'common/enums'
@@ -22,17 +24,19 @@ function PropertyDevelopersPage(): JSX.Element {
   const [active, setActive] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const history = useHistory()
-
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(EstateApartmentsActionsCreator.fetchEstate())
   }, [])
 
-  const estate = useSelector(getDeveloperEstate)
-  const estateUniqById = useSelector(getUniqueDeveloperEstate)
-  console.log(estate)
-  console.log(estateUniqById)
+  // const estate = useSelector(getDeveloperEstate)
+  // const estateUniqById = useSelector(getUniqueDeveloperEstate)
+  // console.log(estate)
+  // console.log(estateUniqById)
+
+  const estate = useSelector(getVisibleEstate)
+  // console.log(filter)
 
   const onMenuClick = () => {
     setActive(!active)
