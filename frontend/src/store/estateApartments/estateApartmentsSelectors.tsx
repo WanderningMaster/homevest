@@ -30,18 +30,18 @@ export const getFilterPrice = (state: { estate: { filters: { price: any } } }) =
 export const getVisibleEstate = createSelector(
   [getDeveloperEstate, getFilter, getFilterPrice],
   (estate, filter, priceFilter) => {
-    const filteredArray: IEstateApartment[] = []
-    const priceFilteredArray: IEstateApartment[] = []
+    const filteredArrayByFilter: IEstateApartment[] = []
+    const filteredArrayByPrice: IEstateApartment[] = []
     if (filter || priceFilter) {
-      filter && mapFilterArray(estate, filter, filteredArray)
+      filter && mapFilterArray(estate, filter, filteredArrayByFilter)
 
-      priceFilter && filteredArray.length < 1
-        ? mapPriceArray(estate, priceFilter, filteredArray)
-        : mapPriceArray(filteredArray, priceFilter, priceFilteredArray)
+      priceFilter && filteredArrayByFilter.length < 1
+        ? mapPriceArray(estate, priceFilter, filteredArrayByFilter)
+        : mapPriceArray(filteredArrayByFilter, priceFilter, filteredArrayByPrice)
 
       return (filter && !priceFilter) || (priceFilter && !filter)
-        ? filteredArray
-        : priceFilteredArray
+        ? filteredArrayByFilter
+        : filteredArrayByPrice
     }
 
     return estate
@@ -71,11 +71,19 @@ function mapPriceArray(arr: any[], priceFilter: any, arrFiltered: any[]) {
   const { currency } = priceFilter
   arr.map((obj: any) => {
     for (const key in obj) {
-      const estateValue: any = obj[key]
+      const estateValue: number | [] | string | boolean = obj[key]
 
       for (const keyPrice in priceFilter) {
-        const filterValue = priceFilter[keyPrice]
-        if ((key === keyPrice && filterValue === estateValue) || currency?.includes(estateValue)) {
+        const priceFilterValue = priceFilter[keyPrice]
+        console.log(priceFilterValue.min, priceFilterValue.max)
+
+        if (
+          (key === keyPrice && priceFilterValue === estateValue) ||
+          currency?.includes(estateValue) ||
+          (key === keyPrice &&
+            priceFilterValue?.min <= Number(estateValue) &&
+            Number(estateValue) <= priceFilterValue?.max)
+        ) {
           if (!arrFiltered.find(({ id }) => id === obj.id)) {
             arrFiltered.push(obj)
           }
@@ -84,72 +92,5 @@ function mapPriceArray(arr: any[], priceFilter: any, arrFiltered: any[]) {
     }
   })
 }
-
-// filteredArray.map((obj: any) => {
-//   const { currency } = priceFilter
-//   for (const key in obj) {
-//     const estateValue: any = obj[key]
-
-//     for (const keyPrice in priceFilter) {
-//       const filterValue = priceFilter[keyPrice]
-//       if ((key === keyPrice && filterValue === estateValue) || currency?.includes(estateValue)) {
-//         if (!filteredArray.find(({ id }) => id === obj.id)) {
-//           filteredArray.push(obj)
-//         }
-//       }
-//     }
-//   }
-// })
-
-// export const getFilter = (state: { estate: { filters: { filters: any } } }) =>
-//   state.estate.filters.filters
-
-// export const getVisibleEstate = createSelector(
-//   [getDeveloperEstate, getFilter],
-//   (estate, filter) => {
-//     if (!filter) {
-//       return estate
-//     }
-
-//     const filteredArray: IEstateApartment[] = []
-
-//     estate.map((obj: any) => {
-//       for (const key in obj) {
-//         const estateValue: string = obj[key]
-
-//         for (const key in filter) {
-//           if (filter[key].includes(estateValue)) {
-//             // console.log(obj)
-//             filteredArray.push(obj)
-//           }
-//         }
-//       }
-//     })
-
-//     console.log(filteredArray)
-//     return filteredArray
-//   },
-// )
-
-// PRICES
-
-// if (priceFilter) {
-//   estate.map((obj: any) => {
-//     for (const key in obj) {
-//       const estateValue: any = obj[key]
-
-//       for (const keyPrice in priceFilter) {
-//         const { priceRange, price, priceFormM2, currency, lending, installments, mortgage } =
-//           priceFilter
-//         const filterValue = priceFilter[keyPrice]
-//         if ((key === keyPrice && filterValue === estateValue) || currency?.includes(estateValue)) {
-//           if (!filteredArray.find(({ id }) => id === obj.id)) {
-//             filteredArray.push(obj)
-//           }
-//         }
-//       }
-//     }
-//   })
-// }
 
 // const { priceRange, price, priceFormM2, currency, lending, installments, mortgage } = priceFilter

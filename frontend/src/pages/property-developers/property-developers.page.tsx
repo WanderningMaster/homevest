@@ -10,13 +10,7 @@ import { PropertyDevCard } from 'components/Dashboard/Property-dev-card'
 import Button from 'components/common/button/button'
 import { FiltersDashboard } from 'components/Dashboard/FiltersDashboard'
 import { Dashboardlayout } from 'components/layouts/dashboard-layout'
-import {
-  getDeveloperEstate,
-  getUniqueDeveloperEstate,
-  getFilter,
-  getVisibleEstate,
-} from 'store/estateApartments/estateApartmentsSelectors'
-// import { EstateActionsCreator } from 'store/estate/estateReducer'
+import { getVisibleEstate } from 'store/estateApartments/estateApartmentsSelectors'
 import { EstateApartmentsActionsCreator } from 'store/estateApartments/estateApartmentsReducer'
 import { AppRoute } from 'common/enums'
 
@@ -32,8 +26,6 @@ function PropertyDevelopersPage(): JSX.Element {
 
   // const estate = useSelector(getDeveloperEstate)
   // const estateUniqById = useSelector(getUniqueDeveloperEstate)
-  // console.log(estate)
-  // console.log(estateUniqById)
 
   const estate = useSelector(getVisibleEstate)
 
