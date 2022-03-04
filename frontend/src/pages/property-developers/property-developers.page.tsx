@@ -36,7 +36,6 @@ function PropertyDevelopersPage(): JSX.Element {
   // console.log(estateUniqById)
 
   const estate = useSelector(getVisibleEstate)
-  // console.log(filter)
 
   const onMenuClick = () => {
     setActive(!active)
