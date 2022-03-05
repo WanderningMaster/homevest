@@ -66,7 +66,9 @@ const FormApartment: React.FC = () => {
     }
 
     dispatch(EstateApartmentsActionsCreator.submitApartment(data))
-    backToDashboard()
+    setTimeout(() => {
+      backToDashboard()
+    }, 500)
   }
 
   const backToDashboard = () => {
@@ -80,8 +82,8 @@ const FormApartment: React.FC = () => {
     numberOfRooms: '4',
     numberOfBathrooms: '1',
     typeOfParking: 'underground',
-    price: '500000',
-    priceForM2: '10000',
+    price: '500 000',
+    priceForM2: '1000',
     location: 'Kyiv',
     appartmentClass: '',
     floors: '',

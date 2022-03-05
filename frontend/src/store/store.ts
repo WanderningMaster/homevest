@@ -20,7 +20,6 @@ const store = configureStore({
     [ReducerName.ESTATE]: estateApartmentsReducer,
     [ReducerName.USERS]: userReducer,
     [ReducerName.MAKE_INVESTMENT]: makeInvestmentReducer,
-    // [ReducerName.APARTMENT]: submitApartmentsReducer,
     [ReducerName.APARTMENTS]: apartmentReducer,
     [ReducerName.ESTATE_NEW]: estateNewReducer,
   },

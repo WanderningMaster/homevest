@@ -20,10 +20,10 @@ export const getUniqueDeveloperEstate = (state: { estate: { apartments: any } })
 }
 
 export const getFilter = (state: { estate: { filters: { filters: any } } }) =>
-  state.estate.filters.filters
+  state?.estate?.filters?.filters
 
 export const getFilterPrice = (state: { estate: { filters: { price: any } } }) => {
-  const priceFilter = state.estate.filters.price
+  const priceFilter = state?.estate?.filters?.price
   return priceFilter
 }
 

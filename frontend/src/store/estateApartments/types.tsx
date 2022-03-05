@@ -36,9 +36,7 @@ export interface IActions {
 
 export interface IInitialState {
   apartments: IEstateApartment[]
-  newApartment: IEstateApartment | undefined
   filters: any
-  // filters: IFilter | [] | null
   isLoading: boolean
   error: string | null
 }

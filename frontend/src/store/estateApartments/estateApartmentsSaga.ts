@@ -9,35 +9,31 @@ import {
 
 function* fetchEstateWorker() {
   try {
-    yield put(EstateApartmentsActionsCreator.hideError())
-    yield put(EstateApartmentsActionsCreator.showLoader())
+    yield put(EstateApartmentsActionsCreator.requestApartmentsPending())
     const { data } = yield call(fetchEstateApartmentsFromApi)
-    yield put(EstateApartmentsActionsCreator.setApartments(data))
-    yield put(EstateApartmentsActionsCreator.hideLoader())
+    yield put(EstateApartmentsActionsCreator.requestApartmentsSuccess(data))
   } catch (err) {
     console.log(err)
     const error = err as Error
-    yield put(EstateApartmentsActionsCreator.hideLoader())
-    yield put(EstateApartmentsActionsCreator.showError(error.message))
+    yield put(EstateApartmentsActionsCreator.requestApartmentsRejected({ error: error.message }))
   }
 }
 
 function* postEstateNewApartmentWorker(
-  action: ReturnType<typeof EstateApartmentsActionsCreator.createApartment>,
+  action: ReturnType<typeof EstateApartmentsActionsCreator.submitApartment>,
 ) {
-  //   console.log(action.payload)
   if (!action.payload) {
     return
   }
   try {
-    yield put(EstateApartmentsActionsCreator.hideError())
-    yield put(EstateApartmentsActionsCreator.showLoader())
+    yield put(EstateApartmentsActionsCreator.createApartmentPending())
     yield call(postNewAppartment, action.payload)
+    yield put(EstateApartmentsActionsCreator.createApartmentSuccess())
   } catch (err) {
     console.log(err)
     const error = err as Error
-    yield put(EstateApartmentsActionsCreator.hideLoader())
-    yield put(EstateApartmentsActionsCreator.showError(error.message))
+
+    yield put(EstateApartmentsActionsCreator.createApartmentRejected({ error: error.message }))
   }
 }
 

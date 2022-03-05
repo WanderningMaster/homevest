@@ -5,7 +5,6 @@ import { ReducerName } from 'common/enums'
 import {
   IEstateApartment,
   FETCH_APARTMENTS,
-  FETCH_APARTMENTS_FILTER,
   POST_NEW_APARTMENT,
   IActions,
   IInitialState,
@@ -14,7 +13,7 @@ import {
 
 const initialState: IInitialState = {
   apartments: [],
-  newApartment: {},
+
   filters: [],
   isLoading: false,
   error: null,
@@ -25,43 +24,43 @@ const submitApartment = (values: any): IActions => ({
   type: POST_NEW_APARTMENT,
   payload: values,
 })
-const fetchApartmentsFilters = (filter: any): IActions => ({
-  type: FETCH_APARTMENTS_FILTER,
-  payload: filter,
-})
 
 const { reducer, actions } = createSlice({
   name: ReducerName.ESTATE,
   initialState,
   reducers: {
-    setApartments: (state, action: PayloadAction<IEstateApartment[]>) => ({
+    requestApartmentsPending: state => ({
+      ...state,
+      isLoading: true,
+      error: null,
+    }),
+    requestApartmentsSuccess: (state, action: PayloadAction<IEstateApartment[]>) => ({
       ...state,
       apartments: action.payload,
+      isLoading: false,
     }),
-    createApartment: (state, action) => ({
+    requestApartmentsRejected: (state, action: PayloadAction<{ error: string }>) => ({
       ...state,
-      apartments: [...state.apartments, action.payload],
-      newApartment: action.payload,
+      isLoading: false,
+      error: action.payload.error,
+    }),
+    createApartmentPending: state => ({
+      ...state,
+      isLoading: true,
+      error: null,
+    }),
+    createApartmentSuccess: state => ({
+      ...state,
+      isLoading: false,
+    }),
+    createApartmentRejected: (state, action: PayloadAction<{ error: string }>) => ({
+      ...state,
+      isLoading: false,
+      error: action.payload.error,
     }),
     setFilters: (state, action: PayloadAction<IFilter>) => ({
       ...state,
       filters: action.payload,
-    }),
-    showLoader: state => ({
-      ...state,
-      isLoading: true,
-    }),
-    hideLoader: state => ({
-      ...state,
-      isLoading: false,
-    }),
-    showError: (state, action: PayloadAction<string>) => ({
-      ...state,
-      error: action.payload,
-    }),
-    hideError: state => ({
-      ...state,
-      error: null,
     }),
   },
 })
@@ -70,7 +69,6 @@ const EstateApartmentsActionsCreator = {
   ...actions,
   fetchEstate,
   submitApartment,
-  fetchApartmentsFilters,
 }
 
 export { EstateApartmentsActionsCreator, reducer }

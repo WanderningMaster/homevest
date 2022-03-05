@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import filters from 'components/common/filtes/filters'
+
 import { api } from 'services'
 
 async function fetchEstateApartmentsFromApi() {
@@ -12,15 +12,13 @@ async function fetchEstateApartmentsFromApi() {
   }
 }
 
-const postNewAppartment = async (newAppartmentData: string | any[]) => {
+const postNewAppartment = async (newAppartmentData: any) => {
   // debugger
-  if (!newAppartmentData || newAppartmentData.length > 1 || { newAppartmentData: { filters } }) {
+  if (!newAppartmentData || newAppartmentData.length > 1 || newAppartmentData?.filters) {
     return
   }
-  console.log({ newAppartmentData: { filters } })
 
   try {
-    console.log('apartmentOperations', newAppartmentData)
     const data = await api.post('/appartments', newAppartmentData)
 
     return data
