@@ -66,9 +66,9 @@ const FormApartment: React.FC = () => {
     }
 
     dispatch(EstateApartmentsActionsCreator.submitApartment(data))
-    setTimeout(() => {
-      backToDashboard()
-    }, 500)
+    
+    backToDashboard()
+   
   }
 
   const backToDashboard = () => {
