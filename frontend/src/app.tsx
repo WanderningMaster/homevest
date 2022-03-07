@@ -33,7 +33,7 @@ const App: React.FC = () => {
   }, [])
   const isAuth = users.isAuth
   const role = users.userData.role
-  console.log('Role:', role)
+ 
   return (
     <Switch>
       <PrivateRoute
