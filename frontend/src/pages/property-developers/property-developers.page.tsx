@@ -24,9 +24,6 @@ function PropertyDevelopersPage(): JSX.Element {
     dispatch(EstateApartmentsActionsCreator.fetchEstate())
   }, [])
 
-  // const estate = useSelector(getDeveloperEstate)
-  // const estateUniqById = useSelector(getUniqueDeveloperEstate)
-
   const estate = useSelector(getVisibleEstate)
 
   const onMenuClick = () => {
