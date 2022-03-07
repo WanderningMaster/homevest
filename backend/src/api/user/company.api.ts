@@ -4,6 +4,14 @@ import { ApiPath, HttpCode, CompaniesApiPath } from '~/common/enums';
 import { isAuth } from '~/middlewares';
 import { companyService } from '~/services/services';
 
+import multer from 'multer';
+import * as fs from "fs";
+import * as util from "util";
+import { uploadFile, getFileStream } from '../../s3' 
+
+const unlinkFile = util.promisify(fs.unlink)
+const upload = multer({ dest: 'uploads/' })
+
 const initCompanyApi = (apiRouter: Router): Router => {
   const companyRouter = Router();
 
@@ -55,6 +63,31 @@ const initCompanyApi = (apiRouter: Router): Router => {
       res.status(HttpCode.OK).json(company);
     } catch (error) {
       res.status(HttpCode.NOT_FOUND).json(error);
+    }
+  });
+
+  companyRouter.get(CompaniesApiPath.GET_FILE, async (_req, res) => {
+    try {
+      const key = _req.params.id
+      const readStream = getFileStream(key)
+      readStream.pipe(res)
+
+      res.status(HttpCode.OK);
+    } catch(error) {
+      res.status(HttpCode.NOT_FOUND).json(error);
+    }
+  });
+  
+  companyRouter.post(CompaniesApiPath.FILES, upload.single('document'), async (_req, res) => {
+    try {
+      const file: any = _req.file
+      const result = await uploadFile(file)
+      await unlinkFile(file.path)
+      res.status(HttpCode.OK).send({imagePath: `/api/v1/companies/files/${result.Key}`});
+    } catch(error) {
+      console.log(error);
+      
+      res.status(HttpCode.BAD_REQUEST).json(error);
     }
   });
 
