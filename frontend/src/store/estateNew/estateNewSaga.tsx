@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects'
+import { api } from 'services';
 import { EstateActionsCreatorNew } from './estateNewReducer'
 
-const fetchEstateFromApi = () => axios.get('http://localhost:3001/api/v1/estate');
-const fetchGetEstateFilters = () => axios.get('http://localhost:3001/api/v1/estate/filters');
+const fetchEstateFromApi = () => api.get('http://localhost:3001/api/v1/estate');
+const fetchGetEstateFilters = () => api.get('http://localhost:3001/api/v1/estate/filters');
 
 function* fetchEstateWorker() {
   try {

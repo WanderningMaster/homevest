@@ -47,7 +47,7 @@ export const AccountSettingsPage: React.FC = () => {
          <>
             <SideBar />
             <Header position="left-72 justify-start py-8 pl-110px ">
-              <AppBar />
+              <AppBar/>
             </Header>
           </>
         ) : (

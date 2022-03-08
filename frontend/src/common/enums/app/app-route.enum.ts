@@ -13,7 +13,7 @@ enum AppRoute {
   SETTINGS_APARTMENT = '/apartment-settings',
   REPORTS = 'reports',
   NOTIFICATIONS = 'notifications',
-  MESSAGES = 'messages',
+  MESSAGES = '/messages',
   MY_INVESTMENTS = 'my-investments',
   FAVOURITES = 'favourites',
   FORGOT_PASSWORD = '/forgot-password',

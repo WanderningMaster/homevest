@@ -29,6 +29,7 @@ export function* resetPassword(action: any){
 export function* forgotPassword(action: any){
   try {
     const res: AxiosResponse = yield call(authService.forgotPassword, action.email);
+    console.log(res);
     yield put(UserActionCreator.setMessage({message: "Reset link sended"}))
   } catch (e) {
     console.error(e);

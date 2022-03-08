@@ -39,16 +39,56 @@ const App: React.FC = () => {
     <Switch>
       <PrivateRoute 
         developerComponent={PropertyDevelopersPage}
-        investorComponent={HomePage}
-        // component={{PropertyDevelopersPage, HomePage}}
+        investorComponent={DashboardContainer}
         isAuth={isAuth}
         role={role}
         exact path={AppRoute.HOME_PAGE} 
       />
+      <PrivateRoute 
+        developerComponent={PropertyDevelopersPage}
+        investorComponent={DashboardContainer}
+        isAuth={isAuth}
+        role={role}
+        exact path={AppRoute.NEW_BUILDINGS} 
+      />  
+      <PrivateRoute 
+        developerComponent={DashboardMapPage}
+        investorComponent={DashboardMapPage}
+        isAuth={isAuth}
+        role={role}
+        exact path={AppRoute.MAP} 
+      />
+      <PrivateRoute 
+        developerComponent={HomePage}
+        investorComponent={DashboardContainer}
+        isAuth={isAuth}
+        role={role}
+        exact path={AppRoute.INVESTOR_DASHBOARD} 
+      />
+      <PrivateRoute 
+        developerComponent={ApartmentPage}
+        investorComponent={DashboardContainer}
+        isAuth={isAuth}
+        role={role}
+        exact path={AppRoute.SETTINGS_APARTMENT} 
+      />
+      {/* <PrivateRoute 
+        developerComponent={HomePage}
+        investorComponent={DashboardMakeInvestmentPage}
+        isAuth={isAuth}
+        role={role}
+        path={AppRoute.MAKE_INVESTMENT} 
+      /> */}
+      <PrivateRoute 
+        developerComponent={AccountSettingsPage}
+        investorComponent={AccountSettingsPage}
+        isAuth={isAuth}
+        role={role}
+        exact path={AppRoute.ACCOUNT_SETTINGS} 
+      />
       <PublicRoute 
         component={SignIn}
         isAuth={isAuth}
-        role={role}
         exact path={AppRoute.SIGN_IN}
       />
       <PublicRoute 
@@ -56,36 +96,21 @@ const App: React.FC = () => {
         isAuth={isAuth}
         exact path={AppRoute.SIGN_UP}
       />
-      <Route exact path={AppRoute.FORGOT_PASSWORD}>
-        <ForgotPassword />
-      </Route>
-      <Route exact path={AppRoute.RESET_PASSWORD}>
-        <ResetPassword />
-      </Route>
-      <Route exact path={AppRoute.VERIFY_EMAIL}>
-        <VerifyEmail />
-      </Route>
-      <Route exact path={AppRoute.SETTINGS_APARTMENT}>
-        <ApartmentPage />
-      </Route>
-      <Route path={AppRoute.ACCOUNT_SETTINGS}>
-        <AccountSettingsPage />
-      </Route>
-      {/* <Route path={AppRoute.ROOT}>
-        <HomePage />
-      </Route> */}
-      <Route exact path={AppRoute.NEW_BUILDINGS}>
-        <PropertyDevelopersPage />
-      </Route>
-      <Route path={AppRoute.MAP}>
-        <DashboardMapPage />
-      </Route>
-      <Route path={AppRoute.INVESTOR_DASHBOARD}>
-        <DashboardContainer />
-      </Route>
-      <Route path={AppRoute.MAKE_INVESTMENT}>
-        <DashboardMakeInvestmentPage />
-      </Route>
+      <PublicRoute 
+        component={ForgotPassword}
+        isAuth={isAuth}
+        exact path={AppRoute.FORGOT_PASSWORD}
+      />
+      <PublicRoute 
+        component={ResetPassword}
+        isAuth={isAuth}
+        exact path={AppRoute.RESET_PASSWORD}
+      />
+      <PublicRoute 
+        component={VerifyEmail}
+        isAuth={isAuth}
+        exact path={AppRoute.VERIFY_EMAIL}
+      />
     </Switch>
   )
 }
