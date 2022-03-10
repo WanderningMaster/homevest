@@ -33,7 +33,6 @@ const SignIn: React.FC = () => {
   const message = useSelector<any>(store => store.users.message) as string;
   const [errorPopup, setErrorPopup] = useState('');
   useEffect(() => {
-    console.log(message);
     setErrorPopup(message);
   }, [message])
   return (

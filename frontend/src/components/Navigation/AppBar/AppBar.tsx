@@ -15,14 +15,12 @@ interface AppBarProps {
 }
 
 const AppBar: React.FC<AppBarProps> = ({ button }) => {
-  const role = useSelector<any>(store => store.users.userData.role);
   const data = [
-    // {
-    //   to: AppRoute.NEW_BUILDINGS,
-    //   text: 'New buildings',
-    //   icon: <CompoundIcon />,
-    // }
-    // ,
+    {
+      to: AppRoute.NEW_BUILDINGS,
+      text: 'New buildings',
+      icon: <CompoundIcon />,
+    },
     {
       to: AppRoute.MAP,
       text: 'Map',

@@ -23,7 +23,6 @@ const VerifyEmail: React.FC = () => {
   const message = useSelector<any>(store => store.users.message) as string;
   const [errorPopup, setErrorPopup] = useState('');
   useEffect(() => {
-    console.log(message);
     setErrorPopup(message);
   }, [message])
   return (
@@ -74,4 +73,4 @@ const VerifyEmail: React.FC = () => {
   )
 }
 
-export default VerifyEmail
+export default VerifyEmail;

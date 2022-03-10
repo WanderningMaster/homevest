@@ -8,14 +8,13 @@ import { AppRoute } from 'common/enums'
 import SignUpPage from 'pages/auth/sign-up/sign-up.page'
 import { HomePage } from 'pages/home/home.page'
 import { ApartmentPage } from 'pages/apartment/apartment-page'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import SignIn from 'pages/auth/signIn/signIn'
 import ForgotPassword from 'pages/auth/forgot-password/forgot-password.page'
 
 import { UserActionCreator } from 'store/user/userReducer'
 import VerifyEmail from 'pages/auth/verify-email/verify-email.page'
 import { RootState } from 'common/types'
-import { DashboardMakeInvestmentPage } from 'pages/dashboard-make-investment/dashboard-make-investment-page'
 import ResetPassword from 'pages/auth/reset-password/reset-password.page'
 import { PrivateRoute } from 'components/Routes/PrivateRoute'
 import DashboardContainer from 'pages/investor/dashboard/investorDashboard'
@@ -34,7 +33,6 @@ const App: React.FC = () => {
   }, [])
   const isAuth = users.isAuth;
   const role = users.userData.role;
-  console.log(role);
   return (
     <Switch>
       <PrivateRoute 
@@ -72,13 +70,6 @@ const App: React.FC = () => {
         role={role}
         exact path={AppRoute.SETTINGS_APARTMENT} 
       />
-      {/* <PrivateRoute 
-        developerComponent={HomePage}
-        investorComponent={DashboardMakeInvestmentPage}
-        isAuth={isAuth}
-        role={role}
-        path={AppRoute.MAKE_INVESTMENT} 
-      /> */}
       <PrivateRoute 
         developerComponent={AccountSettingsPage}
         investorComponent={AccountSettingsPage}

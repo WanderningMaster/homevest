@@ -14,7 +14,6 @@ const ForgotPassword: React.FC = () => {
   const message = useSelector<any>(store => store.users.message) as string;
   const [infoPopup, setInfoPopup] = useState('');
   useEffect(() => {
-    console.log(message);
     setInfoPopup(message);
   }, [message])
   return (

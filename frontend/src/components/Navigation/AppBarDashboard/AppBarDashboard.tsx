@@ -3,12 +3,11 @@ import { AppRoute } from 'common/enums'
 import { Link } from 'components/Navigation/NavLink'
 import { ReactComponent as CompoundIcon } from 'assets/images/building-icon.svg'
 import { ReactComponent as MapIcon } from 'assets/images/map-icon.svg'
-import { ReactComponent as DeveloperIcon } from 'assets/images/developer-icon.svg'
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
 import { UserActionCreator } from 'store/user/userReducer'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 const AppBarDashboard: React.FC = () => {
   const dispatch = useDispatch();

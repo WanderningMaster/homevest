@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects'
 import { api } from 'services';
 import { EstateActionsCreatorNew } from './estateNewReducer'
