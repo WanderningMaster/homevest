@@ -20,22 +20,21 @@ import { PrivateRoute } from 'components/Routes/PrivateRoute'
 import DashboardContainer from 'pages/investor/dashboard/investorDashboard'
 import { PublicRoute } from 'components/Routes/PublicRoute'
 
-
 const App: React.FC = () => {
   const { users } = useSelector(({ users }: RootState) => ({
     users,
   }))
   const dispatch = useDispatch()
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      dispatch({ type: UserActionCreator.asyncCheckAuthSaga().type });
+    if (localStorage.getItem('token')) {
+      dispatch({ type: UserActionCreator.asyncCheckAuthSaga().type })
     }
   }, [])
   const isAuth = users.isAuth;
   const role = users.userData.role;
   return (
     <Switch>
-      <PrivateRoute 
+      <PrivateRoute
         developerComponent={PropertyDevelopersPage}
         investorComponent={DashboardContainer}
         isAuth={isAuth}
@@ -105,6 +104,5 @@ const App: React.FC = () => {
     </Switch>
   )
 }
-
 
 export default App

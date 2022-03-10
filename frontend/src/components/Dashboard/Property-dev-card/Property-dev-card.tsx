@@ -50,7 +50,7 @@ const PropertyDevCard: React.FC<LayoutProps> = ({
       </span>
       <div className=" flex items-center justify-start p-6">
         <Typography type="h6">
-          Building start {yearOfOperation}, sales status {salesStatus}
+          Year of operation {yearOfOperation}. Sales status {salesStatus}
         </Typography>
       </div>
     </li>
