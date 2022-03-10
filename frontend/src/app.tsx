@@ -21,41 +21,32 @@ import { PrivateRoute } from 'components/Routes/PrivateRoute'
 import DashboardContainer from 'pages/investor/dashboard/investorDashboard'
 import { PublicRoute } from 'components/Routes/PublicRoute'
 
-
 const App: React.FC = () => {
   const { users } = useSelector(({ users }: RootState) => ({
     users,
   }))
   const dispatch = useDispatch()
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      dispatch({ type: UserActionCreator.asyncCheckAuthSaga().type });
+    if (localStorage.getItem('token')) {
+      dispatch({ type: UserActionCreator.asyncCheckAuthSaga().type })
     }
   }, [])
-  const isAuth = users.isAuth;
-  const role = users.userData.role;
-  console.log(role);
+  const isAuth = users.isAuth
+  const role = users.userData.role
+ 
   return (
     <Switch>
-      <PrivateRoute 
+      <PrivateRoute
         developerComponent={PropertyDevelopersPage}
         investorComponent={HomePage}
         // component={{PropertyDevelopersPage, HomePage}}
         isAuth={isAuth}
         role={role}
-        exact path={AppRoute.HOME_PAGE} 
+        exact
+        path={AppRoute.HOME_PAGE}
       />
-      <PublicRoute 
-        component={SignIn}
-        isAuth={isAuth}
-        role={role}
-        exact path={AppRoute.SIGN_IN}
-      />
-      <PublicRoute 
-        component={SignUpPage}
-        isAuth={isAuth}
-        exact path={AppRoute.SIGN_UP}
-      />
+      <PublicRoute component={SignIn} isAuth={isAuth} role={role} exact path={AppRoute.SIGN_IN} />
+      <PublicRoute component={SignUpPage} isAuth={isAuth} exact path={AppRoute.SIGN_UP} />
       <Route exact path={AppRoute.FORGOT_PASSWORD}>
         <ForgotPassword />
       </Route>
@@ -89,6 +80,5 @@ const App: React.FC = () => {
     </Switch>
   )
 }
-
 
 export default App

@@ -7,8 +7,9 @@ enum ReducerName {
   COMPANY = 'company',
   USER = 'user',
   MAKE_INVESTMENT = 'make-investment',
+  APARTMENT = 'apartment',
   ESTATE_NEW = 'estateNew',
-  APARTMENTS = 'apartments'
+  APARTMENTS = 'apartments',
 }
 
 export { ReducerName }

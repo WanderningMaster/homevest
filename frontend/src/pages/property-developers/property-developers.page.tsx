@@ -10,21 +10,21 @@ import { PropertyDevCard } from 'components/Dashboard/Property-dev-card'
 import Button from 'components/common/button/button'
 import { FiltersDashboard } from 'components/Dashboard/FiltersDashboard'
 import { Dashboardlayout } from 'components/layouts/dashboard-layout'
-import { getDeveloperEstate } from 'store/estate/estateSelectors'
-import { EstateActionsCreator } from 'store/estate/estateReducer'
+import { getVisibleEstate } from 'store/estateApartments/estateApartmentsSelectors'
+import { EstateApartmentsActionsCreator } from 'store/estateApartments/estateApartmentsReducer'
 import { AppRoute } from 'common/enums'
 
 function PropertyDevelopersPage(): JSX.Element {
   const [active, setActive] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const history = useHistory()
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(EstateActionsCreator.fetchEstate())
+    dispatch(EstateApartmentsActionsCreator.fetchEstate())
   }, [])
 
-  const estate = useSelector(getDeveloperEstate)
-  const dispatch = useDispatch()
+  const estate = useSelector(getVisibleEstate)
 
   const onMenuClick = () => {
     setActive(!active)
