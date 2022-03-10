@@ -1,8 +1,7 @@
-import { AppRoute } from "common/enums";
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
-const PrivateRoute = ({developerComponent: DeveloperComponent, investorComponent: InvestorComponent, isAuth, role, ...rest}: any) => {
+const PrivateRoute = ({developerComponent: DeveloperComponent, investorComponent: InvestorComponent, isAuth, role, ...rest}: any)=> {
     return (
         <Route {...rest} render={props => (
             isAuth ?

@@ -47,7 +47,6 @@ const initUserApi = (apiRouter: Router): Router => {
    *        description: Successful response
    */
   userRouter.get(UsersApiPath.$ID, isAuth, async (_req, res) => {
-    console.log(_req.params.id);
     try {
       const user = await userService.getUserById(_req.params.id);
       res.status(HttpCode.OK).json(user);

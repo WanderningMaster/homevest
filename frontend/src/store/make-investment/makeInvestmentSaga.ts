@@ -3,7 +3,12 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { MakeInvestmentActionCreators } from "./makeInvestmentReducer";
 
 const fetchEstateFromApi = async (estateId: string) => {
-  const response = await fetch(`http://localhost:3001/api/v1/estate/${estateId}`);
+  const response = await fetch(`http://localhost:3001/api/v1/estate/${estateId}`, {
+    method: 'get',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+  });
   const data = await response.json();
 
   return { data };

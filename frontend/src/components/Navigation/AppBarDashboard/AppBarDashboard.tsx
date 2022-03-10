@@ -3,7 +3,6 @@ import { AppRoute } from 'common/enums'
 import { Link } from 'components/Navigation/NavLink'
 import { ReactComponent as CompoundIcon } from 'assets/images/building-icon.svg'
 import { ReactComponent as MapIcon } from 'assets/images/map-icon.svg'
-
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg'
 import { MenuItem } from 'components/Navigation/MenuItem'
 import Button from 'components/common/button/button'
@@ -44,7 +43,9 @@ const AppBarDashboard: React.FC = () => {
           )
         })}
       </div>
-      <Button nameBtn="secondary" label="Log out" onClick={() => dispatch({ type: UserActionCreator.asyncLogoutSaga().type })} />
+      <Button nameBtn="secondary" label="Log out" onClick={() => {
+        dispatch({ type: UserActionCreator.asyncLogoutSaga().type })}
+      } />
     </>
   )
 }

@@ -5,8 +5,7 @@ import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { PasswordInputField } from "components/common/input/password-input-field";
-import { Redirect, useHistory, useParams } from "react-router";
-import { authService } from "services";
+import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { UserActionCreator } from "store/slices";
 import ErrorAlert from "components/common/alerts/Alert.error";
@@ -34,7 +33,6 @@ const ResetPassword: React.FC = () => {
   const message = useSelector<any>(store => store.users.message) as string;
   const [errorPopup, setErrorPopup] = useState('');
   useEffect(() => {
-    console.log(message);
     setErrorPopup(message);
   }, [message])
   return (

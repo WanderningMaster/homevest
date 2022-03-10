@@ -15,29 +15,10 @@ interface AppBarProps {
 }
 
 const AppBar: React.FC<AppBarProps> = ({ button }) => {
-  const role = useSelector<any>(store => store.users.userData.role);
-  const data = role === "investor" ? [
+  const data = [
     {
       to: AppRoute.NEW_BUILDINGS,
       text: 'New buildings',
-      icon: <CompoundIcon />,
-    }
-    ,
-    {
-      to: AppRoute.MAP,
-      text: 'Map',
-      icon: <MapIcon />,
-    },
-    {
-      to: AppRoute.SEARCH,
-      text: 'Search',
-      icon: <SearchIcon />,
-    },
-  ] :
-  [
-    {
-      to: AppRoute.NEW_BUILDINGS,
-      text: 'My buildings',
       icon: <CompoundIcon />,
     },
     {
@@ -72,13 +53,11 @@ const AppBar: React.FC<AppBarProps> = ({ button }) => {
           )
         })}
       </div>
-      {button && (
         <Button
           nameBtn="secondary"
           label="Log out"
           onClick={() => dispatch({ type: UserActionCreator.asyncLogoutSaga().type })}
         />
-      )}
     </>
   )
 }

@@ -1,8 +1,8 @@
-import axios from "axios";
 import { put, takeEvery, call } from 'redux-saga/effects';
+import { api } from "services";
 import { ApartmentActionCreator } from "./apartmentReducer";
 
-const fetchGetApartment = () => axios.get('http://localhost:3001/api/v1/appartments').then(res => res).catch(e => e)
+const fetchGetApartment = () => api.get('/appartments');
 
 function* getApartmentAsyncWorker() {
     try {

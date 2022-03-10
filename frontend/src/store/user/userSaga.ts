@@ -37,7 +37,6 @@ export function* forgotPassword(action: any){
 }
 
 export function* verifyEmailSaga(action: any) {
-  console.log(action.code)
   try {
     const res: AxiosResponse = yield call(authService.verifyEmail, action.code)
     yield put(UserActionCreator.verify());

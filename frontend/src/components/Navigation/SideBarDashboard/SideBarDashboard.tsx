@@ -10,22 +10,23 @@ import { ReactComponent as MessageIcon } from 'assets/images/message-icon.svg'
 import { ReactComponent as InvestmentIcon } from 'assets/images/investments-icon.svg'
 import { ReactComponent as FavouriteIcon } from 'assets/images/heart-icon.svg'
 import { Typography } from 'components/common/typography/typography'
+import { useSelector } from 'react-redux'
+import { RootState } from 'common/types'
 
 interface Props {
   isLoggedIn?: boolean
 }
 
 const SideBarDashboard: React.FC<Props> = ({ isLoggedIn }) => {
+  const { users } = useSelector(({ users }: RootState) => ({
+    users,
+  }))
+  const role = users.userData.role;
   const investmentData = [
     {
       to: AppRoute.ACCOUNT_SETTINGS,
       text: 'Account Settings',
       icon: <SettingsIcon />,
-    },
-    {
-      to: AppRoute.SETTINGS_APARTMENT,
-      text: 'Apartment Settings',
-      icon: <ApartmentIcon />,
     },
     {
       to: AppRoute.REPORTS,
@@ -88,8 +89,8 @@ const SideBarDashboard: React.FC<Props> = ({ isLoggedIn }) => {
 
   return (
     <div className=" flex flex-col gap-8 items-start p-4 absolute w-286px top-0 left-75px shadow-header bg-white rounded-lg z-20">
-      {isLoggedIn
-        ? investmentData.map(({ text, to, icon }) => {
+      {role === "investor" ? 
+        investmentData.map(({ text, to, icon }) => {
             return (
               <div key={text}>
                 <Link to={to} className="text-lightblue" activeClassName="text-green">

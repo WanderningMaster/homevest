@@ -55,7 +55,7 @@ class AuthService {
                 expiresIn: JWT_ACTIVATION_EXPIRATION
             });
             mailService.sendResetPasswordLink(email, refreshLink);
-        }
+        } else throw new Error("User not found");
     }
     public async resetPassword(refreshLink: string, newPassword: string): Promise<UpdateResult>{
         const { id } = jwt.verify(refreshLink, <string>JWT_REFRESH_PASSWORD_SECRET_KEY) as JwtPayload;

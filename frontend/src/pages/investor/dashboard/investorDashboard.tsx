@@ -96,7 +96,7 @@ const DashboardContainer: React.FC = () => {
                 <h2 
                     className={clsx('text-h2 font-bold text-black text-left')}
                 >
-                    Buildin in Mucahevo
+                    Buildings in Mucahevo
                 </h2>
                 <CardDashboardBuilder 
                     estate={estateNew} 
