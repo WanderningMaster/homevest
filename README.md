@@ -1,10 +1,11 @@
 <h1 align="center">
-  Project name
+  Homevest
 </h1>
 
 ## General info
 
-This is the repository responsible for projects app.
+This is the repository responsible for study project as part of an internship.
+
 ### Requirements:
 
 - NodeJS (14.x.x);
@@ -22,13 +23,11 @@ For the [BackEnd](./backend) to work properly, you need to fill in the **`.env`*
 
 ### 📚 API documentation
 
-
 See [documentation](http://localhost:3001/docs/api)
 
 ### 🛠 Useful Scripts
 
-* **`npx sequelize-cli migration:create --name <migration-name>`** — create migration with **`<migration-name>`** param as name.
-
+- **`npx sequelize-cli migration:create --name <migration-name>`** — create migration with **`<migration-name>`** param as name.
 
 ## FrontEnd
 
@@ -42,4 +41,4 @@ For the [FrontEnd](./frontend) to work properly, you need to fill in the **`.env
 4. **`npm run start`** at the root
 5. Enjoy
 
-*The root **package.json** also includes many scripts you can use in case of necessity. You can check the file to be informed* 🙌
+_The root **package.json** also includes many scripts you can use in case of necessity. You can check the file to be informed_ 🙌
